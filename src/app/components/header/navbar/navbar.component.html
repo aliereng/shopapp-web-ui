@@ -1,0 +1,26 @@
+<nav >
+    <div class="container flex">
+        <section id="logo">
+            <a routerLink="/">shopApp</a>
+        </section>
+        <section id="search">
+            <input type="text" id="searchInput" name="searchInput" placeholder="Ara">
+            <button>Ara</button>
+        </section>
+        <section id="items" class="flex">
+            <div id="auth"><p>Giriş Yap</p>
+                <div id="authItems" class="flex flex-column">
+                    <a routerLink="/login">Giriş Yap</a>
+                    <a routerLink="/register">Üye Ol</a>
+                    <div class="line"></div>
+                    <a routerLink="/register">Siparişlerim</a>
+                    <a routerLink="/register">Kullanıcı Bilgilerim</a>
+                    <div class="line"></div>
+                    <a routerLink="/">Çıkış yap</a>
+                </div>
+            </div>
+            <a routerLink="/cart">Sepetim</a>
+        </section>
+    </div>
+</nav>
+<app-category></app-category>

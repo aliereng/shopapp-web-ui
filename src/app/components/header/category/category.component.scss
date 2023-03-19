@@ -1,0 +1,23 @@
+#categories{
+    padding: 2rem 0;
+    .container{
+       
+        .categoryItem{
+            position: relative;
+            .categorySubItem{
+                position: absolute;
+                visibility: hidden;
+                padding: 2rem;
+                top:2rem;
+            }
+            &:hover{
+                cursor: pointer;
+                color:#505050;
+                .categorySubItem{
+                    visibility: visible;
+                }
+            }
+        }
+    }
+    
+}

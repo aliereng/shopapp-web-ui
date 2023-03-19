@@ -1,0 +1,11 @@
+<div id="form">
+    <div class="form-gorup">
+        <label for="email">email</label>
+        <input type="email" name="email" id="email" [(ngModel)]="email">
+    </div>
+    <div class="form-gorup">
+        <label for="password">password</label>
+        <input type="password" name="password" id="password" [(ngModel)]="password">
+    </div>
+    <button type="submit" (click)="login()">Login</button>
+</div>

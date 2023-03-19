@@ -1,0 +1,24 @@
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.flex {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:2rem;
+}
+.flex-column{
+    flex-direction: column;
+}
+.line{
+    border-bottom: 1px solid black;
+}
+a{
+    text-decoration: none;
+    color:gray;
+    &:hover{
+        color: #505050;
+        
+    }
+}
