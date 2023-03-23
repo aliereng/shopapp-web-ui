@@ -9,6 +9,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { CategoryComponent } from './components/header/category/category.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CategoryComponent } from './components/header/category/category.compone
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

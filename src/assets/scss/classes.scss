@@ -22,3 +22,21 @@ a{
         
     }
 }
+li{
+    list-style: none;
+}
+.btn{
+    padding: 1rem;
+    background-color: gray;
+    color:white;
+    border-color: white;
+    border-radius: .75rem;
+    transition: all .5s ease-in-out;
+    font-size: 2rem;
+    &:hover{
+        cursor:pointer;
+        border-color: gray;
+        background-color: white;
+        color:gray;
+    }
+}
