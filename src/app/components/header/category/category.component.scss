@@ -1,23 +1,35 @@
 #categories{
-    padding: 2rem 0;
     .container{
-       
-        .categoryItem{
+        align-items: normal;
+        .category{
+          
             position: relative;
-            .categorySubItem{
-                position: absolute;
-                visibility: hidden;
-                padding: 2rem;
-                top:2rem;
-            }
+            padding: 1rem 0;
+            z-index: 1;
             &:hover{
-                cursor: pointer;
-                color:#505050;
-                .categorySubItem{
-                    visibility: visible;
+                cursor:pointer;
+                .subCategories{
+                    display: block;
+                    position: absolute;
+                }
+                
+            }    
+            .subCategories{
+                background-color: rgba($color: white, $alpha: .8);
+                display: none;
+                font-size: 1.2rem;
+                padding: 1rem 1rem;
+                .subCategoryHead{
+                    font-weight: bold;
+                    font-size: 1.4rem;
+                    margin-bottom: .8rem;
+                }
+                ul{
+                    li{
+                        list-style: none;
+                    }
                 }
             }
         }
     }
-    
 }
