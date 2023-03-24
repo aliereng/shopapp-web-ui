@@ -43,8 +43,29 @@
             <button class="btn">Sepete Ekle</button>
         </div>
         
-        <div id="other">
-            diğer bilgiler
+        <div id="other" class="flex flex-column">
+            <div id="kurumsal">
+                <h4>Kurumsal Fatura</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="">İncele</a></p>
+            </div>
+            <div id="kampanya">
+                <h4>Kampanya</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="">İncele</a></p>
+            </div>
+            <div id="mevcutSatici" class="flex flex-column">
+                <h4>shopName - rate</h4>
+                <a href="">mağazayı Gör</a>   
+                <a href="">Satıcıya soru sor</a>
+            </div>
+            <div id="digerSaticilar" class="flex flex-column">
+                <div class="digerSatici" class="flex flex-column">
+                    <h4>shopName - rate</h4>
+                    <p>price</p>
+                    <a href="">mağazayı Gör</a>   
+                    <a href="">Satıcıya soru sor</a>
+                </div>                 
+            </div>
+
         </div>
     </div>
     <div id="props" class="container">
@@ -52,9 +73,9 @@
             <ul class="flex">
                 <li><a href="product/#similar">Benzer</a></li>
                 <li><a href="product/#otherSupplier">Diğer Satıcılar</a></li>
-                <li><a href="">Ürün Değerlendirmeleri</a></li>
-                <li><a href="">Ürün Soru Cevapları</a></li>
-                <li><a href="">Ürün Bilgileri</a></li>
+                <li><a href="product/#evaluations">Ürün Değerlendirmeleri</a></li>
+                <li><a href="product/#questionAndAnswer">Ürün Soru Cevapları</a></li>
+                <li><a href="product/#properties">Ürün Bilgileri</a></li>
                 <li><a href="">Ürün Açıklaması</a></li>
             </ul>
         </div>
@@ -124,7 +145,117 @@
         </div>
 
     </div>
-    <div id="evaluations" class="flex flex-column container">
-        <p>total</p>
+    <div id="evaluations" class="container">
+        <h2>Ürün Değerlendirmeleri</h2>
+        <div id="evaluationsArea" class="flex flex-column">
+            <div id="evaluationsHead">
+                <p>değerlendirme | yorum</p>
+                <p>puan</p>
+            </div>
+            <div id="evaluationsBody">
+                <div class="evaluation">
+                    <div class="evaluationHead">
+                        rate yorum
+                    </div>
+                    <div class="evaluationBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+                <div class="evaluation">
+                    <div class="evaluationHead">
+                        rate yorum
+                    </div>
+                    <div class="evaluationBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+            </div>
+            <button class="btn">Daha Fazla Değerlendirme Göster</button>
+        </div>
+
+    </div>
+    <div id="questionAndAnswer">
+
+        <h2>Sorular ve Cevaplar</h2>
+        <div id="questionAndAnswerArea" class="flex flex-column">
+            <div id="questionAndAnswerHead">
+                <p>değerlendirme | yorum</p>
+                <p>puan</p>
+            </div>
+            <div id="questionAndAnswerBody">
+                <div class="questionAndAnswer">
+                    <div class="questionAndAnswerHead">
+                        rate yorum
+                    </div>
+                    <div class="questionAndAnswerBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+                <div class="questionAndAnswer">
+                    <div class="questionAndAnswerHead">
+                        rate yorum
+                    </div>
+                    <div class="questionAndAnswerBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+            </div>
+            <button class="btn">Daha Fazla Değerlendirme Göster</button>
+        </div>
+    </div>
+    <div id="properties">
+        <h2>Ürün Bilgileri</h2>
+        <div id="propertiesArea" class="flex flex-column">
+            <div id="propAreaUp" class="flex">
+                <div id="producImg">
+                    <img src="https://cdn.dsmcdn.com/mnresize/1200/1800/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg">
+
+                </div>
+                <div id="propAreaUpInfo">
+                    <h3>Product Name</h3>
+                    <ul>
+                        <li>props</li>
+                        <li>props</li>
+                        <li>props</li>
+                        <li>props</li>
+                        <li>props</li>
+                        <li>props</li>
+                        <li>props</li>
+                        <li>props</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="propAreaDown">
+                <h3>Ürün Özellikleri</h3>
+                <div id="propAreaDownItems" class="flex">
+                    <ul>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
