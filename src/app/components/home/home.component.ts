@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
+import { HomepageModel } from 'src/app/models/HomepageModel';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
-
+  homepageModel?: HomepageModel | undefined
+  constructor(private service: ApiService) {
+    this.service.getAllProducts().subscribe(res => {
+      this.homepageModel = res;
+    })
+  }
+  
   ngOnInit(): void {
   }
 

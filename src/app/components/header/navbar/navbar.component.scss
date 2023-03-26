@@ -1,13 +1,15 @@
+@import "../../../../assets/scss/variables.scss";
 nav{
-    
-    border-bottom: 5px solid gray;
+
+    border-bottom: 5px solid $colorDarkGray;
     padding: 2rem 0;
     .container{
         #logo{
             a{
-                
+
                 font-size: 2rem;
                 font-weight: 600;
+                color: $colorOrange;
             }
         }
         #search{
@@ -20,9 +22,8 @@ nav{
                 border-radius: 1rem;
                 padding: 1rem;
                 border:none;
-                border-bottom: 1px solid gray;
+                border-bottom: 1px solid $colorDarkGray;
                 background-color: transparent;
-                color:whith;
                 &:focus{
                     border:none;
                 }
@@ -37,10 +38,10 @@ nav{
             }
         }
         #auth{
-            
+
             position: relative;
             #authItems{
-                background-color: rgba($color: gray, $alpha: .75);
+                background-color: rgba($color: $colorDarkGray, $alpha: .75);
                 position: absolute;
                 width: 200px;
                 left: -50px;
@@ -48,13 +49,13 @@ nav{
                 align-items: start;
                 visibility: hidden;
                 a{
-                    color: white;
-                    
+                    color: $colorWhite;
                 }
-                
-                
+
+
             }
             &:hover{
+                color:$colorOrange;
                 #authItems{
                     visibility: visible;
                     padding:2rem 2rem;

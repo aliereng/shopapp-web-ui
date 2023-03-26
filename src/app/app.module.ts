@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { FormsModule } from '@angular/forms';
 import { CategoryComponent } from './components/header/category/category.component';
 import { ProductComponent } from './components/product/product.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ProductComponent } from './components/product/product.component';
     LoginComponent,
     RegisterComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    ProductsComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

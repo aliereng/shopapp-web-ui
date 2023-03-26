@@ -1,29 +1,27 @@
 <section id="categories">
   <div class="container flex">
-    <div class="category">
-        <p>Elektronik</p>
-        <div class="subCategories container">
-            <div class="subCategoryHead">
-                <a routerLink="/bilgisayar">Bilgisayar</a>
-            </div>
-            <ul class="subCategoryItems">
-                <li class="subCategoryItem"><a routerLink="/subCategoryItem">Dizüstü</a></li>
-                <li class="subCategoryItem"><a routerLink="/subCategoryItem">Masaüstü</a></li>
+    <div class="category" *ngFor="let category of mainCategories">
+      <p>{{category.name}}</p>
+      <div class="subCategories">
+        <div class="subCategory"  *ngFor="let subCategory of category.children">
+          <div class="subCategoryHead">
+            <a routerLink="/{{subCategory.slug}}">{{subCategory.name}}</a>
+            
+          </div>
+          <ul class="subCategoryItems" *ngFor="let item of subCategory.children">
+            <li class="subCategoryItem"><a
+                routerLink="/{{item.slug}}">{{item.name}}</a>
+            </li>
+            <ul class="subCategoryItems" *ngFor="let subItem of item.children">
+              <li class="subCategoryItem"><a
+                  routerLink="/{{subItem.slug}}"><span>{{subItem.name}}</span></a>
+              </li>
+  
             </ul>
+          </ul>
         </div>
+
+      </div>
     </div>
-    <div class="category">
-        <p>Elektronik</p>
-        <div class="subCategories container">
-            <div class="subCategoryHead">
-                <a routerLink="/bilgisayar">Bilgisayar</a>
-            </div>
-            <ul class="subCategoryItems">
-                <li class="subCategoryItem"><a routerLink="/subCategoryItem">Dizüstü</a></li>
-                <li class="subCategoryItem"><a routerLink="/subCategoryItem">Masaüstü</a></li>
-            </ul>
-        </div>
-    </div>
-   
   </div>
 </section>

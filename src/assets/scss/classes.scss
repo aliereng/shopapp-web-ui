@@ -1,3 +1,4 @@
+@import "./variables.scss";
 .container{
     max-width: 1200px;
     margin: 0 auto;
@@ -16,7 +17,7 @@
 }
 a{
     text-decoration: none;
-    color:gray;
+    color:$colorDarkGray;
     &:hover{
         color: #505050;
         
@@ -27,16 +28,16 @@ li{
 }
 .btn{
     padding: 1rem;
-    background-color: gray;
-    color:white;
-    border-color: white;
+    background-color: $colorOrange;
+    color:$colorLightGray;
+    border-color: $colorLightGray;
     border-radius: .75rem;
     transition: all .5s ease-in-out;
     font-size: 2rem;
     &:hover{
         cursor:pointer;
-        border-color: gray;
-        background-color: white;
-        color:gray;
+        border-color: $colorLightGray;
+        background-color: $colorWhite;
+        color:$colorLightGray;
     }
 }

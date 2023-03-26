@@ -1,0 +1,280 @@
+<section id="productArea" class="container">
+    <div id="map">
+        <a routerLink="/">anasayfa</a><i class="fa-solid fa-chevron-right"></i>
+        <a routerLink="/{{category.slug}}" *ngFor="let category of product.categories">{{category.name}} <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+    <div id="productInfo" class="flex">
+        <div id="product" class="flex">
+            <div id="images">
+                <div id="image">
+                    <img src="http://localhost:3000/api/public/image/{{product.image}}" alt="{{product.slug}}">
+                </div>
+                <div id="otherImages">
+                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                </div>
+            </div>
+            <div id="info" class="flex flex-column">
+                <h2 id="productName">{{product.name}}</h2>
+                <p id="shopName"><span>satıcı: </span> <a href="">{{product.supplier}}</a></p>
+                <p id="score">puan / değerlendirme / soru cevap</p>
+                <p id="price">{{product.price}} ₺</p>
+                <div id="selectArea" class="flex">
+                    <select name="color" id="color">
+                        <option value="c1" selected>color1</option>
+                        <option value="c2">color2</option>
+                        <option value="c3">color3</option>
+                        <option value="c4">color4</option>
+                    </select>
+                    <select name="size" id="size">
+                        <option value="s1" selected>size1</option>
+                        <option value="s2">size2</option>
+                        <option value="s3">size3</option>
+                        <option value="s4">size4</option>
+                    </select>
+                </div>
+                <div id="shortDesc" class="flex flex-column">
+                    <h3 id="shortDescHead">Hakkında</h3>
+                    <p id="shortDescText">
+                        {{product.description}}
+                    </p>
+                </div>
+
+            </div>
+            <button class="btn">Sepete Ekle</button>
+        </div>
+        
+        <div id="other" class="flex flex-column">
+            <div id="kurumsal">
+                <h4>Kurumsal Fatura</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="">İncele</a></p>
+            </div>
+            <div id="kampanya">
+                <h4>Kampanya</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="">İncele</a></p>
+            </div>
+             <div id="mevcutSatici">
+                <h4>{{product.supplier}} - rate</h4>
+                <a href="">mağazayı Gör</a>
+                <a href="">Satıcıya soru sor</a>
+            </div>
+            <div id="digerSaticilar" class="flex flex-column">
+                <div class="digerSatici">
+                    <h4>shopName - rate</h4>
+                    <p>price</p>
+                    <a href="">mağazayı Gör</a>   
+                    <a href="">Satıcıya soru sor</a>
+                </div> 
+                <div class="digerSatici">
+                    <h4>shopName - rate</h4>
+                    <p>price</p>
+                    <a href="">mağazayı Gör</a>   
+                    <a href="">Satıcıya soru sor</a>
+                </div>     
+                <div class="digerSatici">
+                    <h4>shopName - rate</h4>
+                    <p>price</p>
+                    <a href="">mağazayı Gör</a>   
+                    <a href="">Satıcıya soru sor</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="props" class="container">
+        <div id="propsNav" >
+            <ul class="flex">
+                <li><a href="product/#similar">Benzer</a></li>
+                <li><a href="product/#otherSupplier">Diğer Satıcılar</a></li>
+                <li><a href="product/#evaluations">Ürün Değerlendirmeleri</a></li>
+                <li><a href="product/#questionAndAnswer">Ürün Soru Cevapları</a></li>
+                <li><a href="product/#properties">Ürün Bilgileri</a></li>
+                <li><a href="">Ürün Açıklaması</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="similar" class="container flex flex-column">
+        <h2>Benzer Ürünler</h2>
+        <div id="smiliarArea" class="flex">
+            <div class="product flex flex-column">
+                <a routerLink="product"></a>
+                <div class="image">
+                    <img src="https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png" alt="prd_image">
+                </div>
+                <p class="name">name</p>
+                <p class="price">1000</p>
+            </div>
+            <div class="product flex flex-column">
+                <a routerLink="product"></a>
+                <div class="image">
+                    <img src="https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png" alt="prd_image">
+                </div>
+                <p class="name">name</p>
+                <p class="price">1000</p>
+            </div>
+            <div class="product flex flex-column">
+                <a routerLink="product"></a>
+                <div class="image">
+                    <img src="https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png" alt="prd_image">
+                </div>
+                <p class="name">name</p>
+                <p class="price">1000</p>
+            </div>
+        </div>
+    </div>
+    <div id="otherSupplier" class="container flex flex-column">
+        <h2>Diğer Satıcılar</h2>
+        <div id="supplierArea" class="flex">
+            <div class="supplier">
+                <a href=""></a>
+                <h3>other supplier</h3>
+                <p>price</p>
+            </div>
+            <div class="supplier">
+                <a href=""></a>
+                <h3>other supplier</h3>
+                <p>price</p>
+            </div>
+            <div class="supplier">
+                <a href=""></a>
+                <h3>other supplier</h3>
+                <p>price</p>
+            </div>
+            <div class="supplier">
+                <a href=""></a>
+                <h3>other supplier</h3>
+                <p>price</p>
+            </div>
+            <div class="supplier">
+                <a href=""></a>
+                <h3>other supplier</h3>
+                <p>price</p>
+            </div>
+            <div class="supplier">
+                <a href=""></a>
+                <h3>other supplier</h3>
+                <p>price</p>
+            </div>
+        </div>
+
+    </div>
+    <!-- <div id="evaluations" class="container">
+        <h2>Ürün Değerlendirmeleri</h2>
+        <div id="evaluationsArea" class="flex flex-column">
+            <div id="evaluationsHead">
+                <p>değerlendirme | yorum</p>
+                <p>puan</p>
+            </div>
+            <div id="evaluationsBody">
+                <div class="evaluation">
+                    <div class="evaluationHead">
+                        rate yorum
+                    </div>
+                    <div class="evaluationBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+                <div class="evaluation">
+                    <div class="evaluationHead">
+                        rate yorum
+                    </div>
+                    <div class="evaluationBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+            </div>
+            <button class="btn">Daha Fazla Değerlendirme Göster</button>
+        </div>
+
+    </div>
+    <div id="questionAndAnswer">
+
+        <h2>Sorular ve Cevaplar</h2>
+        <div id="questionAndAnswerArea" class="flex flex-column">
+            <div id="questionAndAnswerHead">
+                <p>değerlendirme | yorum</p>
+                <p>puan</p>
+            </div>
+            <div id="questionAndAnswerBody">
+                <div class="questionAndAnswer">
+                    <div class="questionAndAnswerHead">
+                        rate yorum
+                    </div>
+                    <div class="questionAndAnswerBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+                <div class="questionAndAnswer">
+                    <div class="questionAndAnswerHead">
+                        rate yorum
+                    </div>
+                    <div class="questionAndAnswerBody">
+                        <p>kullanıcı adı | tarih | satıcı | Beden</p>
+                        <a href="">yorum</a>
+                    </div> 
+                </div>
+            </div>
+            <button class="btn">Daha Fazla Değerlendirme Göster</button>
+        </div>
+    </div> -->
+    <div id="properties" class="flex flex-column">
+        <h2>Ürün Bilgileri</h2>
+        <div id="propertiesArea" class="flex flex-column">
+            <div id="propAreaUp" class="flex">
+                <div id="producImg">
+                    <img src="https://cdn.dsmcdn.com/mnresize/1200/1800/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg">
+
+                </div>
+                <div id="propAreaUpInfo">
+                    <h3>Product Name</h3>
+                    <ul>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="propAreaDown">
+                <h3>Ürün Özellikleri</h3>
+                <div id="propAreaDownItems" class="flex">
+                    <ul>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                        <li>
+                            <p><span>prop Name: </span> value</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

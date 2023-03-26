@@ -1,0 +1,63 @@
+<div id="productsArea" class="flex">
+    <div id="leftArea" class="flex flex-column">
+        <div id="categories">categories</div>
+        <div id="priceFilter" class="flex flex-column">
+            <h3>Fiyat</h3>
+            <div id="priceInputs" class="flex">
+                <input type="number" name="priceMin" id="priceMin" #priceMin placeholder="En Az" [(ngModel)]="min"> <p>-</p>
+                <input type="number" name="priceMax" id="priceMax" #priceMax placeholder="En Çok" [(ngModel)]="max"> 
+                <button (click)="manualPriceControl()">Listele</button>
+            </div>
+            <div id="priceFilterOptions">
+                
+                <div class="priceFilterOption">
+                    <input type="radio" name="price" id="stageOne" (click)="selectRadioButton(stageOne)">
+                    <label for="stageOne" #stageOne>0 TL - 500 TL</label>
+                </div>
+                <div class="priceFilterOption">
+                    <input type="radio"
+                            name="price"
+                            (click)="selectRadioButton(stageTwo)">
+                    <label for="stageTwo" #stageTwo>501 TL - 1500 TL</label>
+                </div>
+                <div class="priceFilterOption">
+                    <input type="radio"
+                            name="price"
+                            (click)="selectRadioButton(stageThree)">
+                    <label for="stageThree" #stageThree>1501 TL - 3000 TL</label>
+                </div>
+                <div class="priceFilterOption">
+                    <input type="radio"
+                            name="price"
+                            (click)="selectRadioButton(stageFour)">
+                    <label for="stageFour" #stageFour>3001 TL - 30000 TL</label>
+                </div>
+                <div class="priceFilterOption">
+                    <input type="radio" 
+                           name="price"
+                           (click)="selectRadioButton(stageFive)">
+                    <label for="stageFive" #stageFive >30001 TL - 100000 TL</label>
+                </div>
+            
+            </div>
+        </div>
+        <div id="colorFilter" class="flex flex-column">
+            <h3>Renk</h3>
+            <select name="color" id="color" [(ngModel)]="color" (change)="selectColor()">
+                <option value="onerilen" selected disabled>Renk</option>
+                <option value="{{clr}}" *ngFor="let clr of colors">{{clr}}</option>
+            </select>
+        </div>
+    </div>
+    <div id="products" class="flex">
+        <select name="sort" id="sort" (change)="selectOverallRanking()" [(ngModel)] ="sort">
+            <option value="onerilen" selected disabled>Sıralama Seçiniz</option>
+            <option value="tarihEski">En Eski</option>
+            <option value="tarihYeni">En Yeni</option>
+            <option value="fiyatDusuk">En Düşük Fiyat</option>
+            <option value="fiyatYuksek">En Yüksek Fiyat</option>
+            
+        </select>
+        <app-product *ngFor="let product of this.homepageModel?.data" [product]="product"></app-product>
+    </div>
+</div>

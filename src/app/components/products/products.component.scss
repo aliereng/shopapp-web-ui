@@ -1,0 +1,58 @@
+#productsArea{
+    #leftArea{
+        padding: 0 1rem;
+        width: 20%;
+        align-self: flex-start;
+        align-items: flex-start;
+        #priceFilter{
+            align-items: flex-start;
+            width: 100%;
+            #priceInputs{
+                width: 100%;
+                input{
+                    width: 50%;
+                };
+            }
+            #priceFilterOptions{
+                .priceFilterOption{
+                    label{
+                        font-size: 1.4rem;
+                        margin-left: 1rem;
+                    }
+                }
+            }
+        }
+        #colorFilter{
+            align-items: flex-start;
+            width: 100%;
+            #priceInputs{
+                width: 100%;
+                input{
+                    width: 50%;
+                };
+            }
+           
+                .colorFilterOption{
+                    label{
+                        font-size: 1.4rem;
+                        margin-left: 1rem;
+                    }
+                
+            }
+        }
+    }
+    #products{
+        position: relative;
+        width: 80%;
+        flex-wrap: wrap;
+        padding-top: 2rem;
+        app-product{
+            width: 20%;
+        }
+        #sort{
+            position: absolute;
+            right: 2rem;
+            top: 0;
+        }
+    }
+}

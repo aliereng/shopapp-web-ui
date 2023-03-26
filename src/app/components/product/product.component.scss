@@ -1,265 +1,38 @@
-#productArea {
-    #map {
-        i {
-            margin: 1rem;
+.product{
+    z-index: 0;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
+    position: relative;
+    gap: 1rem;
+    width: 100%;
+    .image{
+        overflow: hidden;
+        img{
+            object-fit: contain;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+            transition: all .5s ease-in-out;
         }
     }
-
-    #productInfo {
-
-        #product {
-            border: 1px solid gray;
-            border-radius: 5px;
-            align-items: flex-start;
-            padding: 1rem;
-            width: 75%;
-            position: relative;
-
-            #images {
-                width: 40%;
-
-                #image {
-                    width: 100%;
-                    border: 1px solid gray;
-                    border-radius: 5px;
-
-                    img {
-                        object-fit: contain;
-                        object-position: center;
-                        width: 100%;
-                        height: 100%
-                    }
-
-                    ;
-                }
-
-                #otherImages {
-                    overflow: hidden;
-                    width: 100%;
-                    height: 8vh;
-                    text-align: center;
-
-                    img {
-                        object-fit: contain;
-                        object-position: center;
-                        width: 15%;
-                        height: 100%;
-                    }
-                }
-            }
-
-            #info {
-                width: 60%;
-            }
-
-            button {
-                position: absolute;
-                bottom: 4rem;
-                right: 4rem;
-            }
-        }
-
-        #other {
-            width: 25%;
-            #kurumsal, #kampanya, #mevcutSatici, #digerSaticilar{
-                width: 100%;
-                border: 1px solid gray;
-                padding: 1rem;
-                border-radius: 1rem;
-            }
-            #mevcutSatici, .digerSatici{
-                align-items: flex-start;
-                a{
-                    display: inline-block;
-                    border-bottom: 1px solid gray;
-                    
-                }
-            }
-            #digerSaticilar{
-                .digerSatici{
-                    align-items: flex-start;
-                    border-bottom: 1px solid gray;
-             
-                    a{
-                        display: inline-block;
-                        border-bottom: 1px solid gray;
-                        
-                    }
-                }
-            }
-            
-        }
+    p{
+        align-self: flex-start;
+        padding-left: 1rem;
     }
-
-    #props {
-        padding: 2rem 0rem;
+    a{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left:0;
+        z-index: 5;
     }
-
-    #similar {
-        padding:2rem 0;
-        .product {
-            z-index: 0;
-            border: 1px solid gray;
-            border-radius: 10px;
-            margin: 1rem;
-            padding: 1rem;
-            position: relative;
-            gap: 1rem;
-            width: 25%;
-
-            .image {
-                overflow: hidden;
-
-                img {
-                    object-fit: contain;
-                    object-position: center;
-                    width: 100%;
-                    height: 100%;
-                    transition: all .5s ease-in-out;
-                }
-            }
-
-            p {
-                align-self: flex-start;
-                padding-left: 1rem;
-            }
-
-            a {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                z-index: 5;
-            }
-
-            &:hover {
-                cursor: pointer;
-
-                img {
-                    scale: 1.1;
-                }
-            }
-        }
-    }
-    #otherSupplier{
-        padding: 2rem 0;
-        #supplierArea{
-            margin-top: 1rem;
-            .supplier{
-                position: relative;
-                border: 1px solid gray;
-                padding: 1rem .5rem;
-                border-radius: 1rem;
-                transition: all .5s ease-in-out;
-                &:hover{
-                    scale:1.2;
-                }
-                a{
-                    position: absolute;
-                    z-index: 5;
-                    top:0;
-                    left: 0;
-                    display: inline-block;
-                    width: 100%;
-                    height: 100%;
-                    
-                }
-            }
-        }
-    }
-    #evaluations{
-        padding: 2rem 0;
-        #evaluationsArea{
-            border: 1px solid gray;
-            border-radius: 1rem;
-            #evaluationsHead{
-                text-align: center;
-                width: 100%;
-                border-bottom: 1px solid gray;
-                padding: 1rem;
-            }
-            #evaluationsBody{
-                width: 100%;
-                
-                .evaluation{
-                    border-bottom: 1px solid gray;
-                    margin: 1rem 0;                       
-                    position: relative;
-                    a{
-                        position: absolute;
-                        bottom:0;
-                        right: 0;
-                    }
-                }    
-            }
-            button{
-                margin-bottom: 1rem;
-            }
-        }
-       
-    }
-    #questionAndAnswer{
-        padding: 2rem 0;
-        #questionAndAnswerArea{
-            border: 1px solid gray;
-            border-radius: 1rem;
-            #questionAndAnswerHead{
-                text-align: center;
-                width: 100%;
-                border-bottom: 1px solid gray;
-                padding: 1rem;
-            }
-            #questionAndAnswerBody{
-                width: 100%;
-                
-                .questionAndAnswer{
-                    border-bottom: 1px solid gray;
-                    margin: 1rem 0;                       
-                    position: relative;
-                    a{
-                        position: absolute;
-                        bottom:0;
-                        right: 0;
-                    }
-                }    
-            }
-            button{
-                margin-bottom: 1rem;
-            }
-        }
-       
-    }
-    #properties{
-        padding: 2rem 0;
-        
-        #propertiesArea{
-            border: 1px solid gray;
-            border-radius: 1rem;
-            #propAreaUp{
-                align-items: flex-start;
-                #producImg{
-                    width: 20%;
-                    img{
-                        object-fit: contain;
-                        object-position: center;
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-                #propAreaUpInfo{
-                    width: 70%;
-                    
-                }
-                border-bottom: 1px solid gray;
-            }
-            #propAreaDown{
-                width: 100%;
-                margin-bottom: 1rem;
-                #propAreaDownItems{
-                    width: 100%;
-                }
-            }
+    &:hover{
+        cursor: pointer;
+        img{
+            scale: 1.1;
         }
     }
 }
