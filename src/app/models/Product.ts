@@ -13,7 +13,7 @@ export interface Product{
     color:String;
     price:Number;
     supplier:Supplier;
-    categories:[Category];
+    categories:Array<Category>;
     comments:[];
     stocks:Array<Stock>;
     visible:Boolean;

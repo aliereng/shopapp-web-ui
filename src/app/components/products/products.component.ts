@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { Category } from 'src/app/models/Category';
 import { HomepageModel } from 'src/app/models/HomepageModel';
 
 @Component({
@@ -17,6 +18,7 @@ export class ProductsComponent implements OnInit {
   sort: String = "onerilen";
   colors: Array<String> = []
   color: String = "hepsi";
+  categories:any =[]
   constructor(private activatedRoute: ActivatedRoute, private service: ApiService, private router: Router) {
     this.slug = this.activatedRoute.snapshot!.paramMap!.get("slug")!;
     this.service.getAllProductsByCategory(this.slug, this.query).subscribe(res => {
@@ -26,7 +28,10 @@ export class ProductsComponent implements OnInit {
           this.colors.push(product.color)
         }
       })
+      this.categories.push(res.data[0]?.categories)
+
     })
+    
 
 
     this.router.routeReuseStrategy.shouldReuseRoute = function () {

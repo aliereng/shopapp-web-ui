@@ -6,5 +6,5 @@ export interface HomepageModel{
     total:Number;
     count:Number;
     pagination:{};
-    data:[Product]
+    data:Array<Product>
 }
