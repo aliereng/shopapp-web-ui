@@ -28,7 +28,7 @@ export class ApiService {
   getAllProducts():Observable<HomepageModel>{
     return this.http.get<HomepageModel>(this.url+"products")
   }
-  getProductById(id:String):Observable<{success:Boolean, data:Product}>{
-    return this.http.get<{success:Boolean, data:Product}>(this.url+`products/${id}`)
+  getProductById(slug: String,id:String):Observable<{success:Boolean, data:Product}>{
+    return this.http.get<{success:Boolean, data:Product}>(this.url+`products/${slug}/${id}`)
   }
 }

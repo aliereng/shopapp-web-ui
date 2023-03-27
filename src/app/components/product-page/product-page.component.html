@@ -21,21 +21,17 @@
             </div>
             <div id="info" class="flex flex-column">
                 <h2 id="productName">{{product.name}}</h2>
-                <p id="shopName"><span>satıcı: </span> <a href="">{{product.supplier}}</a></p>
+                <p id="shopName"><span>satıcı: </span> <a href="">{{product.supplier.shopName}}</a></p>
                 <p id="score">puan / değerlendirme / soru cevap</p>
                 <p id="price">{{product.price}} ₺</p>
                 <div id="selectArea" class="flex">
                     <select name="color" id="color">
-                        <option value="c1" selected>color1</option>
-                        <option value="c2">color2</option>
-                        <option value="c3">color3</option>
-                        <option value="c4">color4</option>
+                        <option value="{{product.color}}" selected>{{product.color}}</option>
+                        <option value="{{stock._id}}" *ngFor="let stock of product.stocks">{{stock.color}}</option>
                     </select>
                     <select name="size" id="size">
-                        <option value="s1" selected>size1</option>
-                        <option value="s2">size2</option>
-                        <option value="s3">size3</option>
-                        <option value="s4">size4</option>
+                        <option value="{{product.size}}" selected>{{product.size}}</option>
+                        <option value="{{stock._id}}" *ngFor="let stock of product.stocks">{{stock.size}}</option>
                     </select>
                 </div>
                 <div id="shortDesc" class="flex flex-column">
@@ -59,8 +55,8 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="">İncele</a></p>
             </div>
              <div id="mevcutSatici">
-                <h4>{{product.supplier}} - rate</h4>
-                <a href="">mağazayı Gör</a>
+                <h4>{{product.supplier.shopName}} - rate</h4>
+                <a routerLink="/merchant/{{product.supplier.shopName}}">mağazayı Gör</a>
                 <a href="">Satıcıya soru sor</a>
             </div>
             <div id="digerSaticilar" class="flex flex-column">

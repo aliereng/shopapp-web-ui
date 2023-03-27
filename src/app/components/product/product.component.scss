@@ -9,6 +9,8 @@
     width: 100%;
     .image{
         overflow: hidden;
+        width: 100%;
+        height: 25vh;
         img{
             object-fit: contain;
             object-position: center;

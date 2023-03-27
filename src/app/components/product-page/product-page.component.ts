@@ -15,7 +15,7 @@ export class ProductPageComponent implements OnInit {
   constructor(private service:ApiService, private activatedRoute:ActivatedRoute) { 
     this.id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
     this.slug = this.activatedRoute.snapshot!.paramMap!.get("slug")!;
-    this.service.getProductById(this.id).subscribe(prd=> {
+    this.service.getProductById(this.slug,this.id).subscribe(prd=> {
       this.product = prd.data
     })
   }

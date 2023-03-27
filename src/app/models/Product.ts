@@ -1,4 +1,6 @@
 import { Category } from "./Category";
+import { Stock } from "./Stock";
+import { Supplier } from "./Supplier";
 
 export interface Product{
     _id:String;
@@ -10,10 +12,10 @@ export interface Product{
     size:String;
     color:String;
     price:Number;
-    supplier:String;
+    supplier:Supplier;
     categories:[Category];
     comments:[];
-    stocks:[];
+    stocks:Array<Stock>;
     visible:Boolean;
     createdAt: Date;
     slug:String;

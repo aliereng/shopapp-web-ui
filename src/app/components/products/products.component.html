@@ -44,7 +44,7 @@
         <div id="colorFilter" class="flex flex-column">
             <h3>Renk</h3>
             <select name="color" id="color" [(ngModel)]="color" (change)="selectColor()">
-                <option value="onerilen" selected disabled>Renk</option>
+                <option value="hepsi" selected>Hepsi</option>
                 <option value="{{clr}}" *ngFor="let clr of colors">{{clr}}</option>
             </select>
         </div>
