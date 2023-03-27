@@ -5,6 +5,7 @@ import { Category } from './models/Category';
 import { HomepageModel } from './models/HomepageModel';
 import { Login } from './models/Login';
 import { Product } from './models/Product';
+import { Stock } from './models/Stock';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,8 @@ export class ApiService {
   getProductById(slug: String,id:String):Observable<{success:Boolean, data:Product}>{
     return this.http.get<{success:Boolean, data:Product}>(this.url+`products/${slug}/${id}`)
   }
+  getStockFromProductByColor(productId: String, color: String):Observable<{success:Boolean, data:Array<Stock>}>{
+    return this.http.get<{success:Boolean, data:Array<Stock>}>(this.url+ `stocks/${productId}?color=${color}`)
+  }
+
 }

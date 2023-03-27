@@ -24,14 +24,18 @@
                 <p id="shopName"><span>satıcı: </span> <a href="">{{product.supplier.shopName}}</a></p>
                 <p id="score">puan / değerlendirme / soru cevap</p>
                 <p id="price">{{product.price}} ₺</p>
+                <p>{{product.color}} - {{product.size}}</p>
                 <div id="selectArea" class="flex">
-                    <select name="color" id="color">
-                        <option value="{{product.color}}" selected>{{product.color}}</option>
-                        <option value="{{stock._id}}" *ngFor="let stock of product.stocks">{{stock.color}}</option>
+                    <select name="color" id="color" [(ngModel)]="selectColor" (change)="selectedColor()">
+                        <option value="default-color" selected disabled>Renk</option>
+                        <option value="{{stock.color}}" *ngFor="let stock of product.stocks">{{stock.color}}</option>
                     </select>
-                    <select name="size" id="size">
-                        <option value="{{product.size}}" selected>{{product.size}}</option>
-                        <option value="{{stock._id}}" *ngFor="let stock of product.stocks">{{stock.size}}</option>
+                    <select name="size" id="size" [(ngModel)]="size" >
+                        <option 
+                            value="default-size"
+                            selected disabled>Beden - Boyut
+                        </option>
+                        <option  value="{{size._id}}" *ngFor="let size of sizes">{{size.size}}</option>
                     </select>
                 </div>
                 <div id="shortDesc" class="flex flex-column">
