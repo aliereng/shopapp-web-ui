@@ -8,7 +8,7 @@ export interface Product{
     description: String;
     properties: [[String]];
     image: String,
-    images:[String];
+    images:Array<String>;
     size:String;
     color:String;
     price:Number;

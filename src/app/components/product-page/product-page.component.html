@@ -7,16 +7,11 @@
         <div id="product" class="flex">
             <div id="images">
                 <div id="image">
-                    <img src="http://localhost:3000/api/public/image/{{product.image}}" alt="{{product.slug}}">
+                    <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{product.slug}}">
                 </div>
                 <div id="otherImages">
-                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
-                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
-                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
-                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
-                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
-                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
-                    <img src="https://cdn.dsmcdn.com/mnresize/128/192/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg" alt="">
+                    <img *ngFor="let image of images; index as i" src="http://localhost:3000/api/public/image/{{image}}" alt="{{image}}" (click) ="clickSubImage($event.target)">
+                   
                 </div>
             </div>
             <div id="info" class="flex flex-column">
@@ -90,11 +85,11 @@
     <div id="props" class="container">
         <div id="propsNav" >
             <ul class="flex">
-                <li><a href="product/#similar">Benzer</a></li>
-                <li><a href="product/#otherSupplier">Diğer Satıcılar</a></li>
-                <li><a href="product/#evaluations">Ürün Değerlendirmeleri</a></li>
-                <li><a href="product/#questionAndAnswer">Ürün Soru Cevapları</a></li>
-                <li><a href="product/#properties">Ürün Bilgileri</a></li>
+                <li><a href="{{product.slug}}/{{product._id}}#similar">Benzer</a></li>
+                <li><a href="{{product.slug}}/{{product._id}}#otherSupplier">Diğer Satıcılar</a></li>
+                <li><a href="{{product.slug}}/{{product._id}}#evaluations">Ürün Değerlendirmeleri</a></li>
+                <li><a href="{{product.slug}}/{{product._id}}#questionAndAnswer">Ürün Soru Cevapları</a></li>
+                <li><a href="p{{product.slug}}/{{product._id}}#propertyItems">Ürün Bilgileri</a></li>
                 <li><a href="">Ürün Açıklaması</a></li>
             </ul>
         </div>
@@ -102,30 +97,15 @@
     <div id="similar" class="container flex flex-column">
         <h2>Benzer Ürünler</h2>
         <div id="smiliarArea" class="flex">
-            <div class="product flex flex-column">
-                <a routerLink="product"></a>
+            <div class="product flex flex-column" *ngFor="let product of someProducts">
+                <a routerLink="/{{product.slug}}/{{product._id}}"></a>
                 <div class="image">
-                    <img src="https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png" alt="prd_image">
+                    <img src="http://localhost:3000/api/public/image/{{product.image}}" alt="{{product.image}}">
                 </div>
-                <p class="name">name</p>
-                <p class="price">1000</p>
+                <p class="name">{{product.name}}</p>
+                <p class="price">{{product.price}}</p>
             </div>
-            <div class="product flex flex-column">
-                <a routerLink="product"></a>
-                <div class="image">
-                    <img src="https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png" alt="prd_image">
-                </div>
-                <p class="name">name</p>
-                <p class="price">1000</p>
-            </div>
-            <div class="product flex flex-column">
-                <a routerLink="product"></a>
-                <div class="image">
-                    <img src="https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png" alt="prd_image">
-                </div>
-                <p class="name">name</p>
-                <p class="price">1000</p>
-            </div>
+           
         </div>
     </div>
     <div id="otherSupplier" class="container flex flex-column">
@@ -231,39 +211,24 @@
         <div id="propertiesArea" class="flex flex-column">
             <div id="propAreaUp" class="flex">
                 <div id="producImg">
-                    <img src="https://cdn.dsmcdn.com/mnresize/1200/1800/ty746/product/media/images/20230224/16/288570117/12231250/1/1_org_zoom.jpg">
+                    <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{product.slug}}">
 
                 </div>
                 <div id="propAreaUpInfo">
                     <h3>Product Name</h3>
-                    <ul>
-                        <li>
-                            <p><span>prop Name: </span> value</p>
-                        </li>
-                        <li>
-                            <p><span>prop Name: </span> value</p>
-                        </li>
-                        <li>
-                            <p><span>prop Name: </span> value</p>
-                        </li>
-                    </ul>
+                    <p>{{product.description}}</p>
                 </div>
             </div>
-            <div id="propAreaDown">
+            <div id="propertyItems">
                 <h3>Ürün Özellikleri</h3>
-                <div id="propAreaDownItems" class="flex">
-                    <ul>
-                        <li>
-                            <p><span>prop Name: </span> value</p>
+                <div id="propAreaDownItems">
+                    <ul class="flex">
+                        <li *ngFor="let prop of props, index as i" >
+                            <p class="flex"><span>{{prop.property}}: </span>{{product.properties[i]}}</p>
                         </li>
-                        <li>
-                            <p><span>prop Name: </span> value</p>
-                        </li>
-                        <li>
-                            <p><span>prop Name: </span> value</p>
-                        </li>
+                        
                     </ul>
-                    <ul>
+                    <!-- <ul>
                         <li>
                             <p><span>prop Name: </span> value</p>
                         </li>
@@ -273,7 +238,7 @@
                         <li>
                             <p><span>prop Name: </span> value</p>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

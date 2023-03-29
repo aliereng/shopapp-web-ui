@@ -8,4 +8,5 @@ export interface Stock{
     type: String;
     status: Boolean;
     image: String;
+    images: Array<String>
 }
