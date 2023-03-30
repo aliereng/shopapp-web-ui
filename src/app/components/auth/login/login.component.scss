@@ -1,0 +1,80 @@
+@import "../../../../assets/scss/variables.scss";
+
+#loginArea {
+
+    position: relative;
+    #leftArea {
+        width: 100%;
+        height: 86.9vh;
+        background-color: $colorOrange;
+        clip-path: polygon(0 0, 75% 0, 40% 100%, 0 100%);
+        color: $colorLightGray;
+        #info{
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-125%, -50%);
+        }
+    }
+
+    #rightArea {
+        #loginForm{
+            position: absolute;
+            left: 70%;
+            width: 20%;
+            .formGroup{
+                margin-bottom: 1rem;
+                display:flex;
+                justify-content: space-around;
+                align-items: center;
+                
+                select, input{
+                    width: 75%;
+                    height: 3vh;
+                    font-size: 1.5rem;
+                }
+                label{
+                    width: 25%;
+                    text-align: end;
+                    margin-right: 1rem;
+                }
+                
+                
+            }
+            #other{
+                margin-top:2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+                gap:1rem;
+                a{
+                    &:hover{
+                        color:$colorOrange;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                    
+                }
+            }
+        }
+    }
+    #forgotPassword{
+        display: none;
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        background-color: $colorLightGray;
+        opacity: .9;
+        border-radius: 1rem;
+
+      
+           
+            input{
+                width: 50%;
+                height: 3rem;
+                font-size: 1.5rem;
+            }
+        
+    }
+}

@@ -1,11 +1,37 @@
-<div id="form">
-    <div class="form-gorup">
-        <label for="email">email</label>
-        <input type="email" name="email" id="email" [(ngModel)]="email">
+<div id="loginArea" class="flex">
+    <div id="leftArea">
+        <div id="info">
+            <h1>ShoppApp</h1>
+            <h2>İthiyacınız olan her şey için bir tık yeter.</h2>
+        </div>
     </div>
-    <div class="form-gorup">
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" [(ngModel)]="password">
+    <div id="rightArea" class="flex">
+
+        <form id="loginForm" (keydown.enter)="login()">
+            <div class="formGroup">
+                <label for="model">giriş türü</label>
+                <select name="model" id="model" [(ngModel)]="model">
+                    <option value="customer" selected>kullanıcı</option>
+                    <option value="supplier">mağaza</option>
+                </select>
+            </div>
+            <div class="formGroup">
+                <label for="email">mail</label>
+                <input type="email" name="email" id="email" [(ngModel)]="email">
+            </div>
+            <div class="formGroup">
+                <label for="password">şifre</label>
+                <input type="password" name="password" id="password" [(ngModel)]="password">
+            </div>
+            <div id="other">
+                <a (click)="showForgotPasswordArea()">Şifremi Unuttum</a>
+            <button class="btn" (click)="login()">Giriş Yap</button>
+            </div>
+        </form>
     </div>
-    <button type="submit" (click)="login()">Login</button>
+    <div id="forgotPassword" class="flex flex-column" >
+        
+            <input type="email" name="forgotMail" id="forgotMail"[(ngModel)]="forgotEmail" (keydown.enter)="forgotPassword()">
+        
+    </div>
 </div>

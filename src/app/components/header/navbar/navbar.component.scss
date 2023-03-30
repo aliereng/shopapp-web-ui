@@ -38,7 +38,7 @@ nav{
             }
         }
         #auth{
-
+            z-index: 5;
             position: relative;
             #authItems{
                 background-color: rgba($color: $colorDarkGray, $alpha: .75);

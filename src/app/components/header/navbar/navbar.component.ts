@@ -6,15 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  // seachText: String = "";
-  // text: String = localStorage.getItem("access_token") != ""? localStorage.getItem("user")!: "giriş yap"
-  constructor() { }
+  seachText: String = "";
+  text: String = localStorage.getItem("access_token") != ""? localStorage.getItem("user")!: "giriş yap"
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
-  // logout(){
-  //   localStorage.setItem("access_token","");
-  //   localStorage.setItem("user","");
-  //   window.location.replace("/");
-  // }
+  logout(){
+    localStorage.setItem("access_token","");
+    localStorage.setItem("user","");
+    window.location.replace("/");
+  }
 }
