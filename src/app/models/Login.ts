@@ -7,3 +7,4 @@ export interface Login{
         email: String
     }
 }
+

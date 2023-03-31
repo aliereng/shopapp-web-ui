@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ApiService } from 'src/app/api.service';
 import { Login } from 'src/app/models/Login';
 
@@ -19,15 +21,17 @@ export class LoginComponent implements OnInit {
     this.forgotStatus = false;
     this.showForgotPasswordArea();
   }
-  constructor(private service: ApiService, private router: Router) { }
+  constructor(private service: ApiService, private router: Router, private cookieService: CookieService) { }
 
   login() {
     this.service.login({ model: "customer", email: this.email, password: this.password }).subscribe((result) => {
       this.user = result
+      this.cookieService.set("access_token", `${result.access_token}`)
       localStorage.setItem("access_token", `${result.access_token}`)
       localStorage.setItem("user", `${result.data.name}`)
-      // this.router.navigate(["/"])
       window.location.replace("/");
+    },(error:HttpErrorResponse)=>{
+      alert(error.error.message);
     })
   }
   forgotPassword() {
@@ -56,6 +60,7 @@ export class LoginComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+
   }
 
 }

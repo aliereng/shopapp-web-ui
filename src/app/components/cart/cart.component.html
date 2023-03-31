@@ -1,0 +1,26 @@
+<div id="cartArea" class="container flex">
+    <div id="itemsArea">
+        <table>
+            <tr>
+              <th></th>
+              <th>ürün adı</th>
+              <th>renk</th>
+              <th>beden-boyut</th>
+              <th>adet</th>
+              <th>fiyat</th>
+            </tr>
+            <tr *ngFor="let item of cart?.items!">
+                <td><img src="http://localhost:3000/api/public/image/{{item.stock.image}}" alt="{{item.stock.image}}"></td>
+                <td>{{item.product.name}}</td>
+                <td>{{item.stock.color}}</td>
+                <td>{{item.stock.size}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.stock.price}}</td>
+            </tr>
+            
+          </table>
+    </div>
+    <div id="infoArea">
+        {{cart.amount}}
+    </div>
+</div>

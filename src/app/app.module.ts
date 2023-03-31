@@ -13,6 +13,9 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ResetComponent } from './components/auth/reset/reset.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { ResetComponent } from './components/auth/reset/reset.component';
     ProductComponent,
     ProductsComponent,
     ProductPageComponent,
-    ResetComponent
+    ResetComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { ResetComponent } from './components/auth/reset/reset.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

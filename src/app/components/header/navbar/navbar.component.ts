@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   seachText: String = "";
   text: String = localStorage.getItem("access_token") != "" ? localStorage.getItem("user")!: "giriş yap"
-  constructor() {
+  constructor(private cookieService: CookieService) {
   }
 
   ngOnInit(): void {
@@ -16,6 +17,8 @@ export class NavbarComponent implements OnInit {
   logout(){
     localStorage.setItem("access_token","");
     localStorage.setItem("user","");
+    this.cookieService.deleteAll();
     window.location.replace("/");
+    
   }
 }

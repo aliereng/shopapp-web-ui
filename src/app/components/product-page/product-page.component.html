@@ -33,7 +33,10 @@
                         </option>
                         <option  value="{{size}}" *ngFor="let size of sizes">{{size}}</option>
                     </select>
+                    
+
                 </div>
+                <p>{{piece}}</p>
                 <div id="shortDesc" class="flex flex-column">
                     <h3 id="shortDescHead">Hakkında</h3>
                     <p id="shortDescText">
@@ -42,7 +45,7 @@
                 </div>
 
             </div>
-            <button class="btn">Sepete Ekle</button>
+            <button class="btn" (click)="addToCart()">Sepete Ekle</button>
         </div>
         
         <div id="other" class="flex flex-column">

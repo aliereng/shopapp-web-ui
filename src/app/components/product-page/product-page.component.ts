@@ -14,6 +14,7 @@ export class ProductPageComponent implements OnInit {
   id: String = "";
   slug: String = "";
   product!: Product; 
+  stockId!: String;
   productColor!: String;
   productSize!: String;
   productPrice!: Number;
@@ -25,15 +26,16 @@ export class ProductPageComponent implements OnInit {
   image!: String;
   someProducts: Array<Product> = [];
   props: Array<Property> = [];
+  piece!: String;
   constructor(private service:ApiService, private activatedRoute:ActivatedRoute, private router:Router) { 
     this.id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
     this.slug = this.activatedRoute.snapshot!.paramMap!.get("slug")!;
     this.service.getProductById(this.slug,this.id).subscribe(prd=> {
       this.product = prd.data
-      console.log(this.product!.categories[this.product!.categories.length-1].name) 
-      this.productColor = prd.data.color;
-      this.productSize = prd.data.size;
+      // this.productColor = prd.data.color;
+      // this.productSize = prd.data.size;
       this.productPrice = prd.data.price;
+      // this.selectColor = prd.data.color;
       this.images = prd.data.images;
       this.image = prd.data.image
       if(Array.isArray(prd.data.stocks)){
@@ -69,6 +71,7 @@ export class ProductPageComponent implements OnInit {
         res.data.map(stock => {
           this.sizes.push(stock.size)
           this.productSize = stock.size;
+          // this.piece = "seçilen ürünün stok adedi: "+stock.piece
           if(stock.images != null){
             this.images = stock.images
           }
@@ -86,6 +89,10 @@ export class ProductPageComponent implements OnInit {
         res.data.map(stock => {
           if(stock.size == this.productSize){
             this.productPrice = stock.price
+            this.piece = "seçilen ürünün stok adedi: "+stock.piece;
+            this.stockId = stock._id;
+            // this.productColor = this.product.color;
+            // this.productSize = this.product.size;
           }
         })
       }
@@ -93,6 +100,20 @@ export class ProductPageComponent implements OnInit {
   }
   clickSubImage(event: any){
     this.image= event.alt
+  }
+  addToCart(){
+    if(this.id && this.stockId){
+      this.service.addToCart({
+        product: this.id,
+        stock: this.stockId,
+        count: "1"
+      }).subscribe(res=> {
+        alert(res.message);
+      })
+
+    }else{
+      alert("lütfen renk ve boyut bilgisini seçiniz.")
+    }
   }
   ngOnInit(): void {
   }
