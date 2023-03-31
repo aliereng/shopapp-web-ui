@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   password: String = "";
   model: String = "customer";
   forgotStatus: Boolean = true;
-  forgotEmail: String = "sisteme kayıtlı mail adresinizi giriniz.";
+  forgotEmail: String = "";
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.forgotStatus = false;
     this.showForgotPasswordArea();
@@ -31,8 +31,19 @@ export class LoginComponent implements OnInit {
     })
   }
   forgotPassword() {
-    alert("mail gelen kutunuzu kontrol edin.")
-    this.showForgotPasswordArea()
+    const send = {
+      model: this.model,
+      email: this.forgotEmail
+    }
+    this.service.forgotPassword(send).subscribe(res => {
+      alert(res.message)
+      document.getElementById("forgotPassword")?.setAttribute("style","display:none")
+      this.forgotEmail = "";
+      this.forgotStatus=true;
+    })
+    // this.router.navigate(["/resetpassword"]);
+
+
   }
   showForgotPasswordArea() {
     if(this.forgotStatus){

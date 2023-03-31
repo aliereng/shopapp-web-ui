@@ -62,19 +62,22 @@
     #forgotPassword{
         display: none;
         position: absolute;
-        width: 50%;
+        width: 25%;
         height: 50%;
-        background-color: $colorLightGray;
+        background-color: $colorWhite;
         opacity: .9;
         border-radius: 1rem;
-
-      
-           
-            input{
-                width: 50%;
-                height: 3rem;
-                font-size: 1.5rem;
-            }
+        padding: 2rem;
+        text-align: justify;
+        justify-content: center;
+        input{
+            width: 70%;
+            height: 3rem;
+            font-size: 1.5rem;
+        }
+        p{
+            font-weight: bold;
+        }
         
     }
 }

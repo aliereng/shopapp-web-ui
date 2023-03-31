@@ -1,7 +1,7 @@
 <section id="productArea" class="container">
     <div id="map">
         <a routerLink="">anasayfa</a>
-        <a routerLink="/{{category.slug}}" *ngFor="let category of product.categories"><i class="fa-solid fa-chevron-right"></i>{{category.name}}</a>
+        <a routerLink="/category/{{category.slug}}" *ngFor="let category of product.categories"><i class="fa-solid fa-chevron-right"></i>{{category.name}}</a>
     </div>
     <div id="productInfo" class="flex">
         <div id="product" class="flex">

@@ -17,7 +17,13 @@ export class ApiService {
   }
 
   login(data:Object):Observable<Login> {
-    return this.http.post<Login>(this.url+"customer/login", data)
+    return this.http.post<Login>(this.url+"auth/login", data)
+  }
+  forgotPassword(send: {model:String, email:String}):Observable<{success: Boolean, message: String}>{
+    return this.http.post<{success: Boolean, message: String}>(this.url+"auth/forgotpassword",send)
+  }
+  resetPassword(send: {model:String, password:String}, token:String):Observable<{success: Boolean, message: String}>{
+    return this.http.post<{success: Boolean, message: String}>(this.url+`auth/resetpassword?resetPasswordToken=${token}`,send)
   }
   getAllCategory():Observable<{success:Boolean, data:[Category]}>{
     return this.http.get<{success:Boolean, data:[Category]}>(this.url+"categories");

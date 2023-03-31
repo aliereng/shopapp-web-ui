@@ -1,0 +1,10 @@
+<div id="resetArea">
+    <div class="inputs">
+        <label for="password">yeni parola</label>
+        <input type="password" name="password" id="password" [(ngModel)]="newPassword" (keydown.enter)="send()">
+    </div>
+    <div class="inputs">
+        <label for="againPass">yeni parola</label>
+        <input type="password" name="againPass" id="againPass" [(ngModel)]="newPasswordAgain" (keydown.enter)="send()">
+    </div>
+</div>

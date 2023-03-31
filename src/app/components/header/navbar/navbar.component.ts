@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   seachText: String = "";
-  text: String = localStorage.getItem("access_token") != ""? localStorage.getItem("user")!: "giriş yap"
-  constructor() { 
+  text: String = localStorage.getItem("access_token") != "" ? localStorage.getItem("user")!: "giriş yap"
+  constructor() {
   }
 
   ngOnInit(): void {

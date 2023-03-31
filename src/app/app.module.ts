@@ -12,6 +12,7 @@ import { CategoryComponent } from './components/header/category/category.compone
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
+import { ResetComponent } from './components/auth/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProductPageComponent } from './components/product-page/product-page.com
     CategoryComponent,
     ProductComponent,
     ProductsComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

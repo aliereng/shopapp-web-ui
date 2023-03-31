@@ -3,7 +3,7 @@
         <div id="categories">
             <h3>Kategori</h3>
             
-            <a routerLink="/{{category.slug}}" *ngFor="let category of this.homepageModel!.data[0]?.categories">{{category.name}}</a>
+            <a routerLink="{{category.slug}}" *ngFor="let category of this.homepageModel!.data[0]?.categories">{{category.name}}</a>
         </div>
         <div id="priceFilter" class="flex flex-column">
             <h3>Fiyat</h3>

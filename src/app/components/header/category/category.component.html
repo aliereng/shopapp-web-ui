@@ -5,16 +5,16 @@
       <div class="subCategories">
         <div class="subCategory"  *ngFor="let subCategory of category.children">
           <div class="subCategoryHead">
-            <a routerLink="/{{subCategory.slug}}">{{subCategory.name}}</a>
+            <a routerLink="/category/{{subCategory.slug}}">{{subCategory.name}}</a>
             
           </div>
           <ul class="subCategoryItems" *ngFor="let item of subCategory.children">
             <li class="subCategoryItem"><a
-                routerLink="/{{item.slug}}">{{item.name}}</a>
+                routerLink="/category/{{item.slug}}">{{item.name}}</a>
             </li>
             <ul class="subCategoryItems" *ngFor="let subItem of item.children">
               <li class="subCategoryItem"><a
-                  routerLink="/{{subItem.slug}}"><span>{{subItem.name}}</span></a>
+                  routerLink="/category/{{subItem.slug}}"><span>{{subItem.name}}</span></a>
               </li>
   
             </ul>

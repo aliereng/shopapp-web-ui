@@ -30,8 +30,8 @@
         </form>
     </div>
     <div id="forgotPassword" class="flex flex-column" >
-        
-            <input type="email" name="forgotMail" id="forgotMail"[(ngModel)]="forgotEmail" (keydown.enter)="forgotPassword()">
-        
+            <p>Sıfırlama maili sistemimizde kayıtlı olan mail adresinize gönderilecektir. Lütfen kayıtlı eposta adresinizi aşağıdaki alana giriniz. İptal etmek için Escape (esc) tuşuna basabilirsiniz.</p>
+            <input type="email" name="forgotMail" id="forgotMail" [(ngModel)]="forgotEmail" (keydown.enter)="forgotPassword()">
+            <button class="btn" (click)="forgotPassword()">Gönder</button>
     </div>
 </div>
