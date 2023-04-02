@@ -6,7 +6,7 @@
 .flex {
     display:flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     gap:2rem;
 }
 .flex-column{
@@ -28,16 +28,27 @@ li{
 }
 .btn{
     padding: 1rem;
-    background-color: $colorOrange;
+    background-color: $colorWhite;
     color:$colorLightGray;
-    border-color: $colorLightGray;
+    border:1px solid $colorDarkGray;
     border-radius: .75rem;
     transition: all .5s ease-in-out;
     font-size: 2rem;
     &:hover{
         cursor:pointer;
-        border-color: $colorLightGray;
-        background-color: $colorWhite;
-        color:$colorLightGray;
+        
+        background-color: $colorOrange;
+        color:$colorWhite;
+        border:none;
     }
+}
+.active{
+    background-color:$colorOrange;
+    
+}
+.userRouterHeader{
+    width: 100%;
+    color:$colorLightGray;
+    border: 1px solid $colorLightGray;
+    padding: 1rem;
 }

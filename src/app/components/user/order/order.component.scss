@@ -1,0 +1,12 @@
+@import "../../../../assets/scss/variables.scss";
+
+#ordersArea{
+    width: 100%;
+    h2{
+        width: 100%;
+        border: 1px solid $colorLightGray;
+    }
+    .order{
+        display: flex;
+    }
+}

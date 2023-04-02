@@ -1,0 +1,30 @@
+@import "../../../assets/scss/variables.scss";
+#userArea{
+    justify-content: flex-start;
+    align-items: flex-start;
+    #userNav{
+        width: 25%;
+        h2{
+            color:$colorLightGray;
+            padding:1rem
+        }
+        ul{
+            margin-top: 2rem;
+            li{
+                padding: 1rem;
+                p{
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                    color:$colorLightGray
+
+                }
+                &:hover{
+                    cursor:pointer;
+                }
+            }
+        }
+    }
+    #routerArea{
+        width: 70%;
+    }
+}

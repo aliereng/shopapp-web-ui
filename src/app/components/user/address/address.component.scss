@@ -1,0 +1,39 @@
+@import "../../../../assets/scss/variables.scss";
+#addressArea{
+    #itemArea{
+        width: 100%;
+        border: 1px solid $colorLightGray;
+        padding: 1rem;
+        .item{
+            border: 1px solid $colorLightGray;
+            width: 33%;
+            
+            .itemHeader{
+                border-bottom: 1px solid $colorLightGray;
+                padding: 1rem;
+                justify-content: space-around;
+                i{
+                    color:red;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+            .itemBody,.itemFooter{
+                padding: 1rem;
+                border-bottom: 1px solid $colorLightGray;
+
+                p{
+                    display: flex;
+                    justify-content: space-between;
+                    span{
+                        font-weight: 600;
+                    }
+                }
+            }
+            .itemFooter{
+                border-bottom: none;
+            }
+        }
+    }
+}

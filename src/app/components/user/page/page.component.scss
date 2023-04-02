@@ -1,0 +1,47 @@
+@import "../../../../assets/scss/variables.scss";
+
+#userPageArea{
+    label{
+        display: block;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color:$colorLightGray;
+        
+    }
+    input{
+        width: 100%;
+        height: 4rem;
+        border: 1px solid $colorWhite;
+        background-color: $colorWhite;
+        border-radius: .5rem;
+        padding: 1rem;
+        font-size: 2rem;
+    }
+    #userInfo{
+        margin-top: 2rem;
+        width: 100%;
+        border: 1px solid $colorLightGray;
+        
+        .userInfoItem{
+            
+            padding:2rem;
+            width: 50%;
+            gap: 4rem;
+            justify-content: center;
+            align-items: center;
+            h4{
+                color:$colorOrange;
+                align-self:flex-start;
+            }
+            #nameArea{
+                width: 100%;
+                
+            }
+            .item{
+                width: 100%;
+                
+            }
+        }
+    }
+}

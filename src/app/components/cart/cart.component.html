@@ -1,26 +1,33 @@
 <div id="cartArea" class="container flex">
     <div id="itemsArea">
-        <table>
-            <tr>
-              <th></th>
-              <th>ürün adı</th>
-              <th>renk</th>
-              <th>beden-boyut</th>
-              <th>adet</th>
-              <th>fiyat</th>
-            </tr>
-            <tr *ngFor="let item of cart?.items!">
-                <td><img src="http://localhost:3000/api/public/image/{{item.stock.image}}" alt="{{item.stock.image}}"></td>
-                <td>{{item.product.name}}</td>
-                <td>{{item.stock.color}}</td>
-                <td>{{item.stock.size}}</td>
-                <td>{{item.count}}</td>
-                <td>{{item.stock.price}}</td>
-            </tr>
-            
-          </table>
+        <p class="emptyCart"  *ngIf="cart.items.length < 1">Sepetinizde Ürün Bulunmamaktadır.</p>
+        <div class="item flex" *ngFor="let item of cart?.items!, index as i">
+            <a routerLink="/product/{{item.product.slug}}/{{item.product._id}}"></a>
+            <div class="itemImage">
+                <img src="http://localhost:3000/api/public/image/{{item.product.image}}" alt="{{item.product.image}}">
+            </div>
+            <div class="itemInfo flex">
+                <p class="infoItem"><span>{{item.product.supplier.shopName}}</span></p>
+                <p class="infoItem"><span>marka </span>{{item.product.name}}</p>
+                <p class="infoItem">{{item.stock.size}} - {{item.stock.color}}</p>
+                <div class="count infoItem">
+                    <i class="fa-solid fa-minus"(click)="countAzalt(i)"></i>
+                    {{item.count}}
+                    <i class="fa-solid fa-plus" (click)="countArttir(i)"></i>
+                </div>
+                <p class="infoItem">{{item.price}}</p>
+                <i class="fa-solid fa-x" (click)="kaldir(i)"></i>
+            </div>
+        </div>
     </div>
-    <div id="infoArea">
-        {{cart.amount}}
+    <div id="infoArea" class="flex flex-column">
+         <div class="flex flex-column">
+            <h3>Sepet Özeti</h3>
+            <p class="flex"><span>sepet tutarı: </span>{{cart.amount}}₺</p>
+            <p class="flex"><span>kargo tutarı: </span>0₺</p>
+            <p class="flex"><span>indirimler: </span>0₺</p>
+            <p class="flex"><span>toplam: </span>{{cart.amount}}₺</p>
+        </div> 
+        <button routerLink="/cart/payment" class="btn" (click)="applyCart()">Sepeti Onayla</button>
     </div>
 </div>

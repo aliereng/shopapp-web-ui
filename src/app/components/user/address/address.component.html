@@ -1,0 +1,22 @@
+<div id="addressArea" class="flex flex-column">
+    <h2 class="userRouterHeader">Adres Bilgilerim</h2>
+
+    <div id="itemArea" class="flex">
+        <div class="item" *ngFor="let address of addresses">
+            <div class="itemHeader flex">
+                <h4>{{address.title}}</h4>
+                <i class="fa-sharp fa-solid fa-trash"></i>
+            </div>
+            <div class="itemBody">
+                <p><span>Şehir: </span>{{address.info.city}}</p>
+                <p><span>İlçe: </span>{{address.info.district}}</p>
+                <p><span>Mahalle: </span>{{address.info.neighbourhood}}</p>
+                <p><span>Cadde: </span>{{address.info.street}}</p>
+                <p><span>Posta Kodu: </span>{{address.info.postalCode}}</p>
+            </div>
+            <div class="itemFooter">
+                <p><span>Açıklama: </span>{{address.info.addressDesc}}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,13 @@
-import { HttpClient, HttpClientModule, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpContext, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, observable } from 'rxjs';
 import { Category } from './models/Category';
 import { HomepageModel } from './models/HomepageModel';
 import { Login } from './models/Login';
 import { Product } from './models/Product';
 import { Stock } from './models/Stock';
 import { Cart } from './models/Cart';
+import { Customer } from './models/Customer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +15,22 @@ import { Cart } from './models/Cart';
 export class ApiService {
   url:String ="";
   httpOptions = {
-    headers: new HttpHeaders({
+    headers:{ 
       'Content-Type':  'application/json',
       'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
-    })
+    },
+    observe:'response'
   };
   constructor(private http: HttpClient) { 
     this.url = "http://localhost:3000/api/"
   }
 
-  login(data:Object):Observable<Login> {
-    return this.http.post<Login>(this.url+"auth/login", data)
+  login(data:Object) {
+    return this.http.post(this.url+"auth/login", data,{observe:'response'})
   }
-
-  
+  register(data:Object) {
+    return this.http.post(this.url+"auth/register", data,{observe:"response"})
+  }
 
   forgotPassword(send: {model:String, email:String}):Observable<{success: Boolean, message: String}>{
     return this.http.post<{success: Boolean, message: String}>(this.url+"auth/forgotpassword",send)
@@ -51,11 +54,53 @@ export class ApiService {
   getStockFromProductByColor(productId: String, color: String):Observable<{success:Boolean, data:Array<Stock>}>{
     return this.http.get<{success:Boolean, data:Array<Stock>}>(this.url+ `stocks/${productId}?color=${color}`)
   }
-  addToCart(send:{product: String, stock: String, count: String}):Observable<{success: Boolean, message:String}>{
-    return this.http.post<{success: Boolean, message:String}>(this.url+"cart/addtocart", send,this.httpOptions)
+  // addToCart(send:{product: String, stock: String, count: String}):Observable<{success: Boolean, message:String}>{
+  //   return this.http.post<{success: Boolean, message:String}>(this.url+"cart/addtocart", send,this.httpOptions)
+  // }
+  addToCart(send:{product: String, stock: String, count: String}){
+    return this.http.post(this.url+"cart/addtocart", send,{
+      headers:{ 
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
+      },
+      observe:'response'
+    })
   }
-  getCart():Observable<{success: Boolean,message:String, data:Cart}>{
-    return this.http.get<{success: Boolean,message:String, data:Cart}>(this.url+"cart/get",this.httpOptions)
+  getCart(){
+    return this.http.get(this.url+"cart/get",{
+      headers:{ 
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
+      },
+      observe:'response'
+    })
+  }
+  applyCart(id: String, data:{}){
+    return this.http.put(this.url+`cart/apply/${id}`,data,{
+      headers:{ 
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
+      },
+      observe:'response'
+    })
+  }
+  getCustomer(){
+    return this.http.get(this.url+"customer",{
+      headers:{ 
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
+      },
+      observe:'response'
+    })
+  }
+  updateCustomer(data:Customer){
+    return this.http.put(this.url+"customer/update",data,{
+      headers:{ 
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
+      },
+      observe:'response'
+    })
   }
 
 }

@@ -2,15 +2,16 @@ import { Product } from "./Product";
 import { Stock } from "./Stock";
 
 export interface Cart{
+    _id:String;
     customer: String;
-    amount:Number;
+    amount:number;
     status:Boolean;
     items:[
         {
             product:Product,
             stock:Stock,
-            count:Number,
-            price:Number
+            count:number,
+            price:number
         }
     ]
 

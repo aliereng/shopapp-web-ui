@@ -1,22 +1,95 @@
+@import "../../../assets/scss/variables.scss";
 #cartArea {
     #itemsArea {
-        width: 85%;
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+        align-self: flex-start;
 
-            td,
-            th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
+        width: 80%;
+        padding: 2rem;
+        border: 1px solid;
+        .item{
+            position: relative;
+            margin:1rem;
+            border-bottom: 1px solid $colorLightGray;
+            a{
+                position: absolute;
+                display: inline-block;
+                top:0;
+                left:0;
+                width: 100%;
+                height: 100%;
+                z-index: 5;
             }
-
-            tr:nth-child(even) {
-                background-color: #dddddd;
+            .itemImage{
+                width: 10%;
+                img{
+                    width: 100%;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+            .itemInfo{
+                width: 90%;
+                .count{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+                    
+                    
+                }
+                i{
+                    font-size: .75rem;
+                    border: 1px solid $colorLightGray;
+                    border-radius: 100%;
+                    padding: 5px;
+                    &:hover{
+                        background-color: $colorOrange;
+                        color:$colorWhite;
+                        border-color: $colorWhite;
+                        cursor:pointer
+                    }
+                    z-index: 10;
+                }
+                .infoItem   {
+                    width: 25%;
+                    text-align: center;
+                }
             }
         }
+        .item:last-child{
+            border-bottom: none;
+        }
 
+    }
+    #infoArea{
+        width: 20%;
+        align-self: flex-start;
+        button{
+            width: 100%;
+        }
+        div{
+            border: 1px solid $colorLightGray;
+            padding: 1rem;
+            align-items: flex-start;
+            gap:0rem;
+            width: 100%;
+            h3{
+                width: 100%;
+                border-bottom: 1px solid $colorLightGray;
+                margin-bottom: 1rem;
+            }
+            p{
+                width: 100%;
+                justify-content: space-between;
+                span{
+                    font-weight: 500;
+                }
+            }    
+            p:last-child{
+                margin-top:1rem;
+                border-top: 1px solid $colorLightGray;
+            }
+  
+        }
     }
 }

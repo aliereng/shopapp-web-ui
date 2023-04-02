@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { CategoryComponent } from './components/header/category/category.component';
 import { ProductComponent } from './components/product/product.component';
@@ -15,6 +14,11 @@ import { ProductPageComponent } from './components/product-page/product-page.com
 import { ResetComponent } from './components/auth/reset/reset.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CookieService } from 'ngx-cookie-service';
+import { PaymentComponent } from './components/cart/payment/payment.component';
+import { UserComponent } from './components/user/user.component';
+import { PageComponent } from './components/user/page/page.component';
+import { OrderComponent } from './components/user/order/order.component';
+import { AddressComponent } from './components/user/address/address.component';
 
 
 @NgModule({
@@ -23,13 +27,17 @@ import { CookieService } from 'ngx-cookie-service';
     HomeComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent,
     CategoryComponent,
     ProductComponent,
     ProductsComponent,
     ProductPageComponent,
     ResetComponent,
-    CartComponent
+    CartComponent,
+    PaymentComponent,
+    UserComponent,
+    PageComponent,
+    OrderComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

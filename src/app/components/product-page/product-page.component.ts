@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
@@ -107,8 +108,10 @@ export class ProductPageComponent implements OnInit {
         product: this.id,
         stock: this.stockId,
         count: "1"
-      }).subscribe(res=> {
-        alert(res.message);
+      }).subscribe((result:HttpResponse<any>)=> {
+        alert(result.body.message);
+      },(error:HttpErrorResponse)=> {
+        alert(error.error.message)
       })
 
     }else{
