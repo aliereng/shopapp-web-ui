@@ -1,7 +1,7 @@
 <div id="addressArea" class="flex flex-column">
     <div id="header" class="flex">
         <h2 class="userRouterHeader">Adres Bilgilerim</h2>
-        <i class="fa-solid fa-plus" (click)="showAddAddressPanel()" (keydown.esc)="disableAddAddressPanel()"></i>
+        <i class="fa-solid fa-plus" (click)="showAddAddressPanel()"></i>
     </div>
 
     <div id="itemArea" class="flex">
@@ -11,18 +11,22 @@
                 <i class="fa-sharp fa-solid fa-trash" (click)="remove(address, i)"></i>
             </div>
             <div class="itemBody">
-                <p><span>Şehir: </span>{{address.info.city}}</p>
-                <p><span>İlçe: </span>{{address.info.district}}</p>
-                <p><span>Mahalle: </span>{{address.info.neighbourhood}}</p>
-                <p><span>Cadde: </span>{{address.info.street}}</p>
-                <p><span>Posta Kodu: </span>{{address.info.postalCode}}</p>
+                <p><span>{{address.info.name}} {{address.info.surname}}</span></p>
+                <p>{{address.info.neighbourhood}}</p>
+                <p id="description">{{address.info.addressDesc}}</p>
+                <p>{{address.info.district}}/{{address.info.city}}</p>
+                <p>{{address.info.phone}}</p>
             </div>
             <div class="itemFooter">
-                <p><span>Açıklama: </span>{{address.info.addressDesc}}</p>
+                <a (click)="showUpdateAddressPanel()">adresi güncelle</a>
+            </div>
+            <div id="updateAddressPanel" class="flex">
+                <app-update-address [address]="address"></app-update-address>
             </div>
         </div>
-    </div>
-    <div id="addAddressPanel" class="flex">
-        <app-add-address></app-add-address>
+        <div id="addAddressPanel" class="flex">
+            <app-add-address></app-add-address>
+        </div>
+
     </div>
 </div>

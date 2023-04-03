@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/Address';
 import { AddressService } from 'src/app/services/address.service';
@@ -20,31 +20,34 @@ export class AddAddressComponent implements OnInit {
   street!: String;
   postalCode!: String;
   addressDesc!: String;
-  address!: Address
   constructor(private service:AddressService, private router:Router) { 
-
+    
   }
 
   ngOnInit(): void {
   }
 
   addAddress(){
-    this.address.title = this.title;
-    this.address.info.addressDesc = this.addressDesc;
-    this.address.info.name = this.name;
-    this.address.info.surname = this.surname;
-    this.address.info.city = this.city;
-    this.address.info.district = this.district;
-    this.address.info.neighbourhood = this.neighbourhood;
-    this.address.info.street = this.street;
-    this.address.info.postalCode = this.postalCode;
-    this.address.info.phone = this.phone;
-    this.service.addAddress(this.address).subscribe(res=> {
-
+    const address = {
+      title:this.title,
+      info:{
+        name:this.name,
+        surname:this.surname,
+        phone: this.phone,
+        city:this.city,
+        district:this.district,
+        neighbourhood:this.neighbourhood,
+        street: this.street,
+        postalCode: this.postalCode,
+        addressDesc: this.addressDesc
+      }
+    }
+    this.service.addAddress(address).subscribe(res=> {
+      document.getElementById("addAddressPanel")?.setAttribute("style","visibility:hidden");
+      window.location.reload();
     },(error:HttpErrorResponse)=> {
       alert(error.error.models)
     })
-    this.router.navigate(["/user/address"]);
     
 
   }

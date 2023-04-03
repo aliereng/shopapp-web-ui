@@ -21,6 +21,8 @@
         width: 100%;
         border: 1px solid $colorLightGray;
         padding: 1rem;
+        flex-wrap: wrap;
+        gap:.1rem;        
         .item{
             border: 1px solid $colorLightGray;
             width: 33%;
@@ -29,6 +31,8 @@
                 border-bottom: 1px solid $colorLightGray;
                 padding: 1rem;
                 justify-content: space-around;
+                width: 100%;
+                background-color: rgba($color: $colorWhite, $alpha: .6);
                 i{
                     color:red;
                     &:hover{
@@ -38,22 +42,41 @@
             }
             .itemBody,.itemFooter{
                 padding: 1rem;
-                border-bottom: 1px solid $colorLightGray;
-
+                width: 75%;
                 p{
-                    display: flex;
-                    justify-content: space-between;
+                    font-size: 1.3rem;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    color:$colorLightGray;
+                    font-weight: 500;
+                    margin-bottom: 1rem;
                     span{
                         font-weight: 600;
+                        font-size: 1.4rem;
+                        color:$colorDarkGray;
+
+                    }
+                }
+               
+            }
+            .itemFooter{
+                width: 100%;
+                border-top: 1px solid $colorLightGray;
+                text-align: center;
+                font-size: 1.3rem;
+                font-weight: 700;
+                
+                a{
+                    transition: all .5s ease-in-out;
+                    &:hover{
+                        color:$colorOrange;
+                        cursor:pointer;
                     }
                 }
             }
-            .itemFooter{
-                border-bottom: none;
-            }
         }
     }
-    #addAddressPanel{
+    #addAddressPanel, #updateAddressPanel{
         visibility: hidden;
         left: 0;
         top:0;

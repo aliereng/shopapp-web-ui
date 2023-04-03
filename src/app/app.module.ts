@@ -19,6 +19,7 @@ import { PageComponent } from './components/user/page/page.component';
 import { OrderComponent } from './components/user/order/order.component';
 import { AddressComponent } from './components/user/address/address.component';
 import { AddAddressComponent } from './components/user/address/add-address/add-address.component';
+import { UpdateAddressComponent } from './components/user/address/update-address/update-address.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { AddAddressComponent } from './components/user/address/add-address/add-a
     PageComponent,
     OrderComponent,
     AddressComponent,
-    AddAddressComponent
+    AddAddressComponent,
+    UpdateAddressComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+@import "../../../../../assets/scss/variables.scss";
+#updateAddressArea{
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid $colorLightGray;
+    border-radius: 1rem;
+   
+    h3{
+        text-align: center;
+        margin: 1rem auto;
+    }
+    .row{
+        margin-bottom: 1rem;
+        .item{
+            width: 100%;
+           textarea{
+            height: 10vh;
+           }
+        }
+    }
+}
