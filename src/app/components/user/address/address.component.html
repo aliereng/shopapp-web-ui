@@ -1,11 +1,14 @@
 <div id="addressArea" class="flex flex-column">
-    <h2 class="userRouterHeader">Adres Bilgilerim</h2>
+    <div id="header" class="flex">
+        <h2 class="userRouterHeader">Adres Bilgilerim</h2>
+        <i class="fa-solid fa-plus" (click)="showAddAddressPanel()" (keydown.esc)="disableAddAddressPanel()"></i>
+    </div>
 
     <div id="itemArea" class="flex">
-        <div class="item" *ngFor="let address of addresses">
+        <div class="item" *ngFor="let address of addresses, index as i">
             <div class="itemHeader flex">
                 <h4>{{address.title}}</h4>
-                <i class="fa-sharp fa-solid fa-trash"></i>
+                <i class="fa-sharp fa-solid fa-trash" (click)="remove(address, i)"></i>
             </div>
             <div class="itemBody">
                 <p><span>Şehir: </span>{{address.info.city}}</p>
@@ -18,5 +21,8 @@
                 <p><span>Açıklama: </span>{{address.info.addressDesc}}</p>
             </div>
         </div>
+    </div>
+    <div id="addAddressPanel" class="flex">
+        <app-add-address></app-add-address>
     </div>
 </div>

@@ -13,12 +13,12 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ResetComponent } from './components/auth/reset/reset.component';
 import { CartComponent } from './components/cart/cart.component';
-import { CookieService } from 'ngx-cookie-service';
 import { PaymentComponent } from './components/cart/payment/payment.component';
 import { UserComponent } from './components/user/user.component';
 import { PageComponent } from './components/user/page/page.component';
 import { OrderComponent } from './components/user/order/order.component';
 import { AddressComponent } from './components/user/address/address.component';
+import { AddAddressComponent } from './components/user/address/add-address/add-address.component';
 
 
 @NgModule({
@@ -37,7 +37,8 @@ import { AddressComponent } from './components/user/address/address.component';
     UserComponent,
     PageComponent,
     OrderComponent,
-    AddressComponent
+    AddressComponent,
+    AddAddressComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,7 @@ import { AddressComponent } from './components/user/address/address.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

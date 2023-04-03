@@ -29,6 +29,9 @@ export class AddressService {
   addAddress(address:Address):Observable<{success:Boolean, message:String}>{
     return this.http.post<{success:Boolean, message:String}>(this.url+"add",address, this.httpOptions)
   }
+  removeAddress(id:String):Observable<{success:Boolean, message: String}>{
+    return this.http.delete<{success:Boolean, message: String}>(this.url+`remove/${id}`,this.httpOptions)
+  }
 
 }
 
