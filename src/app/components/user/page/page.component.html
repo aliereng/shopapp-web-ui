@@ -5,37 +5,37 @@
             <h4>Üyelik Bİlgilerim</h4>
             <div id="nameArea" class="flex">
                 <div class="item">
-                    <label for="name">Ad</label>
-                    <input type="text" name="name" id="name" [(ngModel)]="name">
+                    <label class="formLabel" for="name">Ad</label>
+                    <input class="formInput" type="text" name="name" id="name" [(ngModel)]="name">
                 </div>
                 <div class="item">
-                    <label for="surname">Soyad</label>
-                    <input type="text" name="surname" id="surname" [(ngModel)]="surname">
+                    <label class="formLabel"  for="surname">Soyad</label>
+                    <input class="formInput" type="text" name="surname" id="surname" [(ngModel)]="surname">
                 </div>
             </div>
             <div class="item">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" [(ngModel)]="email">
+                <label class="formLabel" for="email">Email</label>
+                <input class="formInput" type="email" name="email" id="email" [(ngModel)]="email">
             </div>
             <div class="item">
-                <label for="phoneNumber">Cep Telefonu</label>
-                <input type="text" name="phoneNumber" id="phoneNumber" [(ngModel)]="phoneNumber">
+                <label class="formLabel" for="phoneNumber">Cep Telefonu</label>
+                <input class="formInput" type="text" name="phoneNumber" id="phoneNumber" [(ngModel)]="phoneNumber">
             </div>
            <button class="btn" (click)="updateInfo()">Güncelle</button>
         </div>
         <div id="right" class="userInfoItem flex flex-column">
             <h4>Şifre Güncelleme</h4>
             <div class="item ">
-                <label for="currentPassword">Mevcut Parola</label>
-                <input type="password" name="currentPassword" id="currentPassword" [(ngModel)]="currentPassword">
+                <label class="formLabel" for="currentPassword">Mevcut Parola</label>
+                <input class="formInput" type="password" name="currentPassword" id="currentPassword" [(ngModel)]="currentPassword">
             </div>
             <div class="item ">
-                <label for="newPassword">Yeni Parola</label>
-                <input type="password" name="newPassword" id="newPassword" [(ngModel)]="newPassword">
+                <label class="formLabel" for="newPassword">Yeni Parola</label>
+                <input class="formInput" type="password" name="newPassword" id="newPassword" [(ngModel)]="newPassword">
             </div>
             <div class="item ">
-                <label for="newPasswordAgain">Yeni Parola Tekrar</label>
-                <input type="password" name="newPasswordAgain" id="newPasswordAgain" [(ngModel)]="newPasswordAgain">
+                <label class="formLabel" for="newPasswordAgain">Yeni Parola Tekrar</label>
+                <input class="formInput" type="password" name="newPasswordAgain" id="newPasswordAgain" [(ngModel)]="newPasswordAgain">
             </div>
             <button class="btn" (click)="updatePassword()">Güncelle</button>
         </div>

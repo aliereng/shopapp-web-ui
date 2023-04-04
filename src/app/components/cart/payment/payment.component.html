@@ -1,1 +1,42 @@
-<p>payment works!</p>
+<div id="applyCartArea" class="flex container">
+    <div id="leftArea" class="flex flex-column">
+        <div id="selectAddressArea">
+            <h3 class="areaHeader">Adreslerim</h3>
+            <div id="addresses" class="flex">
+                <div class="item"  *ngFor="let address of addresses, index as i" (click)="selectedAddress(address,radio)">
+
+                    <div class="itemHeader">
+                        <input type="radio" #radio name="selectedAddress" id="{{address._id}}">
+                        {{address.title}}
+                    </div>
+                    <div class="itemBody">
+                        <p><span>{{address.info.name}} {{address.info.surname}}</span></p>
+                        <p>{{address.info.neighbourhood}}</p>
+                        <p id="description">{{address.info.addressDesc}}</p>
+                        <p>{{address.info.district}}/{{address.info.city}}</p>
+                        <p>{{address.info.phone}}</p>
+                    </div>
+                    <!-- <div class="itemFooter">
+                        <a (click)="showUpdateAddressPanel()">adresi güncelle</a>
+                    </div>
+                    <div id="updateAddressPanel" class="flex">
+                        <app-update-address [address]="address"></app-update-address>
+                    </div> -->
+                </div>
+            </div>
+            <div id="billAddress">
+                <input type="checkbox" name="cbBillAddress" id="cbBillAddress" [(ngModel)]="cbBillAddressisChecked" (change)="selectedBillAddress()">
+                <label for="faturaAdresi">Faturamı Farklı Adrese Gönder</label>
+            </div>
+            <div id="otherAddressArea">
+
+            </div>
+        </div>
+        <div id="paymentArea">
+
+        </div>
+    </div>
+    <div id="rightArea">
+        Ödeme
+    </div>
+</div>

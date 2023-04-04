@@ -10,20 +10,20 @@
         <button id="login" class="btn" routerLink="/login" *ngIf="page == 'register'">Giriş Yap</button>
         <form id="loginForm" (keydown.enter)="login()">
             <div class="formGroup">
-                <label for="model" *ngIf="page == 'login'">Giriş Türü</label>
-                <label for="model" *ngIf="page == 'register'">Kayıt Türü</label>
-                <select name="model" id="model" [(ngModel)]="model">
+                <label class="formLabel" for="model" *ngIf="page == 'login'">Giriş Türü</label>
+                <label class="formLabel" for="model" *ngIf="page == 'register'">Kayıt Türü</label>
+                <select class="formSelect" name="model" id="model" [(ngModel)]="model">
                     <option value="customer" selected>kullanıcı</option>
                     <option value="supplier">mağaza</option>
                 </select>
             </div>
             <div class="formGroup">
-                <label for="email">E-Posta</label>
-                <input type="email" name="email" id="email" [(ngModel)]="email">
+                <label class="formLabel" for="email">E-Posta</label>
+                <input class="formInput" type="email" name="email" id="email" [(ngModel)]="email">
             </div>
             <div class="formGroup">
-                <label for="password">Parola</label>
-                <input type="password" name="password" id="password" [(ngModel)]="password">
+                <label class="formLabel" for="password">Parola</label>
+                <input class="formInput" type="password" name="password" id="password" [(ngModel)]="password">
             </div>
             <div id="other">
                 <a (click)="showForgotPasswordArea()" *ngIf="page == 'login'">Şifremi Unuttum</a>
@@ -35,7 +35,7 @@
     <div id="forgotPassword" class="flex flex-column" >
             <h2>Sıfırlama E-Postası Gönder</h2>
             <p>Sıfırlama maili sistemimizde kayıtlı olan e-posta adresinize gönderilecektir. Lütfen kayıtlı e-posta adresinizi aşağıdaki alana giriniz. İptal etmek için Escape (esc) tuşuna basabilirsiniz.</p>
-            <input type="email" name="forgotMail" id="forgotMail" [(ngModel)]="forgotEmail" (keydown.enter)="forgotPassword()">
+            <input class="formInput" type="email" name="forgotMail" id="forgotMail" [(ngModel)]="forgotEmail" (keydown.enter)="forgotPassword()">
             <button class="btn" (click)="forgotPassword()">Gönder</button>
     </div>
 </div>

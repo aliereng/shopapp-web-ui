@@ -2,22 +2,22 @@
     <h3>Adres Güncelle</h3>
     <div class="flex row">
         <div class="item">
-            <label for="name">Ad</label>
-            <input type="text" name="name" id="name" [(ngModel)]="name">
+            <label class="formLabel" for="name">Ad</label>
+            <input class="formInput" type="text" name="name" id="name" [(ngModel)]="name">
         </div>
         <div class="item">
-            <label for="surname">Soyad</label>
-            <input type="text" name="surname" id="surname" [(ngModel)]="surname">
+            <label class="formLabel" for="surname">Soyad</label>
+            <input class="formInput" type="text" name="surname" id="surname" [(ngModel)]="surname">
         </div>
     </div>
     <div class="flex row">
         <div class="item">
-            <label for="phone">Telefon</label>
-            <input type="text" name="phone" id="phone" [(ngModel)]="phone">
+            <label class="formLabel"  for="phone">Telefon</label>
+            <input class="formInput"  type="text" name="phone" id="phone" [(ngModel)]="phone">
         </div>
         <div class="item">
-            <label for="city">İl</label>
-            <select name="city" id="city" [(ngModel)]="city">
+            <label  class="formLabel" for="city">İl</label>
+            <select class="formSelect"  name="city" id="city" [(ngModel)]="city">
                 <option selected disabled>Seçiniz</option>
                 <option value="Trabzon">Trabzon</option>
             </select>
@@ -25,15 +25,15 @@
     </div>
     <div class="flex row">
         <div class="item">
-            <label for="district">İlçe</label>
-            <select name="district" id="district" [(ngModel)]="district">
+            <label  class="formLabel" for="district">İlçe</label>
+            <select class="formSelect"  name="district" id="district" [(ngModel)]="district">
                 <option selected disabled>Seçiniz</option>
                 <option value="Arsin">Arsin</option>
             </select>
         </div>
         <div class="item">
-            <label for="neighbourhood">Mahalle</label>
-            <select name="neighbourhood" id="neighbourhood" [(ngModel)]="neighbourhood" >
+            <label  class="formLabel" for="neighbourhood">Mahalle</label>
+            <select class="formSelect"  name="neighbourhood" id="neighbourhood" [(ngModel)]="neighbourhood" >
                 <option selected disabled>Seçiniz</option>
                 <option value="Yeşilyalı">Yeşilyalı</option>
             </select>
@@ -41,30 +41,30 @@
     </div>
     <div class="flex row">
         <div class="item">
-            <label for="district">Cadde</label>
-            <select name="street" id="street" [(ngModel)]="street">
+            <label  class="formLabel" for="district">Cadde</label>
+            <select class="formSelect"  name="street" id="street" [(ngModel)]="street">
                 <option selected disabled>Seçiniz</option>
                 <option value="Kurtuluş Sok.">Kurtuluş Sok.</option>
             </select>
         </div>
 
         <div class="item">
-            <label for="postalCode">Posta Kodu</label>
-            <input type="postalCode" name="postalCode" id="postalCode" [(ngModel)]="postalCode">
+            <label class="formLabel" for="postalCode">Posta Kodu</label>
+            <input class="formSelect" type="postalCode" name="postalCode" id="postalCode" [(ngModel)]="postalCode">
         </div>
 
     </div>
     <div class="flex row">
         <div class="item">
-            <label for="addressDesc">Adres</label>
-            <textarea name="addressDesc" id="addressDesc" [(ngModel)]="addressDesc" cols="30" rows="10"></textarea>
+            <label class="formLabel" for="addressDesc">Adres</label>
+            <textarea class="formTextarea" name="addressDesc" id="addressDesc" [(ngModel)]="addressDesc" cols="30" rows="10"></textarea>
         </div>
 
     </div>
     <div class="flex row">
         <div class="item">
-            <label for="title">Adres Başlığı</label>
-            <input type="text" name="title" id="title" [(ngModel)]="title">
+            <label class="formLabel" for="title">Adres Başlığı</label>
+            <input class="formInput" type="text" name="title" id="title" [(ngModel)]="title">
         </div>
 
     </div>

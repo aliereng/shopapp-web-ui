@@ -1,0 +1,66 @@
+@import "../../../../assets/scss/variables.scss";
+#applyCartArea{
+    width: 100%;
+    #leftArea{
+        width: 80%;
+        #selectAddressArea{
+            width: 100%;
+            .areaHeader{
+        
+            }
+            #addresses{
+                
+                .item{
+                    border: 1px solid $colorLightGray;
+                    width: 33%;
+                    position: absol;
+                    &:hover{
+                        cursor:pointer
+                    }
+                    .itemHeader{
+                        border-bottom: 1px solid $colorLightGray;
+                        padding: 1rem;
+                        justify-content: space-around;
+                        width: 100%;
+                        background-color: rgba($color: $colorWhite, $alpha: .6);
+                      
+                    }
+                    .itemBody,.itemFooter{
+                        padding: 1rem;
+                        width: 75%;
+                        p{
+                            font-size: 1.3rem;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            color:$colorLightGray;
+                            font-weight: 500;
+                            margin-bottom: 1rem;
+                            span{
+                                font-weight: 600;
+                                font-size: 1.4rem;
+                                color:$colorDarkGray;
+        
+                            }
+                        }
+                       
+                    }
+                    .itemFooter{
+                        width: 100%;
+                        border-top: 1px solid $colorLightGray;
+                        text-align: center;
+                        font-size: 1.3rem;
+                        font-weight: 700;
+                        
+                        a{
+                            transition: all .5s ease-in-out;
+                            &:hover{
+                                color:$colorOrange;
+                                cursor:pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

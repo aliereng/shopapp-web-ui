@@ -112,6 +112,7 @@ export class ProductPageComponent implements OnInit {
         alert(result.body.message);
       },(error:HttpErrorResponse)=> {
         alert(error.error.message)
+        window.location.replace("/login");
       })
 
     }else{

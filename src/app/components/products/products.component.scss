@@ -12,12 +12,16 @@
                 input{
                     width: 50%;
                 };
+                
             }
             #priceFilterOptions{
                 .priceFilterOption{
                     label{
-                        font-size: 1.4rem;
+                        font-size: 1.2rem;
                         margin-left: 1rem;
+                    }
+                    input{
+                        font-size: 1rem;
                     }
                 }
             }

@@ -52,7 +52,7 @@ li{
     border: 1px solid $colorLightGray;
     padding: 1rem;
 }
-label{
+.formLabel{
     display: block;
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -60,7 +60,7 @@ label{
     color:$colorLightGray;
     
 }
-input,select,textarea{
+.formInput,.formSelect,.formTextarea{
     width: 100%;
     height: 5rem;
     border: 1px solid $colorWhite;
