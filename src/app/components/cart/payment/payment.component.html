@@ -1,39 +1,70 @@
 <div id="applyCartArea" class="flex container">
     <div id="leftArea" class="flex flex-column">
-        <div id="selectAddressArea">
-            <h3 class="areaHeader">Adreslerim</h3>
-            <div id="addresses" class="flex">
-                <div class="item"  *ngFor="let address of addresses, index as i" (click)="selectedAddress(address,radio)">
-
-                    <div class="itemHeader">
-                        <input type="radio" #radio name="selectedAddress" id="{{address._id}}">
-                        {{address.title}}
-                    </div>
-                    <div class="itemBody">
-                        <p><span>{{address.info.name}} {{address.info.surname}}</span></p>
-                        <p>{{address.info.neighbourhood}}</p>
-                        <p id="description">{{address.info.addressDesc}}</p>
-                        <p>{{address.info.district}}/{{address.info.city}}</p>
-                        <p>{{address.info.phone}}</p>
-                    </div>
-                    <!-- <div class="itemFooter">
-                        <a (click)="showUpdateAddressPanel()">adresi güncelle</a>
-                    </div>
-                    <div id="updateAddressPanel" class="flex">
-                        <app-update-address [address]="address"></app-update-address>
-                    </div> -->
+        <div id="addressBox">
+            <h4>Adreslerim</h4>
+            <div class="item"  *ngFor="let address of addresses, index as i" (click)="selectedAddress(i,billAddressCheckedInput)">
+                <div class="itemHeader">
+                    <input type="radio" #radio name="selectedAddress" id="{{address._id}}">
+                    {{address.title}}
+                </div>
+                <div class="itemBody">
+                    <p><span>{{address.info.name}} {{address.info.surname}}</span></p>
+                    <p>{{address.info.neighbourhood}}</p>
+                    <p id="description">{{address.info.addressDesc}}</p>
+                    <p>{{address.info.district}}/{{address.info.city}}</p>
+                    <p>{{address.info.phone}}</p>
                 </div>
             </div>
-            <div id="billAddress">
-                <input type="checkbox" name="cbBillAddress" id="cbBillAddress" [(ngModel)]="cbBillAddressisChecked" (change)="selectedBillAddress()">
-                <label for="faturaAdresi">Faturamı Farklı Adrese Gönder</label>
-            </div>
-            <div id="otherAddressArea">
-
-            </div>
         </div>
-        <div id="paymentArea">
+        <div id="selectedTransferAddressArea" class="areas">
+            <div class="selectedAreaUp">
+                <h3>Gönderim Adresi</h3> 
+                <p class="addAddressLink" (click)="showAddressPanel()">Gönderim Adresi Seçiniz<i class="fa-solid fa-plus"></i></p>
+            </div>
+            <div class="selectedAreaDown" id="transferAreaDown">
+                <h4 class="addressHeader">{{transferAddress?.title}}</h4>
+                <div class="addressBody">
+                    <p>{{transferAddress?.info?.name}} {{transferAddress?.info?.surname}} - {{transferAddress?.info?.city}}/{{transferAddress?.info?.district}} - {{transferAddress?.info?.addressDesc}}</p>
+                    <h5>{{transferAddress?.info?.phone}}</h5>
+                </div>
+                <div id="billAddressChecked">
+                    <input type="checkbox" name="billAddressCheckedInput" id="billAddressCheckedInput" #billAddressCheckedInput (change)="showBillSendAddress(billAddressCheckedInput)">
+                    <label for="billAddressCheckedInput">Fatura Adresim Olarak Kullan.</label>
 
+                </div>
+                
+            </div>
+
+        </div>
+        <div id="selectedBillAddressArea" class="areas" >
+            <div class="selectedAreaUp">
+                <h3>Fatura Adresi</h3> 
+                <p class="addAddressLink" (click)="showAddressPanel()">Fatura Adresi Seçiniz<i class="fa-solid fa-plus"></i></p>
+            </div>
+            <div class="selectedAreaDown" id="billAreaDown">
+                <h4 class="addressHeader">{{billAddress?.title}}</h4>
+                <div class="addressBody">
+                    <p>{{billAddress?.info?.name}} {{billAddress?.info?.surname}} - {{billAddress?.info?.city}}/{{billAddress?.info?.district}} - {{billAddress?.info?.addressDesc}}</p>
+                    <h5>{{billAddress?.info?.phone}}</h5>
+                </div>
+                <!-- <div id="billAddressChecked">
+                    <input type="checkbox" name="billAddressCheckedInput" id="billAddressCheckedInput" #billAddressCheckedInput (change)="showBillSendAddress(billAddressCheckedInput)">
+                    <label for="billAddressCheckedInput">Fatura Adresim Olarak Kullan.</label>
+
+                </div> -->
+                
+            </div>
+
+        </div>
+        
+        <div id="paymentArea" *ngIf="billAddress && transferAddress" class="areas">
+            <div class="selectedAreaUp">
+                <h3>Ödeme Bilgileri</h3>
+                <div id="paymentLeftArea">
+                    
+                </div>
+                <div id="paymentRightArea"></div>
+            </div>
         </div>
     </div>
     <div id="rightArea">

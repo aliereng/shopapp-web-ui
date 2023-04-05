@@ -10,8 +10,9 @@ import { AddressService } from 'src/app/services/address.service';
 })
 export class PaymentComponent implements OnInit {
   addresses: Array<Address> =[]
-  transferAddress!: String;
-  billAddress!: String;
+  addressIndex!:number;
+  transferAddress?: Address;
+  billAddress?: Address;
   cbBillAddressisChecked: Boolean=true
   paymentStatus:Boolean = false;
   constructor(private addressService:AddressService) { 
@@ -22,18 +23,48 @@ export class PaymentComponent implements OnInit {
       window.location.replace("/login");
     })
   }
-  selectedAddress(address:Address, element:HTMLInputElement){
-    element.checked = true
-    this.transferAddress = address._id;
-    if(!this.selectedBillAddress){
-      this.billAddress = address._id;
+  selectedAddress(index:number, element:HTMLInputElement){
+    element.checked = true;
+    // if(this.transferAddress && this.billAddress){
+    //   element.checked = false
+    // }
+    if(this.transferAddress == null){
+      this.transferAddress = this.addresses[index];
+      this.addressIndex = index;
+      document.getElementById("addressBox")!.setAttribute("style","animation-name:disableAddressArea");
+      document.getElementById("transferAreaDown")!.setAttribute("style","display:block");
+    }
+    if(this.addressIndex != index){
+      this.billAddress = this.addresses[index];
+      document.getElementById("addressBox")!.setAttribute("style","animation-name:disableAddressArea");
+      document.getElementById("billAreaDown")!.setAttribute("style","display:block");
+      element.checked = false
+
+    }
+    if(this.addressIndex == index){
+      this.billAddress = this.addresses[index];
+      document.getElementById("addressBox")!.setAttribute("style","animation-name:disableAddressArea");
+      document.getElementById("billAreaDown")!.setAttribute("style","display:none");
+      element.checked = true
+
     }
   }
-  selectedBillAddress(){
-  }
-  
-  ngOnInit(): void {
+ 
+  showAddressPanel(){
+    document.getElementById("addressBox")!.setAttribute("style","animation-name:showAddressArea");
 
+  }
+  showBillSendAddress(element:HTMLInputElement){
+    if(!element.checked){
+      document.getElementById("selectedBillAddressArea")!.setAttribute("style","display:block");
+    }
+    else{
+      document.getElementById("selectedBillAddressArea")!.setAttribute("style","display:none");
+      this.billAddress = this.transferAddress
+    }
+  }
+  ngOnInit(): void {
+   
   }
 
 }
