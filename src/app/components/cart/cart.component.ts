@@ -42,12 +42,12 @@ export class CartComponent implements OnInit {
     this.applyCart();
    }
    applyCart(){
-    console.log(this.cart)
     this.service.applyCart(this.cart._id, this.cart).subscribe(res=> {
     },(error:HttpErrorResponse) =>{
       alert(error.error.message)
       }
     );
+    localStorage.setItem("cartAmount",`${this.cart.amount}`)
    }
 
   ngOnInit(): void {

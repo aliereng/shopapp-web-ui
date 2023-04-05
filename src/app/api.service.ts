@@ -84,6 +84,15 @@ export class ApiService {
       observe:'response'
     })
   }
+  completeCart(data:{}){
+    return this.http.post(this.url+`cart/complete`,data,{
+      headers:{ 
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
+      },
+      observe:'response'
+    })
+  }
   getCustomer(){
     return this.http.get(this.url+"customer",{
       headers:{ 

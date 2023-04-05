@@ -1,8 +1,9 @@
 <div id="applyCartArea" class="flex container">
     <div id="leftArea" class="flex flex-column">
         <div id="addressBox">
-            <h4>Adreslerim</h4>
-            <div class="item"  *ngFor="let address of addresses, index as i" (click)="selectedAddress(i,billAddressCheckedInput)">
+            
+            <h4>Adreslerim <i class="fa-solid fa-plus" (click)="showAddAddressArea()"></i></h4>
+            <div class="item"  *ngFor="let address of addresses, index as i" (click)="selectedAddress(address, billAddressCheckedInput)">
                 <div class="itemHeader">
                     <input type="radio" #radio name="selectedAddress" id="{{address._id}}">
                     {{address.title}}
@@ -19,7 +20,7 @@
         <div id="selectedTransferAddressArea" class="areas">
             <div class="selectedAreaUp">
                 <h3>Gönderim Adresi</h3> 
-                <p class="addAddressLink" (click)="showAddressPanel()">Gönderim Adresi Seçiniz<i class="fa-solid fa-plus"></i></p>
+                <p class="addAddressLink" #addTransferLink (click)="showAddressPanel(addTransferLink)">Gönderim Adresi Seçiniz<i class="fa-solid fa-plus"></i></p>
             </div>
             <div class="selectedAreaDown" id="transferAreaDown">
                 <h4 class="addressHeader">{{transferAddress?.title}}</h4>
@@ -28,7 +29,7 @@
                     <h5>{{transferAddress?.info?.phone}}</h5>
                 </div>
                 <div id="billAddressChecked">
-                    <input type="checkbox" name="billAddressCheckedInput" id="billAddressCheckedInput" #billAddressCheckedInput (change)="showBillSendAddress(billAddressCheckedInput)">
+                    <input type="checkbox" name="billAddressCheckedInput" id="billAddressCheckedInput" #billAddressCheckedInput (change)="showBillSendAddress(billAddressCheckedInput)" >
                     <label for="billAddressCheckedInput">Fatura Adresim Olarak Kullan.</label>
 
                 </div>
@@ -39,7 +40,7 @@
         <div id="selectedBillAddressArea" class="areas" >
             <div class="selectedAreaUp">
                 <h3>Fatura Adresi</h3> 
-                <p class="addAddressLink" (click)="showAddressPanel()">Fatura Adresi Seçiniz<i class="fa-solid fa-plus"></i></p>
+                <p class="addAddressLink" #addBillLink (click)="showAddressPanel(addBillLink)">Fatura Adresi Seçiniz<i class="fa-solid fa-plus"></i></p>
             </div>
             <div class="selectedAreaDown" id="billAreaDown">
                 <h4 class="addressHeader">{{billAddress?.title}}</h4>
@@ -58,16 +59,67 @@
         </div>
         
         <div id="paymentArea" *ngIf="billAddress && transferAddress" class="areas">
-            <div class="selectedAreaUp">
+            <div id="paymentHeader" class="flex flex-column">
                 <h3>Ödeme Bilgileri</h3>
-                <div id="paymentLeftArea">
-                    
-                </div>
-                <div id="paymentRightArea"></div>
             </div>
+            <div id="paymentBody">
+                <div id="cardInfo" class="paymentBodySubArea">
+                    <h4>Kart Seçenekleri</h4>
+                    <div id="cardForm">
+                        <div class="cardFormItem">
+                            <label for="cardNameSurname" class="formLabel">Kart Üzerindeki İsim</label>
+                            <input type="text" class="formInput" name="cardNameSurname" id="cardNameSurname" #cardNameSurnameInput>
+                        </div>
+                        <div class="cardFormItem">
+                            <label for="cardNumber" class="formLabel">Kart Numarası</label>
+                            <input type="text" class="formInput" name="cardNumber" id="cardNumber" #cardNumberInput>
+                        </div>
+                        <div id="cardDateAndCode">
+                            <div id="cardDate">
+                                <div class="cardFormItem">
+                                    <label for="cardMounth" class="formLabel">Ay</label>
+                                    <input type="text" class="formInput" name="cardMounth" id="cardMounth" #cardMounthInput>
+                                </div>
+                                <div class="cardFormItem">
+                                    <label for="cardYear" class="formLabel">Yıl</label>
+                                    <input type="text" class="formInput" name="cardYear" id="cardYear" #cardYearInput>
+                                </div>
+                            </div>
+                            <div id="cardCode">
+                                <div class="cardFormItem">
+                                    <label for="cardSecurityCode" class="formLabel">Güvenlik Kodu</label>
+                                    <input type="text" class="formInput" name="cardSecurityCode" id="cardSecurityCode" #cardSecurityCodeInput>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="checkbox" name="paymentSecure3D" id="paymentSecure3D"  [(ngModel)]="paymentSecure3DCheck"> 3D Secure İle Ödemek İstiyorum.
+                </div>
+                <div id="paymentInstalmentOptions" class="paymentBodySubArea">
+                    <h4>Taksit Seçenekleri</h4>
+
+                    <p>banka opsiyonu eklendiğinde bankanın sunduğu taksit seçenekleri gelecek</p>
+
+                </div>
+            </div>
+            
+           
+        </div>
+        <div id="addAddressArea">
+            <app-add-address></app-add-address>
         </div>
     </div>
     <div id="rightArea">
-        Ödeme
+        
+        <div id="paymentSummary">
+            <p><span>Tutar: </span> {{amount}}₺</p>
+            <p><span>Kargo: </span> 0₺</p>
+            <p><span>İndirimler: </span> 0₺</p>
+            <p><span>Tolal: </span> {{amount}}₺</p>
+        </div>
+        <div id="contracts">
+            <input type="checkbox" name="contractCheck" id="contractCheck" #contractsCheckInput> Sözleşmeleri Onaylıyorum.
+        </div>
+        <button class="btn" (click)="applyCart()">Ödemeyi Tamamla</button>
     </div>
 </div>
