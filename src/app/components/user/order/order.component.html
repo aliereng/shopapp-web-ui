@@ -1,12 +1,48 @@
 <div id="ordersArea">
-    <h2>Sipariş Bilgilerim</h2>
-    <div class="order">
-        <div class="orderImage"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9jHlX--SrcGrvKWOFrbkmjg-h18OabKdRgDXiRvXyTP0SMheKfPXIhmT5NrmPGsSnRu8" alt=""></div>
-        <div class="orderInfo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere totam voluptate tempora asperiores quisquam reiciendis, nesciunt expedita obcaecati fugiat eum, rem maxime nobis et sunt vitae aspernatur laudantium, modi non.</p>
+    <h2 class="userRouterHeader">Sipariş Bilgilerim</h2>
+    <div class="order" *ngFor="let order of orders, index as i">
+        <div class="orderUpArea">
+            <div class="orderImage"><img src="http://localhost:3000/api/public/image/{{order.stock.image}}" alt="">
+            </div>
+            <div class="orderInfo">
+                <p>{{order.product.name}}</p>
+                <p>{{order.stock.color}}/{{order.stock.size}}/{{order.stock.price}}₺</p>
+                <a routerLink="supplier/{{order.supplier.slug}}">{{order.supplier.shopName}}</a>
+                <p>{{order.amount}}₺</p>
+                <p>{{order.createdAdd | date: 'dd/MM/yyyy'}}</p>
+            </div>
+            <div class="orderButtons">
+                <button>Onayla</button>
+                <button>İptal Et</button>
+                <p *ngIf="order.orderStatus">Tamamlandı</p>
+                <p *ngIf="!order.orderStatus">Hazırlanıyor</p>
+                <p *ngIf="order.orderStatus && order.shippedStatus">Kargolandı</p>
+                <p *ngIf="order.orderStatus && !order.shippedStatus">Kargo Bekliyor</p>
+
+            </div>
+            <a class="seeMore" (click)="showOrderDownArea(i)">daha fazla +</a>
         </div>
-        <div class="orderStatus">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error, iste!</p>
+        <div class="orderDownArea">
+            <div class="deliveredAddress">
+                <p><span>Teslimat Adresi: </span></p>
+                <p>{{order.deliveredAddress.title}}</p>
+                <p>{{order.deliveredAddress.info.name}} {{order.deliveredAddress.info.surname}}</p>
+                <p>{{order.deliveredAddress.info.addressDesc}}</p>
+                <p>{{order.deliveredAddress.info.district}}/{{order.deliveredAddress.info.city}}</p>
+            </div>
+            <div class="invoiceAddress">
+                <p><span>Fatura Adresi: </span></p>
+                <p>{{order.invoiceAddress.title}}</p>
+                <p>{{order.invoiceAddress.info.name}} {{order.invoiceAddress.info.surname}}</p>
+                <p>{{order.invoiceAddress.info.addressDesc}}</p>
+                <p>{{order.invoiceAddress.info.district}}/{{order.invoiceAddress.info.city}}</p>
+            </div>
+            <div class="shipper">
+                <p *ngIf="order.shipper">{{order.shipper}}</p>
+                <p *ngIf="!order.shipper">Henüz Kargo Bilgisi Girilmedi.</p>
+
+
+            </div>
         </div>
     </div>
 </div>

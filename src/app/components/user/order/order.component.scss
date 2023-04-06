@@ -1,12 +1,54 @@
 @import "../../../../assets/scss/variables.scss";
 
-#ordersArea{
+#ordersArea {
     width: 100%;
-    h2{
+
+    h2 {
         width: 100%;
         border: 1px solid $colorLightGray;
     }
-    .order{
-        display: flex;
+
+    .order {
+        border: 1px solid $colorLightGray;
+        padding: 1rem;
+        margin: 1rem auto;
+        .orderUpArea {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            .orderImage {
+                width: 20%;
+
+                img {
+                    object-fit: contain;
+                    object-position: center;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .orderInfo {
+                width: 60%;
+            }
+
+            .seeMore {
+                position: absolute;
+                right: 1rem;
+                bottom: 1rem;
+
+                &:hover {
+                    cursor: pointer;
+                    color: $colorOrange;
+                }
+            }
+        }
+        .orderDownArea{
+            display: none;
+            justify-content: flex-start;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
     }
 }

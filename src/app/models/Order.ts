@@ -1,15 +1,54 @@
 export interface Order{
     _id: String;
     customer:String;
-    product:String;
-    stock:String;
+    product:{
+        name:String,
+        slug:String
+    };
+    stock:{
+        size:String,
+        color:String,
+        image:String,
+        price:number
+    };
     count:number;
     orderStatus:Boolean;
     shippedStatus:Boolean;
-    supplier:String;
-    shipper: String;
-    deliveredAddress: String;
-    invoiceAddress: String;
+    supplier:{
+        shopName:String,
+        slug:String,
+    };
+    shipper: {
+        name:String
+    };
+    deliveredAddress: {
+        title:String,
+        info:{
+            name: String,
+            surname: String,
+            phone: String,
+            city: String,
+            district: String,
+            neighbourhood: String,
+            street: String,
+            postalCode: String,
+            addressDesc: String
+        }
+    };
+    invoiceAddress: {
+        title:String,
+        info:{
+            name: String,
+            surname: String,
+            phone: String,
+            city: String,
+            district: String,
+            neighbourhood: String,
+            street: String,
+            postalCode: String,
+            addressDesc: String
+        }
+    };
     createdAdd: Date;
     amount: number;
 }

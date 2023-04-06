@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   constructor(private service: ApiService) {
     this.service.getAllProducts().subscribe(res => {
       this.homepageModel = res;
+      console.log(res)
+
     })
   }
   
