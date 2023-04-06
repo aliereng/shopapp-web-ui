@@ -11,6 +11,12 @@ import { UserComponent } from './components/user/user.component';
 import { PageComponent } from './components/user/page/page.component';
 import { OrderComponent } from './components/user/order/order.component';
 import { AddressComponent } from './components/user/address/address.component';
+import { MerchantComponent } from './components/merchant/merchant.component';
+import { TransactionComponent } from './components/merchant/transaction/transaction.component';
+import { ShipperComponent } from './components/merchant/shipper/shipper.component';
+import { ProductComponent } from './components/merchant/product/product.component';
+import { AnswerComponent } from './components/merchant/answer/answer.component';
+import { CommentComponent } from './components/merchant/comment/comment.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -25,6 +31,15 @@ const routes: Routes = [
     {path:"page", component:PageComponent},
     {path:"order", component:OrderComponent},
     {path:"address", component:AddressComponent}
+  ]},
+  {path:"merchant", component:MerchantComponent, children:[
+    {path:"transaction", component:TransactionComponent},
+    {path:"page", component:PageComponent},
+    {path:"product", component:ProductComponent},
+    {path:"shipper", component:ShipperComponent},
+    {path:"answer", component:AnswerComponent},
+    {path:"comment", component:CommentComponent}
+
   ]}
   
 ];

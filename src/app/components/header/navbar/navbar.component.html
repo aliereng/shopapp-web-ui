@@ -1,7 +1,8 @@
 <nav >
     <div class="container flex">
         <section id="logo">
-            <a routerLink="/">shopApp</a>
+            <a routerLink="/" *ngIf="model =='customer'">shopApp</a>
+            <a routerLink="/merchant" *ngIf="model =='supplier'">shopApp</a>
         </section>
         <section id="search">
             <input type="text" id="searchInput" name="searchInput" placeholder="Ara">
@@ -14,13 +15,15 @@
                     <a routerLink="/login">Giriş Yap</a>
                     <a routerLink="/register">Üye Ol</a>
                     <div class="line"></div>
-                    <a routerLink="/user/order">Siparişlerim</a>
-                    <a routerLink="/user/page">Kullanıcı Bilgilerim</a>
+                    <a routerLink="/user/order" *ngIf="model == 'customer'">Siparişlerim</a>
+                    <a routerLink="/user/page" *ngIf="model == 'customer'">Kullanıcı Bilgilerim</a>
+                    <a routerLink="/merchant" *ngIf="model == 'supplier'">Kullanıcı Bilgilerim</a>
                     <div class="line"></div>
                     <a (click)="logout()">Çıkış yap</a>
                 </div>
             </div>
             <a routerLink="/cart" *ngIf="model == 'customer' || model=='' ">Sepetim</a>
+            <a routerLink="/cart" *ngIf="model == 'supplier'">Sipariş İstekleri</a>
         </section>
     </div>
 </nav>

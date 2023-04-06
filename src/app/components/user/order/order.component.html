@@ -1,26 +1,27 @@
 <div id="ordersArea">
     <h2 class="userRouterHeader">Sipariş Bilgilerim</h2>
     <div class="order" *ngFor="let order of orders, index as i">
-        <div class="orderUpArea">
+        <div class="orderUpArea flex">
             <div class="orderImage"><img src="http://localhost:3000/api/public/image/{{order.stock.image}}" alt="">
             </div>
             <div class="orderInfo">
-                <p>{{order.product.name}}</p>
-                <p>{{order.stock.color}}/{{order.stock.size}}/{{order.stock.price}}₺</p>
-                <a routerLink="supplier/{{order.supplier.slug}}">{{order.supplier.shopName}}</a>
+                <p><a routerLink="/product/{{order.product.slug}}/{{order.product._id}}">{{order.product.name}}</a></p>
+                <p>{{order.stock.color}}/{{order.stock.size}}</p>
+                
                 <p>{{order.amount}}₺</p>
                 <p>{{order.createdAdd | date: 'dd/MM/yyyy'}}</p>
+                <a routerLink="supplier/{{order.supplier.slug}}">{{order.supplier.shopName}}</a>
             </div>
-            <div class="orderButtons">
+            <div class="orderButtons flex flex-column">
                 <button>Onayla</button>
                 <button>İptal Et</button>
                 <p *ngIf="order.orderStatus">Tamamlandı</p>
                 <p *ngIf="!order.orderStatus">Hazırlanıyor</p>
                 <p *ngIf="order.orderStatus && order.shippedStatus">Kargolandı</p>
                 <p *ngIf="order.orderStatus && !order.shippedStatus">Kargo Bekliyor</p>
-
+                <a class="seeMore" (click)="showOrderDownArea(i)">daha fazla +</a>
             </div>
-            <a class="seeMore" (click)="showOrderDownArea(i)">daha fazla +</a>
+            
         </div>
         <div class="orderDownArea">
             <div class="deliveredAddress">

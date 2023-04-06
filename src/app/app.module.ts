@@ -20,6 +20,12 @@ import { OrderComponent } from './components/user/order/order.component';
 import { AddressComponent } from './components/user/address/address.component';
 import { AddAddressComponent } from './components/user/address/add-address/add-address.component';
 import { UpdateAddressComponent } from './components/user/address/update-address/update-address.component';
+import { MerchantComponent } from './components/merchant/merchant.component';
+import { ShipperComponent } from './components/merchant/shipper/shipper.component';
+import { AnswerComponent } from './components/merchant/answer/answer.component';
+import { CommentComponent } from './components/merchant/comment/comment.component';
+import { QuestionComponent } from './components/user/question/question.component';
+import { TransactionComponent } from './components/merchant/transaction/transaction.component';
 
 
 @NgModule({
@@ -40,7 +46,13 @@ import { UpdateAddressComponent } from './components/user/address/update-address
     OrderComponent,
     AddressComponent,
     AddAddressComponent,
-    UpdateAddressComponent
+    UpdateAddressComponent,
+    MerchantComponent,
+    ShipperComponent,
+    AnswerComponent,
+    CommentComponent,
+    QuestionComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,

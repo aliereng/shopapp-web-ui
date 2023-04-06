@@ -1,0 +1,18 @@
+<div id="userArea" class="container flex">
+    <div id="userNav">
+        <h2>Hesabım</h2>
+        <ul>
+            <li routerLinkActive="active" routerLink="transaction"><p >Sipariş İstekleri</p></li>
+            <li routerLinkActive="active" routerLink="page"><p >Kullanıcı Bilgilerim</p></li>
+            <li routerLinkActive="active" routerLink="product"><p >Ürünlerim</p></li>
+            <li routerLinkActive="active" routerLink="shipper"><p>Anlaşmalı Kargolar</p>
+            </li>
+            <li routerLinkActive="active" routerLink="answer"><p >Sorular</p></li>
+            <li routerLinkActive="active" routerLink="comment"><p >Yorumlar</p></li>
+        </ul>
+    </div>
+    <div id="routerArea">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

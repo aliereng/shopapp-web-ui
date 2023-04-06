@@ -29,7 +29,13 @@ export class LoginComponent implements OnInit {
     this.service.login({ model: this.model, email: this.email, password: this.password }).subscribe((result: HttpResponse<any>) => {
       localStorage.setItem("access_token", `${result.body.access_token}`)
       localStorage.setItem("modelType", `${result.body.data.modelType}`)
-      window.location.replace("/");
+      if(result.body.data.modelType=="customer"){
+        window.location.replace("/");
+      }else if(result.body.data.modelType=="supplier"){
+        window.location.replace("/merchant/transaction");
+
+
+      }
     }, (error: HttpErrorResponse) => {
       alert(error.error.message);
     })

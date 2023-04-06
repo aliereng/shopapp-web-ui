@@ -2,6 +2,7 @@ export interface Order{
     _id: String;
     customer:String;
     product:{
+        _id:String,
         name:String,
         slug:String
     };

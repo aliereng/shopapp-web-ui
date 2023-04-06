@@ -104,15 +104,16 @@ export class ProductPageComponent implements OnInit {
   }
   addToCart(){
     if(this.id && this.stockId){
+      // alert(this.id +" "+ this.stockId)
       this.service.addToCart({
         product: this.id,
         stock: this.stockId,
         count: "1"
-      }).subscribe((result:HttpResponse<any>)=> {
-        alert(result.body.message);
+      }).subscribe(result=> {
+        alert(result.message);
       },(error:HttpErrorResponse)=> {
         alert(error.error.message)
-        window.location.replace("/login");
+        // window.location.replace("/login");
       })
 
     }else{

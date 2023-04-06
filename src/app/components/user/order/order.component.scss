@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: flex-start;
             position: relative;
+            font-weight: 500;
             .orderImage {
                 width: 20%;
 
@@ -31,18 +32,31 @@
 
             .orderInfo {
                 width: 60%;
-            }
-
-            .seeMore {
-                position: absolute;
-                right: 1rem;
-                bottom: 1rem;
-
-                &:hover {
-                    cursor: pointer;
-                    color: $colorOrange;
+                p{
+                    margin-bottom:.5rem
                 }
+               
             }
+            .orderButtons{
+                width: 20%;
+                gap:1rem;
+                align-items: center;
+                button{
+                    width: 100%;
+                    padding: .5rem;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+
+            }
+
+            // .seeMore {
+            //     position: absolute;
+            //     right: 1rem;
+            //     bottom: 1rem;
+
+            // }
         }
         .orderDownArea{
             display: none;

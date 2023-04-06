@@ -18,8 +18,7 @@ export class ApiService {
     headers:{ 
       'Content-Type':  'application/json',
       'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
-    },
-    observe:'response'
+    }
   };
   constructor(private http: HttpClient) { 
     this.url = "http://localhost:3000/api/"
@@ -57,14 +56,8 @@ export class ApiService {
   // addToCart(send:{product: String, stock: String, count: String}):Observable<{success: Boolean, message:String}>{
   //   return this.http.post<{success: Boolean, message:String}>(this.url+"cart/addtocart", send,this.httpOptions)
   // }
-  addToCart(send:{product: String, stock: String, count: String}){
-    return this.http.post(this.url+"cart/addtocart", send,{
-      headers:{ 
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer: ${localStorage.getItem("access_token")}`
-      },
-      observe:'response'
-    })
+  addToCart(send:{product: String, stock: String, count: String}):Observable<{success:Boolean, message:String}>{
+    return this.http.post<{success:Boolean, message:String}>(this.url+"cart/add", send,this.httpOptions)
   }
   getCart(){
     return this.http.get(this.url+"cart/get",{

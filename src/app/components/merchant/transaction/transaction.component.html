@@ -1,0 +1,55 @@
+<div id="transactionsArea">
+    <h2 class="userRouterHeader">Sipariş İstekleri</h2>
+    <div id="transactions">
+        <div class="transaction flex flex-column" *ngFor="let transaction of transactions, index as i">
+            <div class="transactionUp">
+                <div class="transactionImage">
+                    <img src="http://localhost:3000/api/public/image/{{transaction.order.stock.image}}" alt="{{transaction.order.product.slug}}">
+                </div>
+                <div class="transactionInfo">
+                    <p>{{transaction.order.createdAdd | date:"dd/mm/yyyy"}}</p>
+                    <p>{{transaction.order.product.name}}</p>
+                    <p>{{transaction.order.stock.color}} / {{transaction.order.stock.size}} / {{transaction.order.count}} adet</p>
+                </div>
+                <div class="transactionAddresses flex flex-column">
+                    <div class="delivederAddress">
+                        <p><span>Gönderim Adresi</span></p>
+                        <p>{{transaction.order.deliveredAddress.info.name}} {{transaction.order.deliveredAddress.info.surname}}</p>
+                        <p>{{transaction.order.deliveredAddress.info.phone}}</p>
+                        <p>{{transaction.order.deliveredAddress.info.addressDesc}}</p>
+                        <p>{{transaction.order.deliveredAddress.info.city}} / {{transaction.order.deliveredAddress.info.district}} / {{transaction.order.deliveredAddress.info.neighbourhood}} / {{transaction.order.deliveredAddress.info.street}}</p>
+                    </div>
+                    <div class="invoiceAddress">
+                        <p><span>Fatura Adresi</span></p>
+                        <p>{{transaction.order.invoiceAddress.info.name}} {{transaction.order.deliveredAddress.info.surname}}</p>
+                        <p>{{transaction.order.invoiceAddress.info.phone}}</p>
+                        <p>{{transaction.order.invoiceAddress.info.addressDesc}}</p>
+                        <p>{{transaction.order.invoiceAddress.info.city}} / {{transaction.order.invoiceAddress.info.district}} / {{transaction.order.invoiceAddress.info.neighbourhood}} / {{transaction.order.invoiceAddress.info.street}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="transactionDown">
+                <div class="transactionDownRight">
+                    <div class="item">
+                        <label for="orderStatus" class="formLabel">Sipariş Durumu</label>
+                        <select name="orderStatus" id="orderStatus" class="formSelect">
+                            <option value="false" selected>Hazırlanıyor</option>
+                            <option value="true">Hazırlandı</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label for="shippedStatus" class="formLabel">Kargo Durumu</label>
+                        <select name="shippedStatus" id="shippedStatus" class="formSelect">
+                            <option value="false" selected>Kargo Bekleniyor</option>
+                            <option value="true">Kargolandı</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="transactionDownCenter">
+                    
+                </div>
+                <div class="transactionDownLeft"></div>
+            </div>
+        </div>
+    </div>
+</div>

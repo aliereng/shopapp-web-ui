@@ -19,12 +19,15 @@ a{
     text-decoration: none;
     color:$colorDarkGray;
     &:hover{
-        color: #505050;
-        
+        color: $colorOrange;
+        cursor:pointer;
     }
 }
 li{
     list-style: none;
+}
+span{
+    font-weight: bold
 }
 .btn{
     padding: 1rem;

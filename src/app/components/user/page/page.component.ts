@@ -25,8 +25,6 @@ export class PageComponent implements OnInit {
       this.email = response.body.data.email
       this.phoneNumber = response.body.data.phone
       this.customer = response.body.data
-    },(error:HttpErrorResponse)=>{
-      alert(error.error.message)
     })
     
   }

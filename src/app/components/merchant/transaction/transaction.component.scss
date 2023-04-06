@@ -1,0 +1,26 @@
+@import "../../../../assets/scss/variables.scss";
+#transactionsArea{
+    width: 100%;
+    #transactions{
+        width: 100%;
+        margin-top:1rem;
+        .transaction{
+            width: 100%;
+            border:1px solid $colorLightGray;
+            padding: 1rem;
+            .transactionUp{
+               display: flex;
+               justify-content: space-around;
+               align-items: center;
+                .transactionImage{
+                    width: 20%;
+                    img{
+                        object-fit: contain;
+                        object-position: center;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
