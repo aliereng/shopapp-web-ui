@@ -7,7 +7,7 @@
                     <img src="http://localhost:3000/api/public/image/{{transaction.order.stock.image}}" alt="{{transaction.order.product.slug}}">
                 </div>
                 <div class="transactionInfo">
-                    <p>{{transaction.order.createdAdd | date:"dd/mm/yyyy"}}</p>
+                    <p>{{transaction.order.createdAdd | date:"dd/MM/yyyy"}}</p>
                     <p>{{transaction.order.product.name}}</p>
                     <p>{{transaction.order.stock.color}} / {{transaction.order.stock.size}} / {{transaction.order.count}} adet</p>
                 </div>
@@ -28,27 +28,46 @@
                     </div>
                 </div>
             </div>
-            <div class="transactionDown">
-                <div class="transactionDownRight">
+            <div class="transactionDown flex ">
+                <div class="transactionDownLeft">
                     <div class="item">
                         <label for="orderStatus" class="formLabel">Sipariş Durumu</label>
-                        <select name="orderStatus" id="orderStatus" class="formSelect">
-                            <option value="false" selected>Hazırlanıyor</option>
+                        <select name="orderStatus" id="orderStatus" class="formSelect" #orderStatus>
+                            <option *ngIf="!transaction.order.orderStatus" value="false" selected >Hazırlanıyor</option>
+                            <option *ngIf="transaction.order.orderStatus" value="true" selected >Hazırlandı</option>
                             <option value="true">Hazırlandı</option>
                         </select>
                     </div>
                     <div class="item">
                         <label for="shippedStatus" class="formLabel">Kargo Durumu</label>
-                        <select name="shippedStatus" id="shippedStatus" class="formSelect">
-                            <option value="false" selected>Kargo Bekleniyor</option>
+                        <select name="shippedStatus" id="shippedStatus" class="formSelect" #shippedStatus>
+                            <option *ngIf="!transaction.order.shippedStatus" value="false" selected>Kargo Bekleniyor</option>
+                            <option *ngIf="transaction.order.shippedStatus" value="true" selected disable>Kargolandı</option>
+
                             <option value="true">Kargolandı</option>
+
                         </select>
                     </div>
-                </div>
-                <div class="transactionDownCenter">
                     
                 </div>
-                <div class="transactionDownLeft"></div>
+                <div class="transactionDownCenter">
+                    <div class="item">
+                        <label for="selectShipper" class="formLabel">Kargo Durumu</label>
+                        <select name="selectShipper" id="selectShipper" class="formSelect" #selectShipper>
+                            <option selected diabled *ngIf="transaction.order.shipper">{{transaction.order.shipper.name}}</option>
+                            <option selected diabled *ngIf="!transaction.order.shipper">Gönderim Firması</option>
+                            <option  value="{{shipper._id}}" *ngFor="let shipper of shippers">{{shipper.name}}</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label for="followCode" class="formLabel">Takip Kodu</label>
+                        <input type="text" class="formInput" id="followCode" name="followCode" #followCode placeholder="{{transaction.order.followCode}}">
+                    </div>
+                </div>
+                <div class="transactionDownRight flex flex-column">
+                    <button (click)="applyChanges(transaction._id, orderStatus, shippedStatus, selectShipper, followCode)">Değişiklikleri Uygula</button>
+                    <button>İptal Et</button>
+                </div>
             </div>
         </div>
     </div>

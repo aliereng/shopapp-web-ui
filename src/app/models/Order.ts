@@ -22,6 +22,7 @@ export interface Order{
     shipper: {
         name:String
     };
+    followCode:String,
     deliveredAddress: {
         title:String,
         info:{
@@ -52,4 +53,5 @@ export interface Order{
     };
     createdAdd: Date;
     amount: number;
+    complete:Boolean
 }

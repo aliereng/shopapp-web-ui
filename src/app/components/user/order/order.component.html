@@ -15,9 +15,11 @@
             <div class="orderButtons flex flex-column">
                 <button>Onayla</button>
                 <button>İptal Et</button>
-                <p *ngIf="order.orderStatus">Tamamlandı</p>
+                <p *ngIf="order.orderStatus">Hazırlandı</p>
                 <p *ngIf="!order.orderStatus">Hazırlanıyor</p>
                 <p *ngIf="order.orderStatus && order.shippedStatus">Kargolandı</p>
+
+
                 <p *ngIf="order.orderStatus && !order.shippedStatus">Kargo Bekliyor</p>
                 <a class="seeMore" (click)="showOrderDownArea(i)">daha fazla +</a>
             </div>
@@ -39,7 +41,9 @@
                 <p>{{order.invoiceAddress.info.district}}/{{order.invoiceAddress.info.city}}</p>
             </div>
             <div class="shipper">
-                <p *ngIf="order.shipper">{{order.shipper}}</p>
+                <p *ngIf="order.shipper">{{order.shipper.name}}</p>
+                <p *ngIf="order.shipper">{{order.followCode}}</p>
+
                 <p *ngIf="!order.shipper">Henüz Kargo Bilgisi Girilmedi.</p>
 
 

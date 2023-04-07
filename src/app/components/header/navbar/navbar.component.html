@@ -23,7 +23,7 @@
                 </div>
             </div>
             <a routerLink="/cart" *ngIf="model == 'customer' || model=='' ">Sepetim</a>
-            <a routerLink="/cart" *ngIf="model == 'supplier'">Sipariş İstekleri</a>
+            <a routerLink="/merchant/transaction" *ngIf="model == 'supplier'">Sipariş İstekleri</a>
         </section>
     </div>
 </nav>
