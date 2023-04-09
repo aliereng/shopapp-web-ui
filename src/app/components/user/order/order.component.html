@@ -9,7 +9,7 @@
                 <p>{{order.stock.color}}/{{order.stock.size}}</p>
                 
                 <p>{{order.amount}}₺</p>
-                <p>{{order.createdAdd | date: 'dd/MM/yyyy'}}</p>
+                <p>{{order.createdAt | date: 'dd/MM/yyyy'}}</p>
                 <a routerLink="supplier/{{order.supplier.slug}}">{{order.supplier.shopName}}</a>
             </div>
             <div class="orderButtons flex flex-column">

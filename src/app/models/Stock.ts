@@ -3,8 +3,8 @@ export interface Stock{
     product:String;
     size: String;
     color: String;
-    piece: Number;
-    price: Number;
+    piece: number;
+    price: number;
     type: String;
     status: Boolean;
     image: String;

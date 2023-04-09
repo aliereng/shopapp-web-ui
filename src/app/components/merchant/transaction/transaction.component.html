@@ -1,13 +1,30 @@
 <div id="transactionsArea">
     <h2 class="userRouterHeader">Sipariş İstekleri</h2>
     <div id="transactions">
+        <div class="filterArea flex">
+            <div class="item">
+                <select name="sortByDate" id="sortByDate" class="formSelect" (change)="applyFilterChanges()" [(ngModel)]="sortByDate">
+                    <option selected disabled value="default">Tarihe Göre</option>
+                    <option value="newest">Yeniden Eskiye</option>
+                    <option value="oldest">Eskiden Yeniye</option>
+                </select>
+                
+            </div>
+            <div class="item">
+                <select name="completeStatus" id="completeStatus" class="formSelect" value="default" [(ngModel)]="completeStatus" (change)="applyFilterChanges()">
+                    <option selected value="all">Tümünü Göster</option>
+                    <option value="true">Tamamlandı</option>
+                    <option value="false">Devam Ediyor</option>
+                </select>
+            </div>
+        </div>
         <div class="transaction flex flex-column" *ngFor="let transaction of transactions, index as i">
             <div class="transactionUp">
                 <div class="transactionImage">
                     <img src="http://localhost:3000/api/public/image/{{transaction.order.stock.image}}" alt="{{transaction.order.product.slug}}">
                 </div>
                 <div class="transactionInfo">
-                    <p>{{transaction.order.createdAdd | date:"dd/MM/yyyy"}}</p>
+                    <p>{{transaction.order.createdAt | date:"dd/MM/yyyy"}}</p>
                     <p>{{transaction.order.product.name}}</p>
                     <p>{{transaction.order.stock.color}} / {{transaction.order.stock.size}} / {{transaction.order.count}} adet</p>
                 </div>

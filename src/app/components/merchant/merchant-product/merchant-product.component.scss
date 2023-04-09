@@ -1,0 +1,59 @@
+@import "../../../../assets/scss/variables.scss";
+
+#productsArea{
+    #optionsArea{
+        justify-content: flex-end;
+        padding: 1rem 0;
+    }
+    #products{
+        border: 1px solid $colorLightGray;
+        padding: 1rem;
+        .product{
+            border: 1px solid $colorLightGray;
+            margin-bottom:1rem;
+            padding:1rem;
+            .summaryProductArea{
+                align-items: center;
+                justify-content: flex-start;
+                .productImage{
+                    width: 15%;
+                    img{
+                        object-fit: contain;
+                        object-position: center;
+                        width: 100%;
+                    }
+                }
+                .summaryProductInfo{
+                    width: 100%;
+
+                    .summaryOther{
+                       
+                        width: 100%;
+                        .item{
+                            width: 40%;
+                        }
+                    }
+                }
+                .buttons{
+                    align-items: center;
+                    gap:.5rem;
+                    button{
+                        padding: .5rem 1rem;
+                        &:hover{
+                            cursor:pointer
+                        }
+                    }
+                }
+            }
+            .productInfoPage{
+                display: none;
+                position: absolute;
+                width: 100%;
+                top:0;
+                left:0;
+                overflow-y:scroll;
+                background-color: $colorWhite;
+            }
+        }
+    }
+}

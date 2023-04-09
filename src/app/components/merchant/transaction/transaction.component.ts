@@ -13,10 +13,12 @@ import { ShipperService } from 'src/app/services/shipper.service';
 export class TransactionComponent implements OnInit {
   transactions!: [Transaction]
   shippers!: [Shipper]
+  sortByDate = "default";
+  completeStatus = "all";
+  query = "?";
   constructor(private service: MerchantService, private shipperService: ShipperService) { 
-    this.service.getAllTransactions().subscribe(res=> {
+    this.service.getAllTransactions(this.query).subscribe(res=> {
       this.transactions = res.data
-      console.log(this.transactions);
     },(error:HttpErrorResponse)=> {
       alert(error.error.message)
     })
@@ -25,6 +27,7 @@ export class TransactionComponent implements OnInit {
     },(error:HttpErrorResponse)=> {
       alert(error.error.message)
     })
+
   }
   applyChanges(transactionId: String, orderStatus:HTMLSelectElement, shippedStatus:HTMLSelectElement, selectShipper:HTMLSelectElement,followCode:HTMLInputElement ){
     
@@ -39,6 +42,30 @@ export class TransactionComponent implements OnInit {
     },(error:HttpErrorResponse)=> {
       alert(error.error.message)
     })
+
+  }
+  applyFilterChanges(){
+    const currentQuery = this.query;
+    this.query += `sortBy=${this.sortByDate}`;
+    switch (this.completeStatus) {
+      case "true":
+        this.query += `&complete=true`
+        break;
+      case "false":
+        this.query += `&complete=false`
+        break
+        case "all":
+        this.query 
+        break
+      default:
+        break;
+    }
+    this.service.getAllTransactions(this.query).subscribe(res=> {
+      this.transactions = res.data
+    },(error:HttpErrorResponse)=> {
+      alert(error.error.message)
+    })
+    this.query = currentQuery
 
   }
   ngOnInit(): void {

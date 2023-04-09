@@ -51,7 +51,7 @@ export interface Order{
             addressDesc: String
         }
     };
-    createdAdd: Date;
+    createdAt: Date;
     amount: number;
     complete:Boolean
 }

@@ -1,0 +1,39 @@
+<div id="productsArea">
+    <h2 class="userRouterHeader">Ürünlerim</h2>
+    <div id="optionsArea" class="flex"> 
+        <button class="btn">Ekle</button>
+    </div>
+    <div id="products">
+        <div class="product" *ngFor="let product of products, index as i">
+            <div class="summaryProductArea flex">
+                <div class="productImage">
+                    <img src="http://localhost:3000/api/public/image/{{product.image}}" alt="">
+                </div>
+                <div class="summaryProductInfo flex flex-column">
+                    <p>{{product.name}}</p>
+                 
+                    <div class="summaryOther flex">
+                        <div class="summaryStocksInfo item">
+                            <p><span>Renk: </span>{{product.color}}</p>
+                            <p><span>Beden: </span>{{product.size}}</p>
+                            <p><Span>Fiyat: </Span>{{product.price}}₺</p>
+                        </div>
+                        
+                        <p class="flex flex-column item"><span>Kategori: </span>{{product.categories[product.categories.length-1].name}}</p>
+                    
+                        <p class="flex flex-column item"><span>Eklenme Tarihi: </span>{{product.createdAt | date:"dd/MM/yyyy"}}</p>
+                    </div>
+                </div>
+                <div class="buttons flex flex-column">
+                    <button>sil</button>
+                    <button>güncelle</button>
+                    <button (click)="showProductInfo(productInfoArea)">göster</button>
+                </div>
+            </div>
+            <div class="productInfoPage" #productInfoArea>
+                <app-product-info [product]="product" ></app-product-info>
+
+            </div>
+        </div>
+    </div>
+</div>

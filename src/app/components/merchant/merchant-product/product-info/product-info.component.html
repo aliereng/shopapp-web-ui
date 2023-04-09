@@ -1,0 +1,118 @@
+<div id="productInfoArea">
+    <div id="areaHeader">
+        <h3>Ürün Bilgileri</h3>
+    </div>
+    <div id="areaBody" class="flex flex-column">
+        <div id="bodyUp" class="flex ">
+            <div id="productImage">
+                <img src="http://localhost:3000/api/public/image/{{product.image}}" alt="">
+            </div>
+            <div id="productInfo">
+                
+                <div class="productBodyItem flex" >
+                    <h4>Ürün Adı</h4>
+                    <p>{{product.name}}</p>
+                    
+                </div>
+                <div class="productBodyItem flex" >
+                    <h4>Ürün Rengi</h4>
+                    <p>{{product.color}}</p>
+                </div>
+                <div class="productBodyItem flex" >
+                    <h4>Ürün Boyutu</h4>
+                    <p>{{product.size}}</p>
+                </div>
+                <div class="productBodyItem flex" >
+                    <h4>Ürün Fiyatı</h4>
+                    <p>{{product.price}}₺</p>
+                </div>
+                <div class="productBodyItem flex other">
+                    <h4>Ürün Kategorileri</h4>
+                    <ul>
+                        <li *ngFor="let category of product.categories">
+                            <a >{{category.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="productBodyItem flex other">
+                    <h4>Oluşturulma Tarihi</h4>
+                    <p>{{product.createdAt| date:"dd/MM/yyyy"}}</p>
+                </div>
+                <div class="productBodyItem flex other">
+                    <h4>Yayın Durumu</h4>
+                    <p *ngIf="product.visible">Yayında</p>
+                    <p *ngIf="!product.visible">Yayında Değil</p>
+                </div>
+                <div class="productBodyItem flex other">
+                    <h4>Puan</h4>
+                    <p>0</p>
+                </div>
+            </div>
+            <div id="productStocks" class="flex flex-column other">
+                <h4>Stok Bilgileri</h4>
+                <ul>
+                    <li *ngFor="let stock of product.stocks">
+                        <a (click)="showStocksUpdateArea(stock,stocksUpdateArea)">{{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i></a>
+                    </li>
+                </ul>
+                <p class="pageInfoParagraph">* değiştirmek istediğiniz stok bilgisine tıklayın</p>
+            </div>
+
+        </div>
+        <div id="bodyCenter" class="flex">
+            <div id="stocksUpdateArea" class="flex" #stocksUpdateArea>
+                <div id="stockUpdateAreaLeft" >
+                    <div id="images" class="flex">
+                        <div id="stockImage" >
+                            <img src="http://localhost:3000/api/public/image/{{stockImage}}" alt="{{stockImage}}">
+                        </div>
+                        <div id="stockImages" >
+                            <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{image}}" *ngFor="let image of stockImages, index as i">
+                        </div>
+                        <div id="addImages">
+
+                        </div>
+                    </div>
+                    <div id="addNewPhoto">
+                        
+                            <label class="formLabel">Yeni Fotoğraf Ekle</label>
+                            <input type="file" name="files" #newPhoto multiple accept="image/jpeg, image/png, image/jpg, image/webp, image/avif" (change)="inputsChange($event)">
+                        
+                    </div>
+                    <p class="pageInfoParagraph">Mevcut görseller dahil ekleyeceğiniz görsellerin 10 adeti geçmemesine dikkat ediniz. 10 adet üzeri görseller 10. adetten sonra dahil edilmeyecektir. Dilerseniz tümünü silip 10 adet yeni görsel ekleyebilirsiniz.</p>
+
+                </div>
+                <div id="stockUpdateAreaRight">
+                    <div class="stockUpdateAreaItem">
+                        <label class="formLabel" for="piece">Adet</label>
+                        <input class="formInput" type="text" id="piece" name="piece" [(ngModel)]="pieceInput">
+                    </div>
+                    <div class="stockUpdateAreaItem">
+                        <label class="formLabel" for="color">Renk</label>
+                        <input class="formInput" type="text" id="color" name="color" [(ngModel)]="colorInput">
+                    </div>
+                    <div class="stockUpdateAreaItem">
+                        <label class="formLabel" for="size">Boyut</label>
+                        <input class="formInput" type="text" id="size" name="size" [(ngModel)]="sizeInput">
+                    </div>
+                    <div class="stockUpdateAreaItem">
+                        <label class="formLabel" for="price">Fiyat</label>
+                        <input class="formInput" type="text" id="price" name="price" [(ngModel)]="priceInput">
+                    </div>
+                    <div class="stockUpdateAreaItem">
+                        Ürün Listelenirken Kullanılan Stok <input type="checkbox" name="productBaseStock" id="productBaseStock" [(ngModel)]="productBaseStock">
+                    </div>
+                    <!-- <button (click)="updateStock()">Güncelle</button> -->
+                </div>
+            </div>
+        </div>
+        <div id="bodyDown"></div>
+
+    </div>
+    <div id="areaFooter">
+        <p class="pageInfoParagraph">kapatmak için esc tuşuna basınız.</p>
+        <p class="pageInfoParagraph" ><i class="fa-solid fa-check"></i> Ürünün Gösterim Stoğu</p>
+        <p class="pageInfoParagraph" ><i class="fa-solid fa-xmark"></i> Ürünün Diğer Stokları</p>
+
+    </div>
+</div>

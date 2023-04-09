@@ -22,7 +22,7 @@
                     <a (click)="logout()">Çıkış yap</a>
                 </div>
             </div>
-            <a routerLink="/cart" *ngIf="model == 'customer' || model=='' ">Sepetim</a>
+            <a routerLink="/cart" *ngIf="model == 'customer' || model==null ">Sepetim</a>
             <a routerLink="/merchant/transaction" *ngIf="model == 'supplier'">Sipariş İstekleri</a>
         </section>
     </div>

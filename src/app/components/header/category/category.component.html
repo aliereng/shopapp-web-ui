@@ -1,4 +1,4 @@
-<section id="categories" *ngIf="model == 'customer' || model == ''">
+<section id="categories" *ngIf="model == 'customer' || model == null">
   <div class="container flex">
     <div class="category" *ngFor="let category of mainCategories">
       <p>{{category.name}}</p>
