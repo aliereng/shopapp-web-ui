@@ -26,12 +26,16 @@
                 </div>
                 <div class="buttons flex flex-column">
                     <button>sil</button>
-                    <button>güncelle</button>
-                    <button (click)="showProductInfo(productInfoArea)">göster</button>
+                    <button (click)="showUpdateArea(productUpdateArea)">güncelle</button>
+                    <button (click)="showProductInfo(productInfoArea)">detay</button>
                 </div>
             </div>
             <div class="productInfoPage" #productInfoArea>
                 <app-product-info [product]="product" ></app-product-info>
+
+            </div>
+            <div class="productUpdatePage" #productUpdateArea>
+                <app-product-update [product]="product" ></app-product-update>
 
             </div>
         </div>

@@ -28,6 +28,8 @@ import { QuestionComponent } from './components/user/question/question.component
 import { TransactionComponent } from './components/merchant/transaction/transaction.component';
 import { MerchantProductComponent } from './components/merchant/merchant-product/merchant-product.component';
 import { ProductInfoComponent } from './components/merchant/merchant-product/product-info/product-info.component';
+import { ProductUpdateComponent } from './components/merchant/merchant-product/product-update/product-update.component';
+import { ProductStockUpdateComponent } from './components/merchant/merchant-product/product-update/product-stock-update/product-stock-update.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { ProductInfoComponent } from './components/merchant/merchant-product/pro
     QuestionComponent,
     TransactionComponent,
     MerchantProductComponent,
-    ProductInfoComponent
+    ProductInfoComponent,
+    ProductUpdateComponent,
+    ProductStockUpdateComponent
   ],
   imports: [
     BrowserModule,

@@ -57,52 +57,56 @@
             }
         }
 
-        #bodyCenter {
-            background-color: white;
-            border: 1px solid $colorDarkGray;
-            width: 100%;
-            #stocksUpdateArea {
-                padding: 1rem;
-                width: 100%;
-                display: none;
+        // #bodyCenter {
+        //     // background-color: white;
+        //     // border: 1px solid $colorDarkGray;
+        //     // width: 100%;
+        //     // #stocksUpdateArea {
+        //     //     padding: 1rem;
+        //     //     width: 100%;
+        //     //     display: none;
 
-                #stockUpdateAreaLeft {
-                    width: 70%;
-                    #images{
+        //     //     #stockUpdateAreaLeft {
+        //     //         width: 70%;
+        //     //         #images{
 
-                        #stockImage{
-                            width: 30%;
-                            img{
-                                width: 100%;
-                                object-fit: contain;
-                                object-position: center;
-                            }
-                        }
-                        #stockImages{
-                            width: 70%;                            
-                            flex-wrap: wrap;
-                            justify-content: center;
-                            align-items: center;
+        //     //             #stockImage{
+        //     //                 width: 30%;
+        //     //                 img{
+        //     //                     width: 100%;
+        //     //                     object-fit: contain;
+        //     //                     object-position: center;
+        //     //                 }
+        //     //             }
+        //     //             #stockImages{
+        //     //                 width: 70%;                            
+        //     //                 flex-wrap: wrap;
+        //     //                 justify-content: center;
+        //     //                 align-items: center;
                             
                                 
-                            img{
-                                width: 10%;                                    object-fit: cover;
-                                object-position: center;
-                                &:hover{
-                                    cursor:pointer
-                                }
-                            }
+        //     //                 img{
+        //     //                     width: 10%;                                    object-fit: cover;
+        //     //                     object-position: center;
+        //     //                     &:hover{
+        //     //                         cursor:pointer
+        //     //                     }
+        //     //                 }
                            
                             
-                        }
-                    }
-                }
+        //     //             }
+        //     //         }
+        //     //     }
 
-                #stockUpdateAreaRight {
-                    width: 30%;
-                }
+        //     //     #stockUpdateAreaRight {
+        //     //         width: 30%;
+        //     //     }
 
-            }
-        }
+        //     // }
+        // }
+        
+    }
+    #areaFooter{
+        padding:1rem;
     }
 }

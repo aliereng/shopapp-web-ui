@@ -1,0 +1,29 @@
+@import "../../../../../assets/scss/variables.scss";
+#productUpdateArea{
+    width: 100%;
+    #productUpdateUp{
+        width: 100%;
+        #productImageArea{
+            width: 30%;
+            #productImage{
+                width: 100%;
+                img{
+                    width: 100%;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+            #productImages{
+                width: 100%;
+                display: flex;
+                overflow-x: scroll;
+                gap:1rem;
+                img{
+                    width: 20%;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}

@@ -52,15 +52,16 @@
                 <h4>Stok Bilgileri</h4>
                 <ul>
                     <li *ngFor="let stock of product.stocks">
-                        <a (click)="showStocksUpdateArea(stock,stocksUpdateArea)">{{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i></a>
+                        <!-- <a (click)="showStocksUpdateArea(stock,stocksUpdateArea)">{{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i></a> -->
+                        {{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i>
                     </li>
                 </ul>
-                <p class="pageInfoParagraph">* değiştirmek istediğiniz stok bilgisine tıklayın</p>
+                <!-- <p class="pageInfoParagraph">* değiştirmek istediğiniz stok bilgisine tıklayın</p> -->
             </div>
 
         </div>
         <div id="bodyCenter" class="flex">
-            <div id="stocksUpdateArea" class="flex" #stocksUpdateArea>
+            <!-- <div id="stocksUpdateArea" class="flex" #stocksUpdateArea>
                 <div id="stockUpdateAreaLeft" >
                     <div id="images" class="flex">
                         <div id="stockImage" >
@@ -104,15 +105,16 @@
                     </div>
                     <button (click)="updateStock()">Güncelle</button>
                 </div>
-            </div>
+            </div> -->
+            <p>yorumlar ve soru cevap servisleri aktif edildiğinde güncellenecektir</p>
         </div>
         <div id="bodyDown"></div>
 
     </div>
     <div id="areaFooter">
-        <p class="pageInfoParagraph">kapatmak için esc tuşuna basınız.</p>
-        <p class="pageInfoParagraph" ><i class="fa-solid fa-check"></i> Ürünün Gösterim Stoğu</p>
-        <p class="pageInfoParagraph" ><i class="fa-solid fa-xmark"></i> Ürünün Diğer Stokları</p>
+        <p >kapatmak için esc tuşuna basınız.</p>
+        <!-- <p class="pageInfoParagraph" ><i class="fa-solid fa-check"></i> Ürünün Gösterim Stoğu</p>
+        <p class="pageInfoParagraph" ><i class="fa-solid fa-xmark"></i> Ürünün Diğer Stokları</p> -->
 
     </div>
 </div>

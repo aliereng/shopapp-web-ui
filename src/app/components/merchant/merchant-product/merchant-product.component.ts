@@ -10,14 +10,15 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class MerchantProductComponent implements OnInit {
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    this.disableProductInfo()
+    this.disableAreas()
+    
   }
   products!: Array<Product>
   productInfoArea!: HTMLDivElement;
+  productUpdateArea!: HTMLDivElement ;
   constructor(private service: ProductService) {
     this.service.getAllProductsByMerchant().subscribe(res => {
       this.products = res.data
-      console.log(this.products)
     },(error:HttpErrorResponse)=> {
       alert(error.error.message)
     })
@@ -25,9 +26,22 @@ export class MerchantProductComponent implements OnInit {
   showProductInfo(productInfoArea:HTMLDivElement){
     productInfoArea.setAttribute("style","display:block");
     this.productInfoArea = productInfoArea
+    this.productUpdateArea.setAttribute("style","display:none")
+
   }
-  disableProductInfo(){
+  showUpdateArea(productUpdateArea:HTMLDivElement){
+    productUpdateArea.setAttribute("style","display:block");
+    this.productUpdateArea= productUpdateArea
     this.productInfoArea.setAttribute("style","display:none")
+
+  }
+  disableAreas(){
+    if(this.productInfoArea){
+      this.productInfoArea.setAttribute("style","display:none")
+    }
+    if(this.productUpdateArea){
+      this.productUpdateArea.setAttribute("style","display:none")
+    }
   }
   ngOnInit(): void {
   }
