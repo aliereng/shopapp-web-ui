@@ -79,14 +79,20 @@
                             }
                         }
                         #stockImages{
-                            width: 70%;
-                            display:flex;
+                            width: 70%;                            
                             flex-wrap: wrap;
+                            justify-content: center;
+                            align-items: center;
+                            
+                                
                             img{
-                                width: 20%;
-                                object-fit: cover;
+                                width: 10%;                                    object-fit: cover;
                                 object-position: center;
+                                &:hover{
+                                    cursor:pointer
+                                }
                             }
+                           
                             
                         }
                     }
