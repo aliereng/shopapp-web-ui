@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Stock } from 'src/app/models/Stock';
 
 @Component({
   selector: 'app-product-stock-update',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-stock-update.component.scss']
 })
 export class ProductStockUpdateComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  @Input() stock!:Stock
+  size!:String;
+  color!:String;
+  piece!:number;
+  price!:number;
+  status!:Boolean;
+  type!:String;
+  constructor() {
+   
   }
 
+  ngOnInit(): void {
+   
+  }
+  closeArea(stockUpdateArea:HTMLDivElement){
+    document.getElementById("productStockUpdateArea")?.setAttribute("style","display:none;")
+    stockUpdateArea.setAttribute("style","display:none");
+  }
 }

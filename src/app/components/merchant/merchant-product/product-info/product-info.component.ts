@@ -30,33 +30,33 @@ export class ProductInfoComponent implements OnInit {
 
   // updateStock() {
   //   const updateStock = this.createStockObject();
-  //   if (!this.formData) {
-  //     this.stockService.updateStock(this.id, updateStock).subscribe(res => {
-  //       this.setVeriables(res.data)
-  //       window.location.replace("/merchant/product");
-  //     }, (error: HttpErrorResponse) => {
-  //       alert(error.error.message)
-  //     })
-  //   } else {
-  //     this.stockService.addImagesThisStock(this.id, this.formData).then(res => {
-  //       this.stockService.updateStock(this.id, updateStock).subscribe(res => {
-  //         this.setVeriables(res.data)
-  //         window.location.replace("/merchant/product");
-  //       }, (error: HttpErrorResponse) => {
-  //         alert(error.error.message)
-  //       })
-  //     }).catch(err => {
-  //       alert("foroğraflar yüklenirken hatalarla karşılaşıldı." + err)
-  //     })
-  //   }
+  //   // if (!this.formData) {
+  //   //   this.stockService.updateStock(this.id, updateStock).subscribe(res => {
+  //   //     this.setVeriables(res.data)
+  //   //     window.location.replace("/merchant/product");
+  //   //   }, (error: HttpErrorResponse) => {
+  //   //     alert(error.error.message)
+  //   //   })
+  //   // } else {
+  //   //   this.stockService.addImagesThisStock(this.id, this.formData).then(res => {
+  //   //     this.stockService.updateStock(this.id, updateStock).subscribe(res => {
+  //   //       this.setVeriables(res.data)
+  //   //       window.location.replace("/merchant/product");
+  //   //     }, (error: HttpErrorResponse) => {
+  //   //       alert(error.error.message)
+  //   //     })
+  //   //   }).catch(err => {
+  //   //     alert("foroğraflar yüklenirken hatalarla karşılaşıldı." + err)
+  //   //   })
+  //   // }
   // }
 
   // inputsChange(e: any) {
-  //   this.formData = new FormData()
-  //   const files: FileList = e.target.files
-  //   for (let i = 0; i < files.length; i++) {
-  //     this.formData.append('images', files[i], files[i].name,)
-  //   }
+  //   // this.formData = new FormData()
+  //   // const files: FileList = e.target.files
+  //   // for (let i = 0; i < files.length; i++) {
+  //   //   this.formData.append('images', files[i], files[i].name,)
+  //   // }
   // }
 
   // chooseMainStockImage(image: String) {

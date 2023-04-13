@@ -2,7 +2,9 @@
 #productUpdateArea{
     width: 100%;
     #productUpdateUp{
+        padding: 1rem;
         width: 100%;
+        justify-content: flex-start;
         #productImageArea{
             width: 30%;
             #productImage{
@@ -24,6 +26,114 @@
                     object-position: center;
                 }
             }
+            
+        }
+        #productInfoArea {
+            width: 40%;
+
+            .productBodyItem {
+                width: 100%;
+                justify-content: flex-start;
+                align-items: center;
+
+                h4 {
+                    width: 40%;
+                }
+
+                p,
+                ul {
+                    width: 60%;
+                    text-align: start;
+                }
+                .formInput{
+                    width: 60%;
+                    outline: 1px solid $colorOrange;
+                    &:focus{
+                        outline-color: blue;
+                    }
+                }
+
+            }
+
+            .other {
+                margin-top: 1rem;
+            }
+        }
+        #productStocksArea {
+            width: 30%;
+            gap: .5rem;
+            padding: 1rem;
+            li{
+                &:hover{
+                    cursor: pointer;
+                    color: $colorOrange;
+                }
+            }
+            
         }
     }
+    #bodyCenter {
+        background-color: white;
+        border: 1px solid $colorDarkGray;
+        width: 100%;
+        #stocksUpdateArea {
+            padding: 1rem;
+            width: 100%;
+            display: none;
+
+            #stockUpdateAreaLeft {
+                width: 70%;
+                #images{
+                    width: 100%;
+                    #stockImage{
+                        width: 30%;
+                        img{
+                            width: 100%;
+                            object-fit: contain;
+                            object-position: center;
+                        }
+                    }
+                    #stockImages{
+                        width: 70%;                            
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
+                        
+                            
+                        img{
+                            width: 10%;
+                            object-fit: cover;
+                            object-position: center;
+                            &:hover{
+                                cursor:pointer
+                            }
+                        }
+                       
+                        
+                    }
+                    
+                }
+                .newPhotosArea{
+                    padding: 1rem;
+                    width: 100%;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    img{
+                        width: 10%;
+                        object-fit: contain;
+                        object-position: center;
+                    }
+                }
+            }
+
+            #stockUpdateAreaRight {
+                width: 30%;
+            }
+
+        }
+    }
+    // #productStockUpdateArea{
+       
+    //     display: none;
+    // }
 }

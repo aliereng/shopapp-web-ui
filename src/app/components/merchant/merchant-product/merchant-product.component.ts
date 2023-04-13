@@ -41,7 +41,10 @@ export class MerchantProductComponent implements OnInit {
     }
     if(this.productUpdateArea){
       this.productUpdateArea.setAttribute("style","display:none")
+      document.getElementById("productStockUpdateArea")?.setAttribute("style","display:none;")
+
     }
+
   }
   ngOnInit(): void {
   }

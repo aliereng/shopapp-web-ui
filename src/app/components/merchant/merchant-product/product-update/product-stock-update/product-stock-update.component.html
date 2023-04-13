@@ -1,1 +1,30 @@
-<p>product-stock-update works!</p>
+<div id="stockUpdateArea" #stockUpdateArea>
+    <div id="stockUpdateHeadArea" class="flex userRouterHeader">
+        <h3>Stok Güncelleme</h3>
+        <i class="fa-solid fa-xmark" (click)="closeArea(stockUpdateArea)"></i>
+    </div>
+    <div id="stockUpdateInfoArea">
+        <div id="stockUpdateInfoImageArea">
+            <div id="currentImages">
+                <div id="stockImage">
+
+                </div>
+                <div id="stockImages">
+                    
+                </div>
+            </div>
+            <div id="addedImages">
+                <div class="inputItem">
+                    <label class="formLabel">Yeni Fotoğraf</label>
+                    <input type="file" multiple>
+                </div>
+            </div>
+        </div>
+        <div id="stockInfo">
+            <div class="inputItem">
+                <label for="" class="formLabel">Renk</label>
+                <input type="text" [(ngModel)]="color" class="formInput">
+            </div>
+        </div>
+    </div>
+</div>

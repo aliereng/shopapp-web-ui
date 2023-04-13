@@ -1,6 +1,6 @@
 <div id="productUpdateArea">
     <h3 class="userRouterHeader">Ürün Güncelle</h3>
-    <div id="productUpdateUp">
+    <div id="productUpdateUp" class="flex">
         <div id="productImageArea" class="flex flex-column">
             <div id="productImage">
                 <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{image}}">
@@ -9,9 +9,114 @@
                 <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{image}}" *ngFor="let image of images">
             </div>
         </div>
-        <!-- <div id="productInfoArea">
+        <div id="productInfoArea" >
+            <div class="productBodyItem flex" >
+                <h4>Ürün Adı</h4>
+                <input type="text" class="formInput" [(ngModel)]="name">
+                
+            </div>
+            <div class="productBodyItem flex" >
+                <h4>Ürün Rengi</h4>
+                <p>{{product.color}}</p>
+            </div>
+            <div class="productBodyItem flex" >
+                <h4>Ürün Boyutu</h4>
+                <p>{{product.size}}</p>
+            </div>
+            <div class="productBodyItem flex" >
+                <h4>Ürün Fiyatı</h4>
+                <p>{{product.price}}₺</p>
+            </div>
+            <div class="productBodyItem flex other">
+                <h4>Ürün Kategorileri</h4>
+                <ul>
+                    <li *ngFor="let category of product.categories">
+                        <a >{{category.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="productBodyItem flex other">
+                <h4>Oluşturulma Tarihi</h4>
+                <p>{{product.createdAt| date:"dd/MM/yyyy"}}</p>
+            </div>
+            <div class="productBodyItem flex other">
+                <h4>Yayın Durumu</h4>
+                <input type="checkbox" id="productStatus" [(ngModel)]="visible">
 
-        </div> -->
+            </div>
+            <div class="productBodyItem flex other">
+                <h4>Puan</h4>
+                <p>0</p>
+            </div>
+        </div>
+        <div id="productStocksArea" class="flex flex-column other">
+            <h4>Stok Bilgileri</h4>
+            <ul>
+                <li *ngFor="let stock of product.stocks" (click)="showStocksUpdateArea(stock, stocksUpdateArea)">
+                    <!-- <a (click)="showStocksUpdateArea(stock,stocksUpdateArea)">{{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i></a> -->
+                    {{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i>
+                </li>
+            </ul>
+            <!-- <p class="pageInfoParagraph">* değiştirmek istediğiniz stok bilgisine tıklayın</p> -->
+        </div>
+        
+    </div>
+    <div id="bodyCenter" class="flex">
+        <div id="stocksUpdateArea" class="flex" #stocksUpdateArea>
+            <div id="stockUpdateAreaLeft" >
+                <div id="images" class="flex">
+                    <div id="stockImage" >
+                        <img src="http://localhost:3000/api/public/image/{{stockImage}}" alt="{{stockImage}}">
+                    </div>
+                    <div id="stockImages" class="flex">
+                        <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{image}}" *ngFor="let image of stockImages, index as i" (click)="chooseMainStockImage(image)">
+                    </div>
+                    <div id="addImages">
+
+                    </div>
+                </div>
+                
+                    
+                <div class="inputAreas">
+                    <label class="formLabel">Yeni Fotoğraf Ekle</label>
+                    <input type="file" name="files" #newPhoto multiple accept="image/jpeg, image/png, image/jpg, image/webp, image/avif" (change)="inputsChange($event)">
+                </div>
+                <div class="newPhotosArea flex">
+                    <img [src]="url" alt="" *ngFor="let url of urls">
+                </div>
+                    
+               
+                <p class="pageInfoParagraph">Mevcut görseller dahil ekleyeceğiniz görsellerin 10 adeti geçmemesine dikkat ediniz. 10 adet üzeri görseller 10. adetten sonra dahil edilmeyecektir. Dilerseniz tümünü silip 10 adet yeni görsel ekleyebilirsiniz.</p>
+
+            </div>
+            <div id="stockUpdateAreaRight">
+                <div class="stockUpdateAreaItem">
+                    <label class="formLabel" for="piece">Adet</label>
+                    <input class="formInput" type="text" id="piece" name="piece" [(ngModel)]="pieceInput">
+                </div>
+                <div class="stockUpdateAreaItem">
+                    <label class="formLabel" for="color">Renk</label>
+                    <input class="formInput" type="text" id="color" name="color" [(ngModel)]="colorInput">
+                </div>
+                <div class="stockUpdateAreaItem">
+                    <label class="formLabel" for="size">Boyut</label>
+                    <input class="formInput" type="text" id="size" name="size" [(ngModel)]="sizeInput">
+                </div>
+                <div class="stockUpdateAreaItem">
+                    <label class="formLabel" for="price">Fiyat</label>
+                    <input class="formInput" type="text" id="price" name="price" [(ngModel)]="priceInput">
+                </div>
+                <div class="stockUpdateAreaItem">
+                    Ürün Listelenirken Kullanılan Stok <input type="checkbox" name="productBaseStock" id="productBaseStock" [(ngModel)]="productBaseStock">
+                </div>
+                <button (click)="updateStock()">Güncelle</button>
+            </div>
+        </div>
+        <!-- <p>yorumlar ve soru cevap servisleri aktif edildiğinde güncellenecektir</p> -->
+    </div>
+    <div id="productStockUpdateArea"  #stocksUpdateArea>
+        <!-- <app-product-stock-update [stock] = "selectedStock"></app-product-stock-update> -->
+        
     </div>
     
 </div>
