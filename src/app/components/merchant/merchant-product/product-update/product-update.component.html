@@ -61,7 +61,7 @@
         </div>
         
     </div>
-    <div id="bodyCenter" class="flex">
+    <div id="bodyCenter" class="flex flex-column">
         <div id="stocksUpdateArea" class="flex" #stocksUpdateArea>
             <div id="stockUpdateAreaLeft" >
                 <div id="images" class="flex">
@@ -113,6 +113,15 @@
             </div>
         </div>
         <!-- <p>yorumlar ve soru cevap servisleri aktif edildiğinde güncellenecektir</p> -->
+        <div id="propertiesUpdateArea"  class="flex flex-column">
+            <div class="propItem flex" *ngFor="let prop of props, index as i">
+                <h5>{{prop.property}}</h5> 
+                <select (change)="changeProperties(i, $event)">
+                    <option value="{{product.properties[i]}}" selected disabled>{{product.properties[i]}}</option>
+                    <option *ngFor="let result of prop.results" value="{{result}}">{{result}}</option>
+                </select>
+            </div>
+        </div>
     </div>
     <div id="productStockUpdateArea"  #stocksUpdateArea>
         <!-- <app-product-stock-update [stock] = "selectedStock"></app-product-stock-update> -->

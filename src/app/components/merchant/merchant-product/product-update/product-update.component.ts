@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { Product } from 'src/app/models/Product';
+import { Property } from 'src/app/models/Property';
 import { Stock } from 'src/app/models/Stock';
 import { StockService } from 'src/app/services/stock.service';
 
@@ -31,11 +32,19 @@ export class ProductUpdateComponent implements OnInit {
   stockImages!: Array<String>
   formData!: FormData
   urls: Array<String> = [];
+  props: Array<Property> = [];  
   constructor(private stockService: StockService) { 
   }
 
   ngOnInit(): void {
     this.setAttributes();
+    if(Array.isArray(this.product.categories)){
+      this.product.categories.map(category=> {
+        if(category != null){
+          this.props = category.properties
+        }
+      })
+    }
   }
   setAttributes(){
     this.image=this.product.image;
@@ -123,6 +132,8 @@ export class ProductUpdateComponent implements OnInit {
     }
     return newStock
   }
-  
-  
+
+  changeProperties(i:number, event:any){
+    this.product.properties[i] = event.target.value
+  }
 }

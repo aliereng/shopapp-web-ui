@@ -73,10 +73,10 @@
         }
     }
     #bodyCenter {
-        background-color: white;
-        border: 1px solid $colorDarkGray;
         width: 100%;
         #stocksUpdateArea {
+            border: 1px solid $colorDarkGray;
+
             padding: 1rem;
             width: 100%;
             display: none;
@@ -128,8 +128,24 @@
 
             #stockUpdateAreaRight {
                 width: 30%;
+                .formInput{outline: 1px solid $colorOrange;}
             }
 
+        }
+        #propertiesUpdateArea{
+            border: 1px solid $colorDarkGray;
+
+            padding: 1rem;
+            height: 50vh;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            .propItem{
+                width: 30%;
+                justify-content: space-between;
+                align-items: center;
+            }
         }
     }
     // #productStockUpdateArea{
