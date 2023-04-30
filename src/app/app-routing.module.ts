@@ -17,6 +17,7 @@ import { ShipperComponent } from './components/merchant/shipper/shipper.componen
 import { AnswerComponent } from './components/merchant/answer/answer.component';
 import { CommentComponent } from './components/merchant/comment/comment.component';
 import { MerchantProductComponent } from './components/merchant/merchant-product/merchant-product.component';
+import { AddProductComponent } from './components/merchant/merchant-product/add-product/add-product.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
     {path:"transaction", component:TransactionComponent},
     {path:"page", component:PageComponent},
     {path:"product", component:MerchantProductComponent},
+    {path:"product/add", component:AddProductComponent},
     {path:"shipper", component:ShipperComponent},
     {path:"answer", component:AnswerComponent},
     {path:"comment", component:CommentComponent}

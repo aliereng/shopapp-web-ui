@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryComponent } from './components/header/category/category.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -30,8 +30,7 @@ import { MerchantProductComponent } from './components/merchant/merchant-product
 import { ProductInfoComponent } from './components/merchant/merchant-product/product-info/product-info.component';
 import { ProductUpdateComponent } from './components/merchant/merchant-product/product-update/product-update.component';
 import { ProductStockUpdateComponent } from './components/merchant/merchant-product/product-update/product-stock-update/product-stock-update.component';
-
-
+import { AddProductComponent } from './components/merchant/merchant-product/add-product/add-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,13 +59,16 @@ import { ProductStockUpdateComponent } from './components/merchant/merchant-prod
     MerchantProductComponent,
     ProductInfoComponent,
     ProductUpdateComponent,
-    ProductStockUpdateComponent
+    ProductStockUpdateComponent,
+    AddProductComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

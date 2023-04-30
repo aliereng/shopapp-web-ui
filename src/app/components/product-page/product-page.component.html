@@ -39,8 +39,7 @@
                 <p>{{piece}}</p>
                 <div id="shortDesc" class="flex flex-column">
                     <h3 id="shortDescHead">Hakkında</h3>
-                    <p id="shortDescText">
-                        {{product.description}}
+                    <p id="shortDescText" [innerHTML]="product.description">
                     </p>
                 </div>
 
@@ -88,12 +87,12 @@
     <div id="props" class="container">
         <div id="propsNav" >
             <ul class="flex">
-                <li><a href="{{product.slug}}/{{product._id}}#similar">Benzer</a></li>
-                <li><a href="{{product.slug}}/{{product._id}}#otherSupplier">Diğer Satıcılar</a></li>
-                <li><a href="{{product.slug}}/{{product._id}}#evaluations">Ürün Değerlendirmeleri</a></li>
-                <li><a href="{{product.slug}}/{{product._id}}#questionAndAnswer">Ürün Soru Cevapları</a></li>
-                <li><a href="p{{product.slug}}/{{product._id}}#propertyItems">Ürün Bilgileri</a></li>
-                <li><a href="">Ürün Açıklaması</a></li>
+                <li><a href="product/{{product.slug}}/{{product._id}}#similar">Benzer</a></li>
+                <li><a href="product/{{product.slug}}/{{product._id}}#otherSupplier">Diğer Satıcılar</a></li>
+                <li><a href="product/{{product.slug}}/{{product._id}}#evaluations">Ürün Değerlendirmeleri</a></li>
+                <li><a href="product/{{product.slug}}/{{product._id}}#questionAndAnswer">Ürün Soru Cevapları</a></li>
+                <li><a href="product/{{product.slug}}/{{product._id}}#propertyItems">Ürün Bilgileri</a></li>
+                <li><a href="product/{{product.slug}}/{{product._id}}#propertyItems">Ürün Açıklaması</a></li>
             </ul>
         </div>
     </div>
@@ -219,7 +218,7 @@
                 </div>
                 <div id="propAreaUpInfo">
                     <h3>Product Name</h3>
-                    <p>{{product.description}}</p>
+                    <div [innerHTML]="product.description"></div>
                 </div>
             </div>
             <div id="propertyItems">

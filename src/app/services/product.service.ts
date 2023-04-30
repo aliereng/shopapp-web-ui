@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  url!: String;
+  url!: string;
   private httpOptions = {
 
     headers: {
@@ -20,5 +20,14 @@ export class ProductService {
   }
   getAllProductsByMerchant():Observable<{success:Boolean, data:Array<Product>}>{
     return this.http.get<{success:Boolean, data:Array<Product>}>(this.url+"merchant", this.httpOptions)
+  }
+  updateProductById(product:Product):Observable<{data:Product}>{
+    return this.http.put<{data:Product}>(this.url+`${product._id}/update`,product, this.httpOptions)
+  }
+  createProduct(data:Object):Observable<{success:Boolean, data:Product}>{
+    return this.http.post<{success:Boolean, data:Product}>(this.url+"add", data, this.httpOptions)
+  }
+  removeProduct(id:string):Observable<{message:string}>{
+    return this.http.delete<{message:string}>(this.url+`${id}/delete`, this.httpOptions)
   }
 }

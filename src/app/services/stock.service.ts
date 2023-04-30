@@ -40,4 +40,15 @@ export class StockService {
   updateStock(id:String, data:Object):Observable<{success:true, data:Stock}>{
     return this.http.put<{success:true, data:Stock}>(this.url+`update?stockId=${id}`,data,this.httpOptions)  
   }
+  async createStockAndAddThisProduct(id:string, data:FormData){
+    return await axios.post(
+    `${this.url}create?product_id=${id}`,
+    data,
+    {
+      headers:{
+        'Authorization': "Bearer: "+ `${localStorage.getItem("access_token")}`,
+        "Content-Type":"multipart/form-data"
+      }
+    });
+  }
 }

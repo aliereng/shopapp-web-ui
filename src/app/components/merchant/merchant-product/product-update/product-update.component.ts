@@ -4,7 +4,9 @@ import { Category } from 'src/app/models/Category';
 import { Product } from 'src/app/models/Product';
 import { Property } from 'src/app/models/Property';
 import { Stock } from 'src/app/models/Stock';
+import { ProductService } from 'src/app/services/product.service';
 import { StockService } from 'src/app/services/stock.service';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-product-update',
@@ -12,49 +14,30 @@ import { StockService } from 'src/app/services/stock.service';
   styleUrls: ['./product-update.component.scss']
 })
 export class ProductUpdateComponent implements OnInit {
-  
   @Input() product!:Product;
-  name!:String;
-  visible!:Boolean;
-  description!:String;
   stocks!:Array<Stock>;
   categories!:Array<Category>;
-  image!:String;
-  images!:Array<String>;
   selectedStock!: Stock;
-  id!: String;
-  pieceInput!: number;
-  priceInput!: number;
-  sizeInput!: String;
-  colorInput!: String;
-  productBaseStock!: Boolean;
-  stockImage!: String;
-  stockImages!: Array<String>
   formData!: FormData
   urls: Array<String> = [];
   props: Array<Property> = [];  
-  constructor(private stockService: StockService) { 
+  editorConfig = {
+    width: "100%", 
+    height: "100%"
   }
-
+  constructor(private stockService: StockService, private productService: ProductService) { 
+  }
   ngOnInit(): void {
-    this.setAttributes();
     if(Array.isArray(this.product.categories)){
       this.product.categories.map(category=> {
-        if(category != null){
+        if(category.properties != null){
           this.props = category.properties
         }
       })
     }
   }
-  setAttributes(){
-    this.image=this.product.image;
-    this.images=this.product.images;
-    this.name = this.product.name;
-    this.description = this.product.description;
-    this.categories = this.product.categories;
-    this.stocks = this.product.stocks;
-    this.visible = this.product.visible;
-  }
+
+  
   // showStocksUpdateArea(stock: Stock, stocksUpdateArea:HTMLDivElement){
   //   this.txtSize = stock.size
    
@@ -62,23 +45,22 @@ export class ProductUpdateComponent implements OnInit {
     
   // }
   showStocksUpdateArea(stock: Stock, stockUpdateArea: HTMLDivElement) {
+    this.selectedStock = stock;
+
     stockUpdateArea.setAttribute("style", "display:flex");
-    this.setVeriables(stock);
   }
 
   updateStock() {
     const updateStock = this.createStockObject();
     if (!this.formData) {
-      this.stockService.updateStock(this.id, updateStock).subscribe(res => {
-        this.setVeriables(res.data)
+      this.stockService.updateStock(this.selectedStock._id, updateStock).subscribe(res => {
         window.location.replace("/merchant/product");
       }, (error: HttpErrorResponse) => {
         alert(error.error.message)
       })
     } else {
-      this.stockService.addImagesThisStock(this.id, this.formData).then(res => {
-        this.stockService.updateStock(this.id, updateStock).subscribe(res => {
-          this.setVeriables(res.data)
+      this.stockService.addImagesThisStock(this.selectedStock._id, this.formData).then(res => {
+        this.stockService.updateStock(this.selectedStock._id, updateStock).subscribe(res => {
           window.location.replace("/merchant/product");
         }, (error: HttpErrorResponse) => {
           alert(error.error.message)
@@ -94,7 +76,7 @@ export class ProductUpdateComponent implements OnInit {
     const files: FileList = e.target.files
     this.urls = []
     for (let i = 0; i < files.length; i++) {
-      this.formData.append('images', files[i], files[i].name,)
+      this.formData.append('images', files[i], files[i].name)
       const reader = new FileReader();
       reader.readAsDataURL(files[i]);
       reader.onload =(events:any)=>{
@@ -102,38 +84,41 @@ export class ProductUpdateComponent implements OnInit {
       }
 
     }
-    console.log(this.urls)
   }
 
   chooseMainStockImage(image: String) {
-    this.stockImage = image
+    this.selectedStock.image = image
+    console.log(image)
+    console.log(this.selectedStock.image)
   }
 
   setVeriables(data: Stock) {
-    this.pieceInput = data.piece;
-    this.colorInput = data.color;
-    this.sizeInput = data.size;
-    this.priceInput = data.price;
-    this.productBaseStock = data.type == "base" ? true : false;
-    this.stockImage = data.image;
-    this.stockImages = data.images,
-    this.id = data._id
+  
+    this.selectedStock = data
 
   }
   createStockObject() {
     const newStock = {
 
-      piece: this.pieceInput,
-      price: this.priceInput,
-      color: this.colorInput,
-      size: this.sizeInput,
-      image: this.stockImage,
-      type: this.productBaseStock ? "base" : "other"
+      piece: this.selectedStock.piece,
+      price: this.selectedStock.price,
+      color: this.selectedStock.color,
+      size: this.selectedStock.size,
+      image: this.selectedStock.image,
+      base: this.selectedStock.base
     }
     return newStock
   }
 
   changeProperties(i:number, event:any){
     this.product.properties[i] = event.target.value
+  }
+  updateProduct(){
+    this.productService.updateProductById(this.product).subscribe(res=> {
+      this.product = res.data
+      window.location.replace("/merchant/product");
+    },(error:HttpErrorResponse)=> {
+      alert("ürün güncelleme esnasında hatalarla karşılaşıldı: "+error.error.message)
+    })
   }
 }

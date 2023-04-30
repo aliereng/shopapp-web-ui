@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  
+
+  
   seachText: String = "";
   text!: String;
   model!:String;
@@ -20,6 +23,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.text =  localStorage.getItem("access_token") != "" ? "Hesabım": "Giriş Yap";
   }
+  
   checkUser(){
     if(localStorage.getItem("access_token") == ""){
       window.location.replace("/login")

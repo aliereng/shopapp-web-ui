@@ -1,0 +1,102 @@
+<div id="addProductArea">
+    <h3 class="userRouterHeader">Ürün Ekle</h3>
+    <div id="productInputArea">
+        <form [formGroup]="productValue">
+            <!-- <button type="submit" class="btn"> Kaydet</button> -->
+            <!-- <div class="formGroup">
+                <label for="selectProductName" class="formLabel">Ürün Adı</label>
+                <select formControlName="name"></select>
+            </div> -->
+            <div class="formGroup">
+                <label class="formLabel">Ürün Adı</label>
+                <input type="text" class="formInput" formControlName="name">
+            </div>
+
+            <div class="formGroup">
+                <label class="formLabel">Ürün açıklama</label>
+                <textarea formControlName="description"></textarea>
+            </div>
+
+        </form>
+        <div id="createCategoryArea">
+            <select name="category" id="category" (click)="selectCategory($event)">
+                <option selected disabled>Kategori Seçiniz</option>
+                <option value="{{category._id}}" *ngFor="let category of categories">{{category.name}}</option>
+            </select>
+
+            <p [innerHTML]="selectedCategories"></p>
+            <button (click)="resetProductCategories()">sıfırla</button>
+        </div>
+
+        <div id="prodpertiesArea" *ngIf="categoryProps != null">
+            <div class="selectGroup" *ngFor="let prop of categoryProps, index as i">
+                <label>{{prop.property}}</label>
+                <select (change)="selectedProperty(i, $event)">
+                    <option value={{opt}}  *ngFor="let opt of prop.results">{{opt}}</option>
+                </select>
+            </div>
+        </div>
+        <!-- <form action=""></form> -->
+        <button (click)="createProduct()">kaydet</button>
+    </div>
+
+    <div id="createStockArea" class="flex">
+        <div id="createStockAreaLeft">
+            <div id="images" class="flex" *ngIf="differentImage">
+                <div class="inputAreas">
+                    <label class="formLabel">Yeni Fotoğraf Ekle</label>
+                    <input type="file" name="files" #newPhoto multiple (change)="inputChange($event)"
+                        accept="image/jpeg, image/png, image/jpg, image/webp, image/avif">
+                </div>
+                <div class="newPhotosArea flex">
+                    <img [src]="url" alt="" *ngFor="let url of urls">
+                </div>
+
+
+                <p class="pageInfoParagraph">Mevcut görseller dahil ekleyeceğiniz görsellerin 10 adeti
+                    geçmemesine
+                    dikkat ediniz. 10 adet üzeri görseller 10. adetten sonra dahil edilmeyecektir. Dilerseniz
+                    tümünü
+                    silip 10 adet yeni görsel ekleyebilirsiniz. Seçtiğiniz görselleri güncelle butonuna tıklayıp
+                    yükledikten sonra tekrar güncelleme sayfasına gelip yüklediğiniz görsellerden dilediğinizi
+                    stoğun
+                    gösterim görseli olarak seçebilirsiniz. Seçmediğiniz takdirde yüklenen ilk görsel gösterim
+                    görseli
+                    olarak ayarlanır.</p>
+                <div id="addedStockArea">
+                    <div class="addedStock">
+
+                    </div>
+                </div>
+            </div>
+            <div id="createStockAreaRight">
+                <button (click)="changeDifferentImage($event)">ürün için farklı görsel ekle</button>
+                <div class="createStockAreaItem">
+                    <label class="formLabel">Adet</label>
+                    <input class="formInput" type="text" [(ngModel)]="piece">
+                </div>
+                <div class="createStockAreaItem">
+                    <label class="formLabel">Renk</label>
+                    <input class="formInput" type="text" [(ngModel)]="color">
+                </div>
+                <div class="createStockAreaItem">
+                    <label class="formLabel">Boyut</label>
+                    <input class="formInput" type="text" [(ngModel)]="size">
+                </div>
+                <div class="createStockAreaItem">
+                    <label class="formLabel">Fiyat</label>
+                    <input class="formInput" type="text" [(ngModel)]="price">
+                </div>
+                <div class="createStockAreaItem">
+                    Ürün Listelenirken Kullanılan Stok <input type="checkbox" [(ngModel)]="base">
+                </div>
+                <button (click)="createStock()">Ekle</button>
+            </div>
+
+            <div id="stockString" [innerHTML]="stockString"></div>
+        </div>
+
+    </div>
+
+
+</div>

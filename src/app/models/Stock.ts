@@ -5,7 +5,7 @@ export interface Stock{
     color: String;
     piece: number;
     price: number;
-    type: String;
+    base: Boolean;
     status: Boolean;
     image: String;
     images: Array<String>

@@ -31,9 +31,12 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("modelType", `${result.body.data.modelType}`)
       if(result.body.data.modelType=="customer"){
         window.location.replace("/");
+        // this.router.navigate(["/"])
+
       }else if(result.body.data.modelType=="supplier"){
         window.location.replace("/merchant/transaction");
 
+        // this.router.navigate(["/merchant/transaction"])
 
       }
     }, (error: HttpErrorResponse) => {
@@ -43,7 +46,7 @@ export class LoginComponent implements OnInit {
   register(){
     this.service.register({ model: this.model, email: this.email, password: this.password }).subscribe((result: HttpResponse<any>) => {
       localStorage.setItem("access_token", `${result.body.access_token}`)
-      window.location.replace("/");
+      this.router.navigate(["/"])
     }, (error: HttpErrorResponse) => {
       alert(error.error.message);
     })

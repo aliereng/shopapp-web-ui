@@ -68,17 +68,21 @@ export class ProductPageComponent implements OnInit {
     this.sizes = [];
     this.size = "default-size"
     this.service.getStockFromProductByColor(this.id, this.selectColor).subscribe(res=> {
+      console.log(res.data)
       if(Array.isArray(res.data)){
         res.data.map(stock => {
           this.sizes.push(stock.size)
           this.productSize = stock.size;
           // this.piece = "seçilen ürünün stok adedi: "+stock.piece
+          this.image = stock.image
           if(stock.images != null){
             this.images = stock.images
           }
         })
       }
 
+    },(error:HttpErrorResponse)=> {
+      alert(error.error.message)
     })
     this.productColor = this.selectColor;
     this.productSize = "";
@@ -120,7 +124,9 @@ export class ProductPageComponent implements OnInit {
       alert("lütfen renk ve boyut bilgisini seçiniz.")
     }
   }
+  
   ngOnInit(): void {
+    
   }
 
 }

@@ -3,10 +3,10 @@ import { Stock } from "./Stock";
 import { Supplier } from "./Supplier";
 
 export interface Product{
-    _id:String;
+    _id:string;
     name: String;
     description: String;
-    properties: [[String]];
+    properties: [string];
     image: String,
     images:Array<String>;
     size:String;

@@ -10,9 +10,11 @@ import { Category } from 'src/app/models/Category';
 export class CategoryComponent implements OnInit {
   mainCategories: Array<Category> = [];
   categories!: [Category];
-  model:String="";
+  model:String;
   constructor(private service: ApiService) {
-    this.model = localStorage.getItem("modelType")!
+    this.model = localStorage.getItem("modelType")!;
+    console.log(this.model)
+
 
     this.service.getAllCategory().subscribe(res=> {
       res.data.map(category=> {
@@ -24,7 +26,6 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
 }

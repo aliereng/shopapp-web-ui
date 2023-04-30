@@ -6,8 +6,13 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @HostListener('window:close') close() {
-    localStorage.clear();
-  }
+  // @HostListener('window:beforeunload', ['$event'])
+  //  onWindowClose(event: any): void {
+  //   // Do something
+  //   localStorage.clear()
+  //    event.preventDefault();
+  //    event.returnValue = false;
+
+  // }
   title = 'shopapp-web-ui';
 }

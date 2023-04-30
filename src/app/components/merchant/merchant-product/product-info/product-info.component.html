@@ -53,7 +53,7 @@
                 <ul>
                     <li *ngFor="let stock of product.stocks">
                         <!-- <a (click)="showStocksUpdateArea(stock,stocksUpdateArea)">{{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i></a> -->
-                        {{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.type=='base'" class="fa-solid fa-check"></i><i *ngIf="stock.type=='other'"  class="fa-solid fa-xmark"></i>
+                        {{stock.piece}} adet / {{stock.color}} / {{stock.size}} / {{stock.price}}₺ <i *ngIf="stock.base" class="fa-solid fa-check"></i><i *ngIf="!stock.base"  class="fa-solid fa-xmark"></i>
                     </li>
                 </ul>
                 <!-- <p class="pageInfoParagraph">* değiştirmek istediğiniz stok bilgisine tıklayın</p> -->

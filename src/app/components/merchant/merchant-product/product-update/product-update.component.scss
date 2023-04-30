@@ -76,10 +76,9 @@
         width: 100%;
         #stocksUpdateArea {
             border: 1px solid $colorDarkGray;
-
             padding: 1rem;
             width: 100%;
-            display: none;
+            display: flex;
 
             #stockUpdateAreaLeft {
                 width: 70%;
@@ -134,9 +133,9 @@
         }
         #propertiesUpdateArea{
             border: 1px solid $colorDarkGray;
-
+            width: 100%;
             padding: 1rem;
-            height: 50vh;
+            height: 70vh;
             width: 100%;
             flex-wrap: wrap;
             justify-content: flex-start;
@@ -146,6 +145,13 @@
                 justify-content: space-between;
                 align-items: center;
             }
+        }
+        #descriptionUpdateArea{
+            width: 100%;
+           border: 1px solid $colorDarkGray;
+           ckeditor{
+            width: 50%;
+           }
         }
     }
     // #productStockUpdateArea{

@@ -1,7 +1,7 @@
 <div id="productsArea">
     <h2 class="userRouterHeader">Ürünlerim</h2>
     <div id="optionsArea" class="flex"> 
-        <button class="btn">Ekle</button>
+        <button class="btn" routerLink="add">Ekle</button>
     </div>
     <div id="products">
         <div class="product" *ngFor="let product of products, index as i">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="buttons flex flex-column">
-                    <button>sil</button>
+                    <button (click)="deleteProduct(product._id, i)">sil</button>
                     <button (click)="showUpdateArea(productUpdateArea)">güncelle</button>
                     <button (click)="showProductInfo(productInfoArea)">detay</button>
                 </div>
