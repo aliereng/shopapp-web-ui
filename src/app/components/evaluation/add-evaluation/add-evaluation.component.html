@@ -1,0 +1,13 @@
+<div id="addEvaluationArea">
+    <textarea name="comment" id="comment" cols="100" rows="10" [(ngModel)]="comment"></textarea>
+    <select [(ngModel)]="point">
+        <option selected disabled value="default">Puan Ver</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <button (click)="saveComment()">Yorumu Gönder</button>
+    <p>pencereyi kapatmak için esc ye basınız</p>
+</div>

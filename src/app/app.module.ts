@@ -31,6 +31,10 @@ import { ProductInfoComponent } from './components/merchant/merchant-product/pro
 import { ProductUpdateComponent } from './components/merchant/merchant-product/product-update/product-update.component';
 import { ProductStockUpdateComponent } from './components/merchant/merchant-product/product-update/product-stock-update/product-stock-update.component';
 import { AddProductComponent } from './components/merchant/merchant-product/add-product/add-product.component';
+import { CryptNameOrSurnamePipe } from './pipes/crypt-name-or-surname.pipe';
+import { CustomerPageEvaluationComponent } from './components/evaluation/customer-page-evaluation/customer-page-evaluation.component';
+import { ProductPageEvaluationComponent } from './components/evaluation/product-page-evaluation/product-page-evaluation.component';
+import { AddEvaluationComponent } from './components/evaluation/add-evaluation/add-evaluation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +65,10 @@ import { AddProductComponent } from './components/merchant/merchant-product/add-
     ProductUpdateComponent,
     ProductStockUpdateComponent,
     AddProductComponent,
+    CryptNameOrSurnamePipe,
+    CustomerPageEvaluationComponent,
+    ProductPageEvaluationComponent,
+    AddEvaluationComponent,
     
   ],
   imports: [

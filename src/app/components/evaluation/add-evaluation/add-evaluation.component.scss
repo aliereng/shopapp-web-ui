@@ -1,0 +1,12 @@
+@import "../../../../assets/scss/variables.scss";
+#addEvaluationArea{
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: $colorWhite;
+    padding: 1rem;
+    gap:1rem;
+}

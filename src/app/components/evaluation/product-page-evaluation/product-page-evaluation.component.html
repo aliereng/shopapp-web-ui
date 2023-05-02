@@ -1,0 +1,21 @@
+
+<div id="evaluationsArea" class="flex flex-column">
+    <div id="evaluationsHead">
+        <p>değerlendirme | {{comments.length}}</p>
+        <p>puan</p>
+    </div>
+    <div id="evaluationsBody">
+        <div class="evaluation" *ngFor="let comment of comments, index as i">
+            <div class="evaluationHead">
+                {{comment.comment}}
+            </div>
+            <div class="evaluationBody">
+                <p>{{comment.customer.name | cryptNameOrSurname}} {{comment.customer.surname | cryptNameOrSurname}} | {{comment.createdAt | date:"dd/MM/yyyy"}}</p>
+                
+            </div> 
+            <a (click)="likeComment(comment._id, comment.totalLikeCount, i)">{{comment.totalLikeCount}} | <i class="fa-regular fa-thumbs-up"></i></a>
+        </div>
+        
+    </div>
+    <button class="btn">Daha Fazla Değerlendirme Göster</button>
+</div>

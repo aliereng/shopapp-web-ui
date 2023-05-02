@@ -1,0 +1,40 @@
+@import "../../../../assets/scss/variables.scss";
+
+    #evaluationsArea{
+        border: 1px solid gray;
+        border-radius: 1rem;
+        gap: 0;
+        align-items: center;
+        #evaluationsHead{
+            text-align: center;
+            width: 100%;
+            border-bottom: 1px solid gray;
+            padding: 1rem;
+        }
+        #evaluationsBody{
+            width: 100%;
+            padding: 1rem;
+            .evaluation{
+                border-bottom: 1px solid gray;
+                position: relative;
+                padding:1rem;
+                a{
+                    position: absolute;
+                    bottom:0;
+                    right: 0;
+                }
+                .evaluationHead{
+                    margin-bottom:1.5rem;
+                    color:$colorDarkGray;
+                    font-weight: 700;
+                }
+                .evaluationBody{
+                    color:$colorLightGray;
+                }
+            }    
+        }
+        button{
+            margin-bottom: 1rem;
+        }
+    }
+ 

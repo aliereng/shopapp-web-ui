@@ -5,6 +5,8 @@ import { ApiService } from 'src/app/api.service';
 import { Product } from 'src/app/models/Product';
 import { Property } from 'src/app/models/Property';
 import { Stock } from 'src/app/models/Stock';
+import { Comment } from 'src/app/models/Comment';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-product-page',
@@ -12,7 +14,7 @@ import { Stock } from 'src/app/models/Stock';
   styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit {
-  id: String = "";
+  id: string = "";
   slug: String = "";
   product!: Product; 
   stockId!: String;
@@ -28,15 +30,13 @@ export class ProductPageComponent implements OnInit {
   someProducts: Array<Product> = [];
   props: Array<Property> = [];
   piece!: String;
-  constructor(private service:ApiService, private activatedRoute:ActivatedRoute, private router:Router) { 
+  constructor(private service:ApiService, private commentService: CommentService,private activatedRoute:ActivatedRoute, private router:Router) { 
     this.id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
     this.slug = this.activatedRoute.snapshot!.paramMap!.get("slug")!;
     this.service.getProductById(this.slug,this.id).subscribe(prd=> {
+      console.log(prd.data.comments)
       this.product = prd.data
-      // this.productColor = prd.data.color;
-      // this.productSize = prd.data.size;
       this.productPrice = prd.data.price;
-      // this.selectColor = prd.data.color;
       this.images = prd.data.images;
       this.image = prd.data.image
       if(Array.isArray(prd.data.stocks)){
@@ -59,10 +59,11 @@ export class ProductPageComponent implements OnInit {
         this.someProducts = result.data
       })
     })
+   
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-       
+      
   }
   selectedColor(){
     this.sizes = [];
@@ -124,9 +125,15 @@ export class ProductPageComponent implements OnInit {
       alert("lütfen renk ve boyut bilgisini seçiniz.")
     }
   }
-  
+  likeComment(id:string, like: number, i:number){
+    this.commentService.likeCommet(id, (like+1)).subscribe((res)=> {
+      this.product.comments[i].totalLikeCount = res.data.totalLikeCount
+    },(err:HttpErrorResponse)=> {
+      alert("like işlemi başarısız"+ err.error.name)
+    })
+  }
   ngOnInit(): void {
-    
+   
   }
 
 }
