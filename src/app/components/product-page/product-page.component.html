@@ -7,7 +7,7 @@
         <div id="product" class="flex">
             <div id="images">
                 <div id="image">
-                    <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{product.slug!}}">
+                    <img src="http://localhost:3000/api/public/image/{{image}}" alt="{{product!.slug!}}">
                 </div>
                 <div id="otherImages">
                     <img *ngFor="let image of images; index as i" src="http://localhost:3000/api/public/image/{{image}}" alt="{{image}}" (click) ="clickSubImage($event.target)">
@@ -148,7 +148,8 @@
     </div>
     <div id="evaluations" class="container">
         <h2>Ürün Değerlendirmeleri</h2>
-        <app-product-page-evaluation [comments]="product.comments"></app-product-page-evaluation>
+        <!-- <app-product-page-evaluation [comments]="product.comments"></app-product-page-evaluation> -->
+        <app-product-page-evaluation ></app-product-page-evaluation>
     </div>
     <!-- <div id="questionAndAnswer">
 

@@ -6,7 +6,7 @@ export interface Comment{
     commentRef:string,
     comment:Comment,
     totalLikeCount:number,
-    point:string,
+    score:string,
     createdAt:Date
 }
 

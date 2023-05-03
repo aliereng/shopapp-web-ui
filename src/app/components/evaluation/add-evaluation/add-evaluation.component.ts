@@ -10,12 +10,12 @@ import { CommentService } from 'src/app/services/comment.service';
 export class AddEvaluationComponent implements OnInit {
   @Input() productId!:String;
   comment!:string;
-  point:string = "default";
+  score:string = "default";
   constructor(private commentService:CommentService) {
 
   }
   saveComment(){
-    this.commentService.addComment(this.productId.toString(), "Product", {comment:this.comment, point:this.point}).subscribe(res=>{
+    this.commentService.addComment(this.productId.toString(), "Product", {comment:this.comment, score:this.score}).subscribe(res=>{
       alert(res.success)
     },(err:HttpErrorResponse)=> {
       alert("yorum eklenemedi. " +err.error.message)

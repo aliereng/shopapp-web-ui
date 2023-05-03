@@ -1,21 +1,34 @@
 
 <div id="evaluationsArea" class="flex flex-column">
     <div id="evaluationsHead">
-        <p>değerlendirme | {{comments.length}}</p>
+        <p>değerlendirme | {{paginationComments.total}}</p>
         <p>puan</p>
     </div>
     <div id="evaluationsBody">
-        <div class="evaluation" *ngFor="let comment of comments, index as i">
+        <div id="selectArea" class="flex">
+            <select class="formSelect" [(ngModel)]="date" (change)="changeDate($event)">
+                <option value="default" selected disabled>Tarihe Göre</option>
+                <option value="newest" >Yeniden Eskite</option>
+                <option value="oldest" >Eskiden Yeniye</option>
+            </select>
+            <select class="formSelect" [(ngModel)]="like" (change)="changeLike($event)">
+                <option value="default" selected disabled>Beğeni Sayısına Göre</option>
+                <option value="most" >En Çok</option>
+                <option value="least" >En Az</option>
+            </select>
+        </div>
+        <div class="evaluation" *ngFor="let comment of paginationComments.data, index as i">
             <div class="evaluationHead">
                 {{comment.comment}}
             </div>
             <div class="evaluationBody">
-                <p>{{comment.customer.name | cryptNameOrSurname}} {{comment.customer.surname | cryptNameOrSurname}} | {{comment.createdAt | date:"dd/MM/yyyy"}}</p>
+                <p>{{comment.customer.name | cryptNameOrSurname}} {{comment.customer.surname | cryptNameOrSurname}} | {{comment.createdAt | date:"dd/MM/yyyy"}} | puan: {{comment.score}}/5</p>
                 
-            </div> 
+            </div>
             <a (click)="likeComment(comment._id, comment.totalLikeCount, i)">{{comment.totalLikeCount}} | <i class="fa-regular fa-thumbs-up"></i></a>
         </div>
         
     </div>
-    <button class="btn">Daha Fazla Değerlendirme Göster</button>
+   
+    <button class="btn" (click)="moreComment()">Daha Fazla Değerlendirme Göster</button>
 </div>
