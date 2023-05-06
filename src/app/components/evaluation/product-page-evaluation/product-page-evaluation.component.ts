@@ -50,7 +50,6 @@ export class ProductPageEvaluationComponent implements OnInit {
   getComments(){
     this.commentService.getAllCommentsByProduct(this.id, this.limit.toString(), this.sortBy).subscribe(res => {
       this.paginationComments = res
-      console.log(this.paginationComments)
     }, (err: HttpErrorResponse) => {
       alert("yorumlar getirilirken hatalarla karşılaşıldı. err: " + err.error.message)
     })

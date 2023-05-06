@@ -1,7 +1,7 @@
 <div id="ordersArea">
     <h2 class="userRouterHeader">Sipariş Bilgilerim</h2>
     <div class="order" *ngFor="let order of orders, index as i">
-    <app-add-evaluation [productId]="order.product._id" *ngIf="addEvaluationComponentStatus"></app-add-evaluation>
+    <app-add-evaluation [productId]="order.product._id" [stockId]="order.stock._id" *ngIf="addEvaluationComponentStatus"></app-add-evaluation>
 
         <div class="orderUpArea flex">
             <div class="orderImage"><img src="http://localhost:3000/api/public/image/{{order.stock.image}}" alt="">

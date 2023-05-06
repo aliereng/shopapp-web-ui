@@ -19,4 +19,5 @@ export interface Product{
     visible:Boolean;
     createdAt: Date;
     slug:String;
+    __v:number
 }

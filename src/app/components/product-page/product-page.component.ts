@@ -34,7 +34,6 @@ export class ProductPageComponent implements OnInit {
     this.id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
     this.slug = this.activatedRoute.snapshot!.paramMap!.get("slug")!;
     this.service.getProductById(this.slug,this.id).subscribe(prd=> {
-      console.log(prd.data.comments)
       this.product = prd.data
       this.productPrice = prd.data.price;
       this.images = prd.data.images;

@@ -31,5 +31,15 @@ export class CommentService {
   likeCommet(id: string, like: number): Observable<{ success: Boolean, data: Comment }> {
     return this.http.put<{ success: Boolean, data: Comment }>(this._url + `like/${id}?like=${like}`, {}, this._httpOption)
   }
+  getAllCommentsByCustomer(limit:string, sortBy:string):Observable<PaginationResponseModel>{
+    return this.http.get<PaginationResponseModel>(this._url + `customer?limit=${limit}&sortBy=${sortBy}`,this._httpOption)
+  }
+  updateComment(id:string, data:Object):Observable<{success:boolean, data:Comment}>{
+    return this.http.put<{success:boolean, data:Comment}>(this._url+`update/${id}`,data,this._httpOption)
+  }
+  delete(id:string):Observable<{success:boolean}>{
+    return this.http.delete<{success:boolean}>(this._url+`delete/${id}`,this._httpOption)
+  }
+  
 }
 

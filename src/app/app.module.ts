@@ -23,7 +23,6 @@ import { UpdateAddressComponent } from './components/user/address/update-address
 import { MerchantComponent } from './components/merchant/merchant.component';
 import { ShipperComponent } from './components/merchant/shipper/shipper.component';
 import { AnswerComponent } from './components/merchant/answer/answer.component';
-import { CommentComponent } from './components/merchant/comment/comment.component';
 import { QuestionComponent } from './components/user/question/question.component';
 import { TransactionComponent } from './components/merchant/transaction/transaction.component';
 import { MerchantProductComponent } from './components/merchant/merchant-product/merchant-product.component';
@@ -35,6 +34,7 @@ import { CryptNameOrSurnamePipe } from './pipes/crypt-name-or-surname.pipe';
 import { CustomerPageEvaluationComponent } from './components/evaluation/customer-page-evaluation/customer-page-evaluation.component';
 import { ProductPageEvaluationComponent } from './components/evaluation/product-page-evaluation/product-page-evaluation.component';
 import { AddEvaluationComponent } from './components/evaluation/add-evaluation/add-evaluation.component';
+import { CustomerCommentComponent } from './components/user/customer-comment/customer-comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +57,6 @@ import { AddEvaluationComponent } from './components/evaluation/add-evaluation/a
     MerchantComponent,
     ShipperComponent,
     AnswerComponent,
-    CommentComponent,
     QuestionComponent,
     TransactionComponent,
     MerchantProductComponent,
@@ -69,6 +68,7 @@ import { AddEvaluationComponent } from './components/evaluation/add-evaluation/a
     CustomerPageEvaluationComponent,
     ProductPageEvaluationComponent,
     AddEvaluationComponent,
+    CustomerCommentComponent,
     
   ],
   imports: [

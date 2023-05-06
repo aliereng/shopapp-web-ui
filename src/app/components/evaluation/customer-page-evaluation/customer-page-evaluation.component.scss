@@ -1,0 +1,27 @@
+@import "../../../../assets/scss/variables.scss";
+
+#commentsArea{
+    position: relative;
+    padding: 1rem;
+    border: 1px solid $colorLightGray;
+    .comment{
+        app-add-evaluation{
+            display: none;
+        }
+        .product{
+            width: 100%;
+            justify-content: flex-start;
+            .productImage{
+                width: 15%;
+                img{
+                    object-fit: contain;
+                    object-position: center;
+                    width: 100%;
+                }
+            }
+            .productInfo{
+                width: 25;
+            }
+        }
+    }
+}

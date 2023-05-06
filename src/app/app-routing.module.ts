@@ -15,10 +15,9 @@ import { MerchantComponent } from './components/merchant/merchant.component';
 import { TransactionComponent } from './components/merchant/transaction/transaction.component';
 import { ShipperComponent } from './components/merchant/shipper/shipper.component';
 import { AnswerComponent } from './components/merchant/answer/answer.component';
-import { CommentComponent } from './components/merchant/comment/comment.component';
 import { MerchantProductComponent } from './components/merchant/merchant-product/merchant-product.component';
 import { AddProductComponent } from './components/merchant/merchant-product/add-product/add-product.component';
-
+import { CustomerCommentComponent } from './components/user/customer-comment/customer-comment.component';
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"login", component:LoginComponent},
@@ -31,7 +30,9 @@ const routes: Routes = [
   {path:"user", component:UserComponent, children:[
     {path:"page", component:PageComponent},
     {path:"order", component:OrderComponent},
-    {path:"address", component:AddressComponent}
+    {path:"address", component:AddressComponent},
+    {path:"comment", component:CustomerCommentComponent},
+
   ]},
   {path:"merchant", component:MerchantComponent, children:[
     {path:"transaction", component:TransactionComponent},
@@ -40,7 +41,7 @@ const routes: Routes = [
     {path:"product/add", component:AddProductComponent},
     {path:"shipper", component:ShipperComponent},
     {path:"answer", component:AnswerComponent},
-    {path:"comment", component:CommentComponent}
+    // {path:"comment", component:CommentComponent}
 
   ]}
   

@@ -7,6 +7,7 @@ export interface Order{
         slug:String
     };
     stock:{
+        _id:String,
         size:String,
         color:String,
         image:String,
