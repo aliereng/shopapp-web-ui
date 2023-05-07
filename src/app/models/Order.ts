@@ -17,6 +17,7 @@ export interface Order{
     orderStatus:Boolean;
     shippedStatus:Boolean;
     supplier:{
+        _id:String,
         shopName:String,
         slug:String,
     };

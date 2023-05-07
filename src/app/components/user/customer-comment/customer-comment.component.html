@@ -1,6 +1,22 @@
 <div id="customerCommentsArea" class="flex flex-column">
         <h2 class="userRouterHeader">Yorumlarım</h2>
-
+        <div id="filterSelectArea" class="flex">
+                <select class="formSelect" [(ngModel)]="type">
+                        <option selected disabled value="default">Yorum Tipi</option>
+                        <option value="supplier">Mağaza</option>
+                        <option value="product">Ürün</option>
+                </select>
+                <select class="formSelect" [(ngModel)]="date">
+                        <option selected disabled value="default">Tarih</option>
+                        <option value="newest">En Yeni</option>
+                        <option value="oldest">En Eski</option>
+                </select>
+                <select class="formSelect" [(ngModel)]="liked">
+                        <option selected disabled value="default">Beğeni</option>
+                        <option value="most" >En Çok</option>
+                        <option value="least" >En Az</option>
+                </select>
+        </div>
         <app-customer-page-evaluation [customerPagePag]="paginationResp"></app-customer-page-evaluation>
-    
+        <button>daha fazla göster</button>
 </div>

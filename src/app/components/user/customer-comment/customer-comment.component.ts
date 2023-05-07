@@ -10,6 +10,10 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class CustomerCommentComponent implements OnInit {
   paginationResp!: PaginationResponseModel
+  type:String = "default";
+  date:String = "default";
+  liked:String = "default"
+  limit:String="10";
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     for (let index = 0; index < document.getElementsByTagName("app-add-evaluation").length; index++) {
       document.getElementsByTagName("app-add-evaluation")[index].setAttribute("style", "display:none");
@@ -26,6 +30,7 @@ export class CustomerCommentComponent implements OnInit {
   getComments(){
     this.commentService.getAllCommentsByCustomer("10","newest").subscribe(res=> {
       this.paginationResp = res
+      console.log(res)
     },(err:HttpErrorResponse)=> {
       alert("yorumlar getirilirken hatalarla karşılaşıldı. " + err.error.message)
     })

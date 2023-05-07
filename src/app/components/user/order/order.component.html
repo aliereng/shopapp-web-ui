@@ -1,7 +1,8 @@
 <div id="ordersArea">
     <h2 class="userRouterHeader">Sipariş Bilgilerim</h2>
+    <app-add-evaluation [productId]="productId" [stockId]="stockId" [supplierId]="supplierId" *ngIf="addEvaluationComponentStatus"></app-add-evaluation>
     <div class="order" *ngFor="let order of orders, index as i">
-    <app-add-evaluation [productId]="order.product._id" [stockId]="order.stock._id" *ngIf="addEvaluationComponentStatus"></app-add-evaluation>
+    
 
         <div class="orderUpArea flex">
             <div class="orderImage"><img src="http://localhost:3000/api/public/image/{{order.stock.image}}" alt="">
@@ -17,7 +18,7 @@
             <div class="orderButtons flex flex-column">
                 <button>Onayla</button>
                 <button>İptal Et</button>
-                <button (click)="changeAddEvaAppStatus()">Yorum Yap</button>
+                <button (click)="changeAddEvaAppStatusAndIds(order.product._id, order.stock._id, order.supplier._id)">Yorum Yap</button>
                 <p *ngIf="order.orderStatus">Hazırlandı</p>
                 <p *ngIf="!order.orderStatus">Hazırlanıyor</p>
                 <p *ngIf="order.orderStatus && order.shippedStatus">Kargolandı</p>

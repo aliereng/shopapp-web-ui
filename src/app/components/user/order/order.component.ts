@@ -13,6 +13,9 @@ export class OrderComponent implements OnInit {
    this.addEvaluationComponentStatus = this.addEvaluationComponentStatus? false:true
   }
   orders!: Array<Order>
+  productId!:String;
+  stockId!:String;
+  supplierId!:String;
   seeMoreStatus:Boolean = false;
   addEvaluationComponentStatus:Boolean= false;
   constructor(private service:OrderService) {
@@ -23,6 +26,7 @@ export class OrderComponent implements OnInit {
     })
   }
   showOrderDownArea(i:number){
+   
     if(this.seeMoreStatus){
       document.getElementsByClassName("orderDownArea")[i].setAttribute("style","display:flex");
       document.getElementsByClassName("seeMore")[i].innerHTML = "daha az -";
@@ -36,11 +40,18 @@ export class OrderComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  changeAddEvaAppStatus(){
+  changeAddEvaAppStatusAndIds( product_id:String, stock_id:String, supplier_id:String){
+    
     if(this.addEvaluationComponentStatus){
       this.addEvaluationComponentStatus = false;
+      this.productId = "";
+      this.stockId = "";
+      this.supplierId = "";
     }else{
       this.addEvaluationComponentStatus = true;
+      this.productId = product_id;
+      this.stockId = stock_id;
+      this.supplierId = supplier_id;
     }
   }
 

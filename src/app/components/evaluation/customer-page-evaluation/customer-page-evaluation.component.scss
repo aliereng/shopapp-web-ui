@@ -1,27 +1,54 @@
 @import "../../../../assets/scss/variables.scss";
 
-#commentsArea{
-    position: relative;
+#commentsArea {
     padding: 1rem;
     border: 1px solid $colorLightGray;
-    .comment{
-        app-add-evaluation{
-            display: none;
-        }
-        .product{
-            width: 100%;
-            justify-content: flex-start;
-            .productImage{
-                width: 15%;
-                img{
-                    object-fit: contain;
-                    object-position: center;
-                    width: 100%;
+
+    .comment {
+        width: 100%;
+        .commentArea{
+            width: 80%;
+            .product{
+                width: 100%;
+                justify-content: flex-start;
+                .productImage{
+                    width: 15%;
+                    img{
+                        width: 100%;
+                        object-fit: contain;
+                        object-position: center;
+                    }
+                }
+                .productInfo{
+                    width:100%
                 }
             }
-            .productInfo{
-                width: 25;
-            }
         }
+        border: 1px solid $colorLightGray;
+        margin: 1rem auto;
+        padding: 1rem;
+        align-items: flex-start;
+        position: relative;
+
+        app-add-evaluation {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 30vh;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            background-color: $colorWhite;
+            padding: 1rem;
+            
+        }
+
+        .buttons {
+            justify-content: center;
+        }
+        .seeMore{
+            width: 12%;
+        }
+
     }
 }

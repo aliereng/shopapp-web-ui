@@ -1,5 +1,5 @@
 <div id="addEvaluationArea" *ngIf="!currentComment">
-    <textarea name="comment" id="comment" cols="100" rows="10" [(ngModel)]="comment"></textarea>
+    <textarea name="comment" id="comment" cols="90" rows="10" [(ngModel)]="comment"></textarea>
     <select [(ngModel)]="score">
         <option selected disabled value="default">Puan Ver</option>
         <option value="1">1</option>
@@ -8,11 +8,16 @@
         <option value="4">4</option>
         <option value="5">5</option>
     </select>
+    <select [(ngModel)]="type">
+        <option selected disabled value="default">Yorum Türü</option>
+        <option value="product">Ürün</option>
+        <option value="supplier">Satıcı</option>
+    </select>
     <button (click)="saveComment()">Yorumu Gönder</button>
     <p>pencereyi kapatmak için esc ye basınız</p>
 </div>
-<div id="updateEvaluationArea" *ngIf="currentComment">
-    <textarea name="comment" id="comment" cols="100" rows="10" [(ngModel)]="currentComment.comment"></textarea>
+<div id="updateEvaluationArea" *ngIf="currentComment != undefined">
+    <textarea name="comment" id="comment" rows="10" [(ngModel)]="currentComment.comment"></textarea>
     <select [(ngModel)]="currentComment.score">
         <option selected disabled value="default">Puan Ver</option>
         <option value="1">1</option>

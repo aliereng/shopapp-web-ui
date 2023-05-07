@@ -1,26 +1,40 @@
 <div id="commentsArea">
-    <div class="comment" *ngFor="let comment of customerPagePag?.data, index as i">
-        <app-add-evaluation [currentComment]="comment"></app-add-evaluation>
+    <div class="comment flex" *ngFor="let comment of customerPagePag?.data, index as i">
 
-        <div class="product flex" *ngIf="comment.product">
-            <div class="productImage">
-                <img src="http://localhost:3000/api/public/image/{{comment.stock.image}}" alt="{{comment.product.__v}}">
-            </div>
-            <div class="productInfo">
-                <p>{{comment.product.name}}</p>
-                <p>{{comment.stock.color}}</p>
-                <p>{{comment.stock.size}}</p>
-            </div>
-            <div class="comment">
-                <p><span>{{comment.comment}}</span></p>
-                <p>{{comment.createdAt | date:"dd/MM/yyyy hh:mm:ss"}}</p>
+        <div class="commentArea flex flex-column">
+            <p><span>{{comment.comment}}</span></p>
+            <div class="commentInfo flex">
+                <p>{{comment.createdAt | date:"dd/MM/yyyy"}}</p>
                 <p>beğeni sayısı: {{comment.totalLikeCount}}</p>
                 <p>puan: {{comment.score}}</p>
+                
             </div>
-            <div class="buttons">
-                <button (click)="visibleUpdateArea(i)">Güncelle</button>
-                <button (click)="deleteComment(comment._id)">Sil</button>
+            <div class="product flex" *ngIf="comment.product">
+                <div class="productImage">
+                    <img src="http://localhost:3000/api/public/image/{{comment.stock.image}}" alt="">
+                </div>
+                <div class="productInfo">
+                    <p><span>{{comment.product.name}}</span></p>
+                    <div class="stockInfo">
+                        <p>{{comment.stock.color}}</p>
+                        <p>{{comment.stock.size}}</p>
+                    </div>
+                </div>
             </div>
+            <div class="supplier" *ngIf="comment.supplier">
+                <p>{{comment.supplier.shopName}}</p>
+            </div>
+           
         </div>
+        <div class="buttons flex">
+            <button (click)="visibleUpdateArea(i)">Güncelle</button>
+            <button (click)="deleteComment(comment._id)">Sil</button>
+
+        </div>
+        
+        
+        <app-add-evaluation [currentComment]="comment"></app-add-evaluation>
+
     </div>
+    
 </div>
