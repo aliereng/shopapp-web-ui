@@ -10,10 +10,8 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class CustomerCommentComponent implements OnInit {
   paginationResp!: PaginationResponseModel
-  type:String = "default";
-  date:String = "default";
-  liked:String = "default"
-  limit:String="10";
+  limit:number=10;
+  query:string="";
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     for (let index = 0; index < document.getElementsByTagName("app-add-evaluation").length; index++) {
       document.getElementsByTagName("app-add-evaluation")[index].setAttribute("style", "display:none");
@@ -21,6 +19,7 @@ export class CustomerCommentComponent implements OnInit {
     }
   }
   constructor(private commentService:CommentService) {
+    this.query = `?limit=1`
     this.getComments()
     
   }
@@ -28,12 +27,35 @@ export class CustomerCommentComponent implements OnInit {
   }
  
   getComments(){
-    this.commentService.getAllCommentsByCustomer("10","newest").subscribe(res=> {
+    this.commentService.getAllCommentsByCustomer(this.query).subscribe(res=> {
       this.paginationResp = res
-      console.log(res)
     },(err:HttpErrorResponse)=> {
       alert("yorumlar getirilirken hatalarla karşılaşıldı. " + err.error.message)
     })
+  }
+  changeFilterItems(event:any){
+   
+    switch (event.target.id) {
+      case "type":
+        this.query += `&type=${event.target.value}`
+        break;
+      case "date":
+        this.query += `&sortBy=${event.target.value}`
+        break;
+      case "like":
+        this.query += `&sortBy=${event.target.value}`
+        break;
+      default:
+        break;
+    }
+    this.getComments();
+    this.query = "?limit=10";
+  }
+  seeMoreComments(){
+    this.limit +=5;
+    this.query = `?limit=${this.limit}`;
+    this.getComments();
+
   }
 
 }

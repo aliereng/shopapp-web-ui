@@ -31,8 +31,8 @@ export class CommentService {
   likeCommet(id: string, like: number): Observable<{ success: Boolean, data: Comment }> {
     return this.http.put<{ success: Boolean, data: Comment }>(this._url + `like/${id}?like=${like}`, {}, this._httpOption)
   }
-  getAllCommentsByCustomer(limit:string, sortBy:string):Observable<PaginationResponseModel>{
-    return this.http.get<PaginationResponseModel>(this._url + `customer?limit=${limit}&sortBy=${sortBy}`,this._httpOption)
+  getAllCommentsByCustomer(query:string):Observable<PaginationResponseModel>{
+    return this.http.get<PaginationResponseModel>(this._url + `customer${query}`,this._httpOption)
   }
   updateComment(id:string, data:Object):Observable<{success:boolean, data:Comment}>{
     return this.http.put<{success:boolean, data:Comment}>(this._url+`update/${id}`,data,this._httpOption)
