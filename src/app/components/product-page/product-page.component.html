@@ -59,7 +59,7 @@
              <div id="mevcutSatici">
                 <h4>{{product.supplier.shopName}} - rate</h4>
                 <a routerLink="/merchant/{{product.supplier.shopName}}">mağazayı Gör</a>
-                <a href="">Satıcıya soru sor</a>
+                <a routerLink="/product/{{product.slug}}/{{product._id}}/askmerchant/{{product.supplier._id}}">Satıcıya soru sor</a>
             </div>
             <div id="digerSaticilar" class="flex flex-column">
                 <div class="digerSatici">

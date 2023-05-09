@@ -35,6 +35,12 @@ import { CustomerPageEvaluationComponent } from './components/evaluation/custome
 import { ProductPageEvaluationComponent } from './components/evaluation/product-page-evaluation/product-page-evaluation.component';
 import { AddEvaluationComponent } from './components/evaluation/add-evaluation/add-evaluation.component';
 import { CustomerCommentComponent } from './components/user/customer-comment/customer-comment.component';
+import { QuestionAnswerComponent } from './components/question-answer/question-answer.component';
+import { ShowQuestionComponent } from './components/question/show-question/show-question.component';
+import { AddQuestionComponent } from './components/question/add-question/add-question.component';
+import { ShowAnswerComponent } from './components/answer/show-answer/show-answer.component';
+import { AddAnswerComponent } from './components/answer/add-answer/add-answer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +75,11 @@ import { CustomerCommentComponent } from './components/user/customer-comment/cus
     ProductPageEvaluationComponent,
     AddEvaluationComponent,
     CustomerCommentComponent,
-    
+    QuestionAnswerComponent,
+    ShowQuestionComponent,
+    AddQuestionComponent,
+    ShowAnswerComponent,
+    AddAnswerComponent    
   ],
   imports: [
     BrowserModule,

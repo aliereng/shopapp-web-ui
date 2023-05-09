@@ -1,0 +1,48 @@
+<div id="questionsArea" class="container">
+    <app-add-question *ngIf="addAnswerAreaStatus"></app-add-question>
+    <div id="header" class="flex">
+        
+        <div id="productInfo" class="flex">
+            <div id="productImage">
+                <img src="" alt="">
+                ppp
+            </div>
+            <div id="other">
+                <p><span>satıcı: </span>shopname</p>
+                <p>ürün adı</p>
+                <p>price</p>
+            </div>
+        </div>
+        <button class="btn" (click)="showAddAnswer()">Soru Sor</button>
+    </div>
+    <div id="questions" class="container">
+        <h2>Soru ve Cevaplar</h2>
+        <div class="question">
+            <div class="questionHeader flex">
+                <p class="questionText"><span>soru gövdesi</span></p>
+                <a class="like"><i class="fa-regular fa-thumbs-up"></i> soruyu beğen</a>
+            </div>
+            <div class="questionBody">
+                <p>customer name surname | date</p>
+            </div>
+            <div class="answer">
+                <p class="answerHeader">shopName | saat içinde cevapladı</p>
+                <p class="answerBody">answer text</p>
+            </div>
+        </div>
+        <div class="question">
+            <div class="questionHeader flex">
+                <p class="questionText"><span>soru gövdesi</span></p>
+                <a class="like"><i class="fa-regular fa-thumbs-up"></i> soruyu beğen</a>
+            </div>
+            <div class="questionBody">
+                <p>customer name surname | date</p>
+            </div>
+            <div class="answer">
+                <p class="answerHeader">shopName | saat içinde cevapladı</p>
+                <p class="answerBody">answer text</p>
+            </div>
+        </div>
+    </div>
+
+</div>

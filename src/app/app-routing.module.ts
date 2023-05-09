@@ -18,6 +18,7 @@ import { AnswerComponent } from './components/merchant/answer/answer.component';
 import { MerchantProductComponent } from './components/merchant/merchant-product/merchant-product.component';
 import { AddProductComponent } from './components/merchant/merchant-product/add-product/add-product.component';
 import { CustomerCommentComponent } from './components/user/customer-comment/customer-comment.component';
+import { QuestionAnswerComponent } from './components/question-answer/question-answer.component';
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"login", component:LoginComponent},
@@ -43,7 +44,8 @@ const routes: Routes = [
     {path:"answer", component:AnswerComponent},
     // {path:"comment", component:CommentComponent}
 
-  ]}
+  ]},
+  {path:"product/:slug/:product_id/askmerchant/:merchant_id", component:QuestionAnswerComponent}
   
 ];
 

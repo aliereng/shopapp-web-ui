@@ -1,0 +1,44 @@
+@import '../../../assets/scss/variables.scss';
+
+#questionsArea{
+    position: relative;
+    app-add-answer{
+        position: absolute;
+        width: 100%;
+        height: 85vh;
+        top:0;
+        left: 0;
+        background-color: rgba($color: $colorWhite, $alpha: .9);
+    }
+    #header{
+        border: 1px solid $colorLightGray;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    #questions{
+        border: 1px solid $colorLightGray;
+        h2{
+            padding:1rem;
+            border-bottom: 1px solid $colorLightGray;
+        }
+        .question{
+            padding: 1rem;
+            margin-bottom:1rem;
+            .questionHeader{
+                justify-content: space-between;
+                width: 100%;
+                .questionHeader{
+                    width: 80%;
+                }
+            }
+            .answer{
+                margin: 1rem 4rem;
+                background-color: $colorWhite;
+                padding: 1rem;
+                border-radius: 1rem;
+            }
+        }
+    }
+}
