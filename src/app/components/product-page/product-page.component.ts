@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Product } from 'src/app/models/Product';
 import { Property } from 'src/app/models/Property';
-import { Stock } from 'src/app/models/Stock';
-import { Comment } from 'src/app/models/Comment';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import * as alertifyjs from "alertifyjs"
+
 import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class ProductPageComponent implements OnInit {
   someProducts: Array<Product> = [];
   props: Array<Property> = [];
   piece!: String;
-  constructor(private service:ApiService, private commentService: CommentService,private activatedRoute:ActivatedRoute, private router:Router) { 
+  constructor(private service:ApiService, private commentService: CommentService, private alertify:AlertifyService, private activatedRoute:ActivatedRoute, private router:Router) { 
     this.id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
     this.slug = this.activatedRoute.snapshot!.paramMap!.get("slug")!;
     this.service.getProductById(this.slug,this.id).subscribe(prd=> {
@@ -68,7 +69,6 @@ export class ProductPageComponent implements OnInit {
     this.sizes = [];
     this.size = "default-size"
     this.service.getStockFromProductByColor(this.id, this.selectColor).subscribe(res=> {
-      console.log(res.data)
       if(Array.isArray(res.data)){
         res.data.map(stock => {
           this.sizes.push(stock.size)
@@ -114,7 +114,8 @@ export class ProductPageComponent implements OnInit {
         stock: this.stockId,
         count: "1"
       }).subscribe(result=> {
-        alert(result.message);
+        alertifyjs.error(result.message);
+        this.alertify.success("sepete eklendi")
       },(error:HttpErrorResponse)=> {
         alert(error.error.message)
         // window.location.replace("/login");

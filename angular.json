@@ -30,9 +30,13 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/classes.scss",
-              "src/assets/scss/general-settings.scss"
+              "src/assets/scss/general-settings.scss",
+              "./node_modules/alertifyjs/build/css/themes/bootstrap.min.css",
+              "./node_modules/alertifyjs/build/css/alertify.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/alertifyjs/build/alertify.min.js"
+            ]
           },
           "configurations": {
             "production": {
