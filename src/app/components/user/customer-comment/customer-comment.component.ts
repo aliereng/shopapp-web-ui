@@ -2,14 +2,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { PaginationResponseModel } from 'src/app/models/PaginationResponseModel';
 import { CommentService } from 'src/app/services/comment.service';
-
+import {Comment} from "../../../models/Comment"
 @Component({
   selector: 'app-customer-comment',
   templateUrl: './customer-comment.component.html',
   styleUrls: ['./customer-comment.component.scss']
 })
 export class CustomerCommentComponent implements OnInit {
-  paginationResp!: PaginationResponseModel
+  paginationResp!: PaginationResponseModel<Comment>
   limit:number=10;
   query:string="";
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {

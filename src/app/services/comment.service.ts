@@ -25,14 +25,14 @@ export class CommentService {
     return this.http.post<{ success: boolean, data: Comment }>(this._url + `add/${id}?type=${type}`, data, this._httpOption)
   }
 
-  getAllCommentsByProduct(id:String,limit:String,sortBy:string):Observable<PaginationResponseModel>{
-    return this.http.get<PaginationResponseModel>(this._url+id+`?limit=${limit}&sortBy=${sortBy}`);
+  getAllCommentsByProduct(id:String,limit:String,sortBy:string):Observable<PaginationResponseModel<Comment>>{
+    return this.http.get<PaginationResponseModel<Comment>>(this._url+id+`?limit=${limit}&sortBy=${sortBy}`);
   }
   likeCommet(id: string, like: number): Observable<{ success: Boolean, data: Comment }> {
     return this.http.put<{ success: Boolean, data: Comment }>(this._url + `like/${id}?like=${like}`, {}, this._httpOption)
   }
-  getAllCommentsByCustomer(query:string):Observable<PaginationResponseModel>{
-    return this.http.get<PaginationResponseModel>(this._url + `customer${query}`,this._httpOption)
+  getAllCommentsByCustomer(query:string):Observable<PaginationResponseModel<Comment>>{
+    return this.http.get<PaginationResponseModel<Comment>>(this._url + `customer${query}`,this._httpOption)
   }
   updateComment(id:string, data:Object):Observable<{success:boolean, data:Comment}>{
     return this.http.put<{success:boolean, data:Comment}>(this._url+`update/${id}`,data,this._httpOption)

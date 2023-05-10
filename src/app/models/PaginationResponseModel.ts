@@ -1,6 +1,5 @@
-import { Comment } from "./Comment"
-
-export interface PaginationResponseModel {
+// import { Comment } from "./Comment"
+export interface PaginationResponseModel<T>{
 
     "success": true,
     "totalPageCount": number,
@@ -16,5 +15,5 @@ export interface PaginationResponseModel {
             "limit": number
         }
     },
-    data: Array<Comment>
+    data: Array<T>
 }

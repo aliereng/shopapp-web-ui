@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductPageEvaluationComponent implements OnInit {
 
   // @Input() comments!:Array<Comment>
-  paginationComments!: PaginationResponseModel
+  paginationComments!: PaginationResponseModel<Comment>
   // comments!:Array<Comment>
   id!: String;
   limit: number = 10;

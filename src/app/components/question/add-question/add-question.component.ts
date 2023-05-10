@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
@@ -22,9 +23,12 @@ export class AddQuestionComponent implements OnInit {
   
   ask(){
     const questionBody = this.createObject();
-    // this.questionService.addQuestion(questionBody).subscribe(res=> {
-      
-    // })
+    this.questionService.addQuestion(questionBody).subscribe(res=> {
+      alert("soru eklendi");
+      window.location.reload();
+    },(err:HttpErrorResponse)=> {
+      alert("soru ekleme sırasında hata: "+ err.error.message )
+    })
   }
   createObject():Object{
     return {
