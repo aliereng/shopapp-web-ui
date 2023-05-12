@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PaginationResponseModel } from 'src/app/models/PaginationResponseModel';
 import { Question } from 'src/app/models/Question';
 import { QuestionService } from 'src/app/services/question.service';
@@ -19,8 +20,11 @@ export class QuestionAnswerComponent implements OnInit {
   merchant_id!: string;
   query!: string;
   paginationResponse!:PaginationResponseModel<Question>
-  constructor(private questionService:QuestionService) { 
-    this.query = `product/${this.product_id}/merchant/${this.merchant_id}`
+  constructor(private questionService:QuestionService, private activatedRoute:ActivatedRoute) { 
+    this.product_id = this.activatedRoute.snapshot!.paramMap!.get("product_id")!;
+    this.merchant_id = this.activatedRoute.snapshot!.paramMap!.get("merchant_id")!;
+
+    this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false`
     this.getQuestions();
   }
 
@@ -33,7 +37,6 @@ export class QuestionAnswerComponent implements OnInit {
   getQuestions(){
     this.questionService.getQuestions(this.query).subscribe(res=> {
       this.paginationResponse = res
-      console.log(res.data)
     },(err:HttpErrorResponse)=> {
       alert("Sorular getirilirken hata: "+ err.error.message)
     })
