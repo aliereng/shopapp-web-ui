@@ -19,12 +19,13 @@ export class QuestionAnswerComponent implements OnInit {
   product_id!: string;
   merchant_id!: string;
   query!: string;
+  allQuestionShow: Boolean=false;
   paginationResponse!:PaginationResponseModel<Question>
   constructor(private questionService:QuestionService, private activatedRoute:ActivatedRoute) { 
     this.product_id = this.activatedRoute.snapshot!.paramMap!.get("product_id")!;
     this.merchant_id = this.activatedRoute.snapshot!.paramMap!.get("merchant_id")!;
 
-    this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false`
+    this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false&limit=1`
     this.getQuestions();
   }
 
@@ -40,5 +41,14 @@ export class QuestionAnswerComponent implements OnInit {
     },(err:HttpErrorResponse)=> {
       alert("Sorular getirilirken hata: "+ err.error.message)
     })
+  }
+  selectAllQuestions(){
+    this.allQuestionShow = !this.allQuestionShow
+    if(this.allQuestionShow){
+      this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=true&limit=1`
+    }else{
+      this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false&limit=1`
+    }
+    this.getQuestions();
   }
 }

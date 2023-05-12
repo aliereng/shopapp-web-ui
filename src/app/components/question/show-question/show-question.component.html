@@ -1,1 +1,17 @@
-<p>show-question works!</p>
+<div id="questionArea" class="flex flex-column">
+    <div class="question" *ngFor="let question of questionResult.data">
+        <div class="questionHeader flex">
+            <p class="questionText"><span>{{question.title}}</span></p>
+            <a class="like"><i class="fa-regular fa-thumbs-up"></i> soruyu beğen</a>
+        </div>
+        <div class="questionBody">
+            <p>{{question.customer.name}} {{question.customer.surname}} | {{question.createdAt | date:"dd.MM.yyyy"}}</p>
+        </div>
+        <div class="answer">
+            <p class="answerHeader">{{question.supplier.shopName}} | saat içinde cevapladı</p>
+            <p class="answerBody">answer text</p>
+        </div>
+    </div>
+    <button class="btn">Daha Fazla Göster</button>
+    
+</div>

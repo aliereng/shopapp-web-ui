@@ -1,9 +1,13 @@
+import { Customer } from "./Customer";
+import { Product } from "./Product";
+import { Supplier } from "./Supplier";
+
 export interface Question{
     _id: string,
     title: string,
     createdAt: Date,
-    customer: string,
-    supplier: string,
-    product: string,
+    customer: Customer,
+    supplier: Supplier,
+    product: Product,
     answer: string
 }

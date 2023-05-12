@@ -9,4 +9,10 @@ export class AlertifyService {
   success(message:String){
     alertify.success(message)
   }
+  error(message:String){
+    alertify.error(message)
+  }
+  warning(message:String){
+    alertify.warning(message)
+  }
 }

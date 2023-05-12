@@ -19,26 +19,13 @@
     }
     #questions{
         border: 1px solid $colorLightGray;
-        h2{
+        
+        #questionsHeader{
             padding:1rem;
             border-bottom: 1px solid $colorLightGray;
+            width: 100%;
+            justify-content: space-between;
         }
-        .question{
-            padding: 1rem;
-            margin-bottom:1rem;
-            .questionHeader{
-                justify-content: space-between;
-                width: 100%;
-                .questionHeader{
-                    width: 80%;
-                }
-            }
-            .answer{
-                margin: 1rem 4rem;
-                background-color: $colorWhite;
-                padding: 1rem;
-                border-radius: 1rem;
-            }
-        }
+        
     }
 }

@@ -15,34 +15,14 @@
         </div>
         <button class="btn" (click)="showAddAnswer()">Soru Sor</button>
     </div>
-    <div id="questions" class="container">
-        <h2>Soru ve Cevaplar</h2>
-        <div class="question">
-            <div class="questionHeader flex">
-                <p class="questionText"><span>soru gövdesi</span></p>
-                <a class="like"><i class="fa-regular fa-thumbs-up"></i> soruyu beğen</a>
-            </div>
-            <div class="questionBody">
-                <p>customer name surname | date</p>
-            </div>
-            <div class="answer">
-                <p class="answerHeader">shopName | saat içinde cevapladı</p>
-                <p class="answerBody">answer text</p>
+    <div id="questions">
+        <div id="questionsHeader" class ="flex">
+            <h2>Soru ve Cevaplar</h2>
+            <div class="inputGroup">
+                <input type="checkbox" (change)="selectAllQuestions()"> <label> Tüm Soruları Göster</label>
             </div>
         </div>
-        <div class="question">
-            <div class="questionHeader flex">
-                <p class="questionText"><span>soru gövdesi</span></p>
-                <a class="like"><i class="fa-regular fa-thumbs-up"></i> soruyu beğen</a>
-            </div>
-            <div class="questionBody">
-                <p>customer name surname | date</p>
-            </div>
-            <div class="answer">
-                <p class="answerHeader">shopName | saat içinde cevapladı</p>
-                <p class="answerBody">answer text</p>
-            </div>
-        </div>
+        <app-show-question [questionResult]="paginationResponse"></app-show-question>
     </div>
 
 </div>

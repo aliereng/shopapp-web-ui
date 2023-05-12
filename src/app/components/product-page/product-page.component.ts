@@ -5,7 +5,6 @@ import { ApiService } from 'src/app/api.service';
 import { Product } from 'src/app/models/Product';
 import { Property } from 'src/app/models/Property';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import * as alertifyjs from "alertifyjs"
 
 import { CommentService } from 'src/app/services/comment.service';
 
@@ -52,7 +51,6 @@ export class ProductPageComponent implements OnInit {
           if(category != null){
             this.props = category.properties
           }
-          // console.log(category)
         })
       }
       this.service.getAllProductsByCategory(this.product!.categories[this.product!.categories.length-1].slug,"").subscribe(result=> {
@@ -73,7 +71,6 @@ export class ProductPageComponent implements OnInit {
         res.data.map(stock => {
           this.sizes.push(stock.size)
           this.productSize = stock.size;
-          // this.piece = "seçilen ürünün stok adedi: "+stock.piece
           this.image = stock.image
           if(stock.images != null){
             this.images = stock.images
@@ -114,11 +111,9 @@ export class ProductPageComponent implements OnInit {
         stock: this.stockId,
         count: "1"
       }).subscribe(result=> {
-        alertifyjs.error(result.message);
-        this.alertify.success("sepete eklendi")
+        this.alertify.success(result.message)
       },(error:HttpErrorResponse)=> {
-        alert(error.error.message)
-        // window.location.replace("/login");
+        this.alertify.error(error.error.message)
       })
 
     }else{
@@ -129,7 +124,7 @@ export class ProductPageComponent implements OnInit {
     this.commentService.likeCommet(id, (like+1)).subscribe((res)=> {
       this.product.comments[i].totalLikeCount = res.data.totalLikeCount
     },(err:HttpErrorResponse)=> {
-      alert("like işlemi başarısız"+ err.error.name)
+      alert("like işlemi başarısız"+ err.error.message)
     })
   }
   ngOnInit(): void {
