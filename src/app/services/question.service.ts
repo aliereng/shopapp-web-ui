@@ -21,9 +21,21 @@ export class QuestionService {
     }
   }
   getQuestions(query:string):Observable<PaginationResponseModel<Question>>{
-    return this.http.get<PaginationResponseModel<Question>>(this._url+`${query}`)
+    return this.http.get<PaginationResponseModel<Question>>(this._url+`${query}`,this._httpOptions)
+  }
+  getQuestionsByCustomer(query:string):Observable<PaginationResponseModel<Question>>{
+    return this.http.get<PaginationResponseModel<Question>>(this._url+`customer${query}`,this._httpOptions)
+  }
+  getQuestionsByMerchant(query:string):Observable<PaginationResponseModel<Question>>{
+    return this.http.get<PaginationResponseModel<Question>>(this._url+`merchant${query}`,this._httpOptions)
   }
   addQuestion(data:Object):Observable<{success:boolean, data:Question}>{
     return this.http.post<{success:boolean, data: Question}>(this._url+`add`,data, this._httpOptions)
+  }
+  likeQuestion(id:string, likeCount:number):Observable<{success:boolean, data:Question}>{
+    return this.http.put<{success:boolean, data: Question}>(this._url+`like/${id}?like=${likeCount}`,{})
+  }
+  removeQuestion(id:string):Observable<{success:boolean}>{
+    return this.http.delete<{success:boolean}>(this._url+`delete/${id}`)
   }
 }

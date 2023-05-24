@@ -1,23 +1,37 @@
 @import "../../../../assets/scss/variables.scss";
-#questionArea{
-    width: 100%;
-    align-items: center;
-    padding: 1rem;
-    .question{
-        width: 100%;
-        margin-bottom:1rem;
-        .questionHeader{
+
+    #questions{
+        border: 1px solid $colorLightGray;
+        align-items: center;
+        #questionsHeader{
+            border-bottom: 1px solid $colorLightGray;
+            padding: 1rem;
+            width: 100%;
             justify-content: space-between;
+            align-items: center;
+        }
+        .question{
+            padding: .5rem 1rem;
             width: 100%;
             .questionHeader{
-                width: 80%;
+                justify-content: space-between;
+                
+                width: 100%;
+
+                .questionHeader{
+                    width: 80%;
+                }
             }
+            .answer{
+                margin: .5rem 2rem;
+                background-color: $colorWhite;
+                padding: 1rem;
+                border-radius: 1rem;
+            }
+   
         }
-        .answer{
-            margin: 1rem 4rem;
-            background-color: $colorWhite;
-            padding: 1rem;
-            border-radius: 1rem;
+        .btn{
+            margin-bottom: 1rem;
         }
     }
-}
+    

@@ -6,15 +6,3 @@ export interface Answer{
     question: Question
 }
 
-// title: {
-//     type: String,
-//     required:[true,"question title alanı boş bırakılamaz"]
-// },
-// createdAt:{
-//     type:Date,
-//     default:Date.now
-// },
-// question:{
-//     type:mongoose.Schema.ObjectId,
-//     ref:"Question"
-// }

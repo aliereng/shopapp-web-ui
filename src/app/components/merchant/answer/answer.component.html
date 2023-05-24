@@ -1,1 +1,32 @@
-<p>answer works!</p>
+<div id="questionArea">
+    <h2 class="userRouterHeader">Sorularım</h2>
+    <div id="questions">
+        <div class="question flex flex-column" *ngFor="let question of questions, index as i">
+            <div class="questionDetails flex">
+                <div class="questionProductImage">
+                    <img src="http://localhost:3000/api/public/image/{{question.product.image}}" alt="">
+                </div>
+
+                <div class="questionInfo flex flex-column">
+                    <p class="questionText">
+                        <span>{{question.title}}</span>
+                    </p>
+                    <p>{{question.createdAt | date:"dd.MM.yyyy"}} | {{question.customer.name | cryptNameOrSurname}} {{question.customer.surname | cryptNameOrSurname}}</p>
+                    <div class="answerArea" *ngIf="question.answer">
+                        <p><span>{{question.answer.title}}</span></p>
+                    </div>
+                    <a class="showAnswer" *ngIf="!question.answer" (click)="showAnswerArea(i, $event)">Cevapla</a>
+                </div>
+            </div>
+
+            <div class="addAnswer">
+               <!-- <input type="text" class="formInput"> -->
+               <textarea  cols="97" rows="5" ></textarea>
+               <button *ngIf="question.answer" (click)="updateAnswer()">Güncelle</button>
+               <button *ngIf="!question.answer" (click)="addAnswer(question._id, i)" >Cevapla</button>
+            </div>
+        </div>
+        <button (click)="seeMore()">daha fazla göster</button>
+    </div>
+
+</div>

@@ -1,3 +1,4 @@
+import { Answer } from "./Answer";
 import { Customer } from "./Customer";
 import { Product } from "./Product";
 import { Supplier } from "./Supplier";
@@ -9,5 +10,6 @@ export interface Question{
     customer: Customer,
     supplier: Supplier,
     product: Product,
-    answer: string
+    answer: Answer
+    likeCount: number
 }

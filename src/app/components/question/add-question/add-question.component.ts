@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
@@ -13,9 +14,10 @@ export class AddQuestionComponent implements OnInit {
   product_id!:string;
   merchant_id!:string;
   askText!:string;
-  constructor(private questionService:QuestionService, private activatedRoute:ActivatedRoute) {
-    this.product_id = this.activatedRoute.snapshot!.paramMap!.get("product_id")!;
+  constructor(private questionService:QuestionService, private activatedRoute:ActivatedRoute, private alertify:AlertifyService) {
+    this.product_id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
     this.merchant_id = this.activatedRoute.snapshot!.paramMap!.get("merchant_id")!;
+    
   }
 
   ngOnInit(): void {
@@ -24,10 +26,9 @@ export class AddQuestionComponent implements OnInit {
   ask(){
     const questionBody = this.createObject();
     this.questionService.addQuestion(questionBody).subscribe(res=> {
-      alert("soru eklendi");
-      window.location.reload();
+      this.alertify.success("sorunuz eklendi.")
     },(err:HttpErrorResponse)=> {
-      alert("soru ekleme sırasında hata: "+ err.error.message )
+      this.alertify.error(err.error.message)
     })
   }
   createObject():Object{

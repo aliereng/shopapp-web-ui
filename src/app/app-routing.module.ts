@@ -19,6 +19,7 @@ import { MerchantProductComponent } from './components/merchant/merchant-product
 import { AddProductComponent } from './components/merchant/merchant-product/add-product/add-product.component';
 import { CustomerCommentComponent } from './components/user/customer-comment/customer-comment.component';
 import { QuestionAnswerComponent } from './components/question-answer/question-answer.component';
+import { QuestionComponent } from './components/user/question/question.component';
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"login", component:LoginComponent},
@@ -33,6 +34,8 @@ const routes: Routes = [
     {path:"order", component:OrderComponent},
     {path:"address", component:AddressComponent},
     {path:"comment", component:CustomerCommentComponent},
+    {path:"question", component:QuestionComponent},
+
 
   ]},
   {path:"merchant", component:MerchantComponent, children:[
@@ -45,7 +48,7 @@ const routes: Routes = [
     // {path:"comment", component:CommentComponent}
 
   ]},
-  {path:"product/:slug/:product_id/askmerchant/:merchant_id", component:QuestionAnswerComponent}
+  {path:"product/:slug/:id/askmerchant/:merchant_id", component:QuestionAnswerComponent}
   
 ];
 

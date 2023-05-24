@@ -1,0 +1,54 @@
+@import "../../../../assets/scss/variables.scss";
+
+#questionArea {
+    #questions {
+        border:1px solid $colorLightGray;
+        margin-top:1rem;
+        padding:1rem;
+        .question {
+            width: 100%;
+            border:1px solid $colorLightGray;
+            margin-bottom:1rem;
+            position: relative;
+            .questionDetails {
+                width: 100%;
+                justify-content: flex-start;
+                .questionProductImage {
+                    width: 10%;
+
+                    img {
+                        object-fit: contain;
+                        object-position: center;
+                        width: 100%;
+                    }
+                }
+                .questionInfo{
+                    gap:0.5rem;
+                }
+            }
+
+            .closeIcon {
+                position: absolute;
+                right:1rem;
+                top:1rem;
+               &:hover{
+                cursor: pointer;
+
+               }
+            }
+            .addAnswer{
+           
+                width: 100%;
+                display: none;
+                padding:1rem;
+                .answerInfo{
+                    padding:1rem;
+                    background-color: rgba($color: $colorWhite, $alpha: 1);
+                    color:$colorLightGray;
+                    border-radius: 1rem;
+                }
+            }
+        }
+
+    }
+}

@@ -38,8 +38,6 @@ import { CustomerCommentComponent } from './components/user/customer-comment/cus
 import { QuestionAnswerComponent } from './components/question-answer/question-answer.component';
 import { ShowQuestionComponent } from './components/question/show-question/show-question.component';
 import { AddQuestionComponent } from './components/question/add-question/add-question.component';
-import { ShowAnswerComponent } from './components/answer/show-answer/show-answer.component';
-import { AddAnswerComponent } from './components/answer/add-answer/add-answer.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +54,7 @@ import { AddAnswerComponent } from './components/answer/add-answer/add-answer.co
     ProductStockUpdateComponent, AddProductComponent, CryptNameOrSurnamePipe,
     CustomerPageEvaluationComponent, ProductPageEvaluationComponent, AddEvaluationComponent,
     CustomerCommentComponent, QuestionAnswerComponent, ShowQuestionComponent,
-    AddQuestionComponent, ShowAnswerComponent, AddAnswerComponent    
+    AddQuestionComponent 
   ],
   imports: [
     BrowserModule,

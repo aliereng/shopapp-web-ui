@@ -4,25 +4,16 @@
         
         <div id="productInfo" class="flex">
             <div id="productImage">
-                <img src="" alt="">
-                ppp
+                <img src="http://localhost:3000/api/public/image/{{product.image}}" alt="">
             </div>
             <div id="other">
-                <p><span>satıcı: </span>shopname</p>
-                <p>ürün adı</p>
-                <p>price</p>
+                <p><span>satıcı: </span>{{product.supplier.shopName}}</p>
+                <p>{{product.name}}</p>
+                <p>{{product.price}} ₺</p>
             </div>
         </div>
         <button class="btn" (click)="showAddAnswer()">Soru Sor</button>
     </div>
-    <div id="questions">
-        <div id="questionsHeader" class ="flex">
-            <h2>Soru ve Cevaplar</h2>
-            <div class="inputGroup">
-                <input type="checkbox" (change)="selectAllQuestions()"> <label> Tüm Soruları Göster</label>
-            </div>
-        </div>
-        <app-show-question [questionResult]="paginationResponse"></app-show-question>
-    </div>
+    <app-show-question></app-show-question>
 
 </div>

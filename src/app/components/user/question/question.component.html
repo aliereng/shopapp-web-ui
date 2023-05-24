@@ -1,1 +1,30 @@
-<p>question works!</p>
+<div id="questionArea">
+    <h2 class="userRouterHeader">Sorularım</h2>
+    <div id="questions">
+        <div class="question flex flex-column" *ngFor="let question of questions, index as i">
+            <div class="questionDetails flex">
+                <div class="questionProductImage">
+                    <img src="http://localhost:3000/api/public/image/{{question.product.image}}" alt="">
+                </div>
+
+                <div class="questionInfo flex flex-column">
+                    <p class="questionText">
+                        <span>{{question.title}}</span>
+                    </p>
+                    <p>{{question.createdAt | date:"dd/MM/yyyy"}} | {{question.supplier.shopName}}</p>
+                    <a class="showAnswer" (click)="showAnswerArea(i, $event)" *ngIf="question.answer">Cevabı Göster</a>
+                    <p class="showAnswer" *ngIf="!question.answer">Henüz Cevaplanmadı.</p>
+                </div>
+            </div>
+
+            <i class="fa-solid fa-xmark closeIcon" (click)="removeQuestion(question._id)"></i>
+            <div class="answerArea">
+                <div class="answerInfo">
+                    <p><span>{{question.answer.title}}</span></p>
+                    <p>{{question.answer.createdAt | date:"dd/MM/yyyy"}} tarihinde cevaplandı.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

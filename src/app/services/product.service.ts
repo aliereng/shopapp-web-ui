@@ -30,4 +30,7 @@ export class ProductService {
   removeProduct(id:string):Observable<{message:string}>{
     return this.http.delete<{message:string}>(this.url+`${id}/delete`, this.httpOptions)
   }
+  getProductById(query:string):Observable<{success:boolean, data:Product}>{
+    return this.http.get<{success:boolean, data:Product}>(this.url+query);
+  }
 }

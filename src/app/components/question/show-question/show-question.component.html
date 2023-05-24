@@ -1,17 +1,23 @@
-<div id="questionArea" class="flex flex-column">
-    <div class="question" *ngFor="let question of questionResult.data">
+<div id="questions" class="flex flex-column">
+    <div id="questionsHeader" class ="flex">
+        <h2>Soru ve Cevaplar</h2>
+        <div class="inputGroup" *ngIf="questionPage">
+            <input type="checkbox" (change)="selectAllQuestions()"> <label> Tüm Soruları Göster</label>
+        </div>
+    </div>
+    <div class="question" *ngFor="let question of questionResult.data, index as i">
         <div class="questionHeader flex">
             <p class="questionText"><span>{{question.title}}</span></p>
-            <a class="like"><i class="fa-regular fa-thumbs-up"></i> soruyu beğen</a>
+            <a class="like" (click)="likeQuestion(question._id, question.likeCount, i)">{{question.likeCount}} | <i class="fa-regular fa-thumbs-up"></i></a>
         </div>
         <div class="questionBody">
             <p>{{question.customer.name}} {{question.customer.surname}} | {{question.createdAt | date:"dd.MM.yyyy"}}</p>
         </div>
         <div class="answer">
-            <p class="answerHeader">{{question.supplier.shopName}} | saat içinde cevapladı</p>
-            <p class="answerBody">answer text</p>
+            <p class="answerHeader" *ngIf="question.answer">{{question.supplier.shopName}} | {{question.answer.createdAt | date:"dd.MM.yyyy"}} tarihinde cevapladı</p>
+            <p class="answerHeader" *ngIf="!question.answer">henüz cevaplanmadı</p>
+            <p class="answerBody">{{question.answer.title}}</p>
         </div>
     </div>
-    <button class="btn">Daha Fazla Göster</button>
-    
+    <button class="btn" (click)="seeMore()">Daha Fazla Göster</button>
 </div>
