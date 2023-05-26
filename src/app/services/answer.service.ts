@@ -15,5 +15,11 @@ export class AnswerService {
   addAnswer(data:object):Observable<{success:boolean, data:Answer}>{
     return this.http.post<{success:boolean, data:Answer}>(this._url+"add", data)
   }
+  updateAnswer(id:string, data:object):Observable<{success:boolean, data:Answer}>{
+    return this.http.put<{success:boolean, data:Answer}>(this._url+"update/"+id, data)
+  }
+  removeAnswer(id:string):Observable<{success:boolean}>{
+    return this.http.delete<{success:boolean}>(this._url+"delete/"+id)
+  }
 
 }

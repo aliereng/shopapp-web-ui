@@ -16,7 +16,7 @@
         <div class="answer">
             <p class="answerHeader" *ngIf="question.answer">{{question.supplier.shopName}} | {{question.answer.createdAt | date:"dd.MM.yyyy"}} tarihinde cevapladı</p>
             <p class="answerHeader" *ngIf="!question.answer">henüz cevaplanmadı</p>
-            <p class="answerBody">{{question.answer.title}}</p>
+            <p class="answerBody"  *ngIf="question.answer" >{{question.answer.title}}</p>
         </div>
     </div>
     <button class="btn" (click)="seeMore()">Daha Fazla Göster</button>

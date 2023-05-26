@@ -1,6 +1,9 @@
 @import "../../../../assets/scss/variables.scss";
 
 #questionArea {
+    #filterSelectArea{
+        margin-top:1rem;
+    }
     #questions {
         border:1px solid $colorLightGray;
         margin-top:1rem;

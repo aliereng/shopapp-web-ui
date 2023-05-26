@@ -15,9 +15,10 @@ export class AnswerComponent implements OnInit {
   query: string = "";
   answerText!:string;
   limit!:number
+  updateAnswerText!:string;
   constructor(private questionService: QuestionService, private answerService: AnswerService, private alertyifyService: AlertifyService) {
     this.limit = 5
-    this.query = `?all=false&limit=${this.limit}`;
+    this.query = `?answered=all&limit=${this.limit}`;
     this.getQuestions();
   }
 
@@ -36,13 +37,26 @@ export class AnswerComponent implements OnInit {
     })
 
   }
-  updateAnswer(){
-
+  updateAnswer(id:string){
+    this.answerService.updateAnswer(id, {title:this.updateAnswerText}).subscribe(res=> {
+      this.alertyifyService.success("cevap güncellendi");
+      window.location.reload();
+    },()=> {
+      this.alertyifyService.error("cevap güncellenemedi.")
+    })
+  }
+  deleteAnswer(id:string){
+    this.answerService.removeAnswer(id).subscribe(res=> {
+      this.alertyifyService.success("silme işlemi başarılı");
+      window.location.reload();
+    },()=> {
+      this.alertyifyService.error("silinemedi")
+    })
   }
  
   seeMore(){
     this.limit += 5;
-    this.query = `?all=false&limit=${this.limit}`;
+    this.query = `?answered=all&limit=${this.limit}`;
     this.getQuestions();
   }
   showAnswerArea(index: number, event: any) {
@@ -67,6 +81,19 @@ export class AnswerComponent implements OnInit {
         alert("sorular getirilemedi. hata: " + error.error.message)
       }
     })
+  }
+  changeFilterItems(event:any){
+    switch(event.target.id){
+      case "answered":
+        this.query = `?answered=${event.target.value}&limit=${this.limit}`
+        break;
+      case "date":
+        this.query = `?answered=all&sortBy=${event.target.value}&limit=${this.limit}`
+        break;
+      default:
+        break;
+    }
+    this.getQuestions();
   }
 
 }

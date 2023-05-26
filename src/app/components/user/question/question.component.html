@@ -1,5 +1,18 @@
 <div id="questionArea">
     <h2 class="userRouterHeader">Sorularım</h2>
+    <div id="filterSelectArea" class="flex">
+        <select class="formSelect" id="answered" (change)="changeFilterItems($event)">
+                <option value="all" selected>Hepsi</option>
+                <option value="true">Cevaplandı</option>
+                <option value="false">Cevaplanmadı</option>
+        </select>
+        <select class="formSelect" id="date" (change)="changeFilterItems($event)">
+                <option value="default" selected disabled>Tarih</option>
+                <option value="newest">En Yeni</option>
+                <option value="oldest">En Eski</option>
+        </select>
+       
+    </div>
     <div id="questions">
         <div class="question flex flex-column" *ngFor="let question of questions, index as i">
             <div class="questionDetails flex">
@@ -18,10 +31,10 @@
             </div>
 
             <i class="fa-solid fa-xmark closeIcon" (click)="removeQuestion(question._id)"></i>
-            <div class="answerArea">
+            <div class="answerArea" >
                 <div class="answerInfo">
-                    <p><span>{{question.answer.title}}</span></p>
-                    <p>{{question.answer.createdAt | date:"dd/MM/yyyy"}} tarihinde cevaplandı.</p>
+                    <p *ngIf="question.answer"><span>{{question.answer.title}}</span></p>
+                    <p *ngIf="question.answer">{{question.answer.createdAt | date:"dd/MM/yyyy"}} tarihinde cevaplandı.</p>
                 </div>
             </div>
         </div>

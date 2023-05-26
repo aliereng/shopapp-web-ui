@@ -13,7 +13,7 @@ export class QuestionComponent implements OnInit {
   questions! : Array<Question>
   query:string = "";
   constructor(private questionService:QuestionService, private alertify: AlertifyService) { 
-    this.query = `?all=false`;
+    this.query = `?answered=all`;
     this.getQuestions();
   }
 
@@ -23,7 +23,7 @@ export class QuestionComponent implements OnInit {
     this.questionService.removeQuestion(id).subscribe(res=>{
       this.alertify.success("soru silindi.")
       window.location.reload();
-    },(error:HttpErrorResponse)=> {
+    },()=> {
       this.alertify.error("soru silinemedi.")
     })
   }
@@ -48,5 +48,18 @@ export class QuestionComponent implements OnInit {
         this.alertify.error("sorular getirilemedi. hata: " +error.error.message)
       }
     })
+  }
+  changeFilterItems(event:any){
+    switch(event.target.id){
+      case "answered":
+        this.query = `?answered=${event.target.value}`
+        break;
+      case "date":
+        this.query = `?answered=all&sortBy=${event.target.value}`
+        break;
+      default:
+        break;
+    }
+    this.getQuestions();
   }
 }

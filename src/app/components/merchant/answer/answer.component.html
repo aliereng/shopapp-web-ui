@@ -1,5 +1,18 @@
 <div id="questionArea">
     <h2 class="userRouterHeader">Sorularım</h2>
+    <div id="filterSelectArea" class="flex">
+        <select class="formSelect" id="answered" (change)="changeFilterItems($event)">
+                <option value="all" selected>Hepsi</option>
+                <option value="true">Cevaplandı</option>
+                <option value="false">Cevaplanmadı</option>
+        </select>
+        <select class="formSelect" id="date" (change)="changeFilterItems($event)">
+                <option value="default" selected disabled>Tarih</option>
+                <option value="newest">En Yeni</option>
+                <option value="oldest">En Eski</option>
+        </select>
+       
+    </div>
     <div id="questions">
         <div class="question flex flex-column" *ngFor="let question of questions, index as i">
             <div class="questionDetails flex">
@@ -14,6 +27,8 @@
                     <p>{{question.createdAt | date:"dd.MM.yyyy"}} | {{question.customer.name | cryptNameOrSurname}} {{question.customer.surname | cryptNameOrSurname}}</p>
                     <div class="answerArea" *ngIf="question.answer">
                         <p><span>{{question.answer.title}}</span></p>
+                        <button (click)="showAnswerArea(i, $event)">Güncelle</button>
+                        <button (click)="deleteAnswer(question.answer._id)">sil</button>
                     </div>
                     <a class="showAnswer" *ngIf="!question.answer" (click)="showAnswerArea(i, $event)">Cevapla</a>
                 </div>
@@ -21,8 +36,9 @@
 
             <div class="addAnswer">
                <!-- <input type="text" class="formInput"> -->
-               <textarea  cols="97" rows="5" ></textarea>
-               <button *ngIf="question.answer" (click)="updateAnswer()">Güncelle</button>
+               <textarea  cols="97" rows="5" *ngIf="question.answer"  [(ngModel)]="updateAnswerText"></textarea>
+               <textarea  cols="97" rows="5" *ngIf="!question.answer"></textarea>
+               <button *ngIf="question.answer" (click)="updateAnswer(question.answer._id)">Güncelle</button>
                <button *ngIf="!question.answer" (click)="addAnswer(question._id, i)" >Cevapla</button>
             </div>
         </div>
