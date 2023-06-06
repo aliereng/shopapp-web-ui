@@ -1,5 +1,5 @@
 # ShopappWebUi
-<h2>Bu Proje <a href="https://github.com/aliereng/shop-web-api" target="_blank"> shopapp web api</a> projesi ile eş zamanlı geliştirilmeye başlanmıştır. Detaylı açıklama çalışmalar sonlandığında eklenecektir.</h2>
+<h2>Bu Proje <a href="https://github.com/aliereng/shop-web-api" target="_blank"> shopapp web api</a> projesi ile eş zamanlı geliştirilmeye başlanmıştır. Detaylı açıklama çalışmalar sonlandığında eklenecektir. Bu arayüz tamamen wep apinin çalışma mantığını gösrelleştirmek için geliştirilmiştir. daha sonra estekik hale getirilecektir.</h2>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
 
 
