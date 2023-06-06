@@ -6,12 +6,12 @@
     </div>
     <div id="evaluationsBody">
         <div id="selectArea" class="flex">
-            <select class="formSelect" [(ngModel)]="date" (change)="changeDate($event)">
+            <select class="formSelect" [(ngModel)]="date" (change)="changeSelects($event)">
                 <option value="default" selected disabled>Tarihe Göre</option>
                 <option value="newest" >Yeniden Eskite</option>
                 <option value="oldest" >Eskiden Yeniye</option>
             </select>
-            <select class="formSelect" [(ngModel)]="like" (change)="changeLike($event)">
+            <select class="formSelect" [(ngModel)]="like" (change)="changeSelects($event)">
                 <option value="default" selected disabled>Beğeni Sayısına Göre</option>
                 <option value="most" >En Çok</option>
                 <option value="least" >En Az</option>
@@ -30,5 +30,14 @@
         
     </div>
    
-    <button class="btn" (click)="moreComment()">Daha Fazla Değerlendirme Göster</button>
+    <div class="paginationBar flex">
+        <p (click)="lessMore()" *ngIf="paginationComments.pagination.previous" class="pageButton"><</p>
+        <p>{{page}}</p>
+        <p (click)="seeMore()" *ngIf="paginationComments.pagination.next" class="pageButton">></p>
+        <select (change)="setLimit($event)">
+            <option value="10" selected>10 adet sonuç göster</option>
+            <option value="20">20 adet sonuç göster</option>
+            <option value="50">50 adet sonuç göster</option>
+        </select>
+    </div>
 </div>

@@ -16,12 +16,14 @@ export class ProductPageEvaluationComponent implements OnInit {
   // comments!:Array<Comment>
   id!: String;
   limit: number = 10;
-  date:string = "default"
-  like:string = "default"
-  sortBy!:string;
-  query:string="";
+  page: number = 1;
+  date: string = "default"
+  like: string = "default"
+  sortBy!: string;
+  query: string = "";
   constructor(private commentService: CommentService, private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
+    this.query = `?page=${this.page}&limit=${this.limit}`
     this.getComments();
   }
 
@@ -35,20 +37,44 @@ export class ProductPageEvaluationComponent implements OnInit {
       alert("like işlemi başarısız" + err.error.name)
     })
   }
-  moreComment(){
-    this.limit +=5
+  seeMore() {
+    this.page += 1;
+    this.setPageInQuery();
     this.getComments();
   }
-  changeDate(event:any){
-    this.sortBy = event.target.value
+  lessMore() {
+    this.page -= 1;
+    this.setPageInQuery();
+    this.getComments();
+
+  }
+  setPageInQuery() {
+    let pageIndex = this.query.indexOf("page");
+    this.query = this.query.slice(0, pageIndex);
+    this.query += `page=${this.page}&limit=${this.limit}`
+  }
+  setNewLimitOrSortBy(value: string, data: any) {
+    if (this.query.includes(value)) {
+      let index = this.query.indexOf(value);
+      this.query = this.query.slice(0, index);
+      this.query += `&${value}=${data}`
+    } else {
+      this.query += `&${value}=${data}`
+    }
+
+  }
+  setLimit(event: any) {
+    this.setNewLimitOrSortBy("limit", event.target.value);
     this.getComments();
   }
-  changeLike(event:any){
-    this.sortBy = event.target.value
-    this.getComments();
+
+  changeSelects(event: any) {
+    this.setNewLimitOrSortBy("sortBy", event.target.value);
+    this.getComments()
   }
-  getComments(){
-    this.commentService.getAllCommentsByProduct(this.id, this.limit.toString(), this.sortBy).subscribe(res => {
+
+  getComments() {
+    this.commentService.getAllCommentsByProduct(this.id, this.query).subscribe(res => {
       this.paginationComments = res
     }, (err: HttpErrorResponse) => {
       alert("yorumlar getirilirken hatalarla karşılaşıldı. err: " + err.error.message)

@@ -23,7 +23,17 @@
                 &:hover{
                     cursor:pointer;
                 }
+                .containCount{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    span{
+                        color:$colorWhite;
+                        font-size: 1.4rem;
+                    }
+                }
             }
+            
         }
     }
     #routerArea{

@@ -1,6 +1,7 @@
 <div id="questions" class="flex flex-column">
     <div id="questionsHeader" class ="flex">
         <h2>Soru ve Cevaplar</h2>
+        <p *ngIf="questionResult.total">{{questionResult.total}} adet soruldu</p>
         <div class="inputGroup" *ngIf="questionPage">
             <input type="checkbox" (change)="selectAllQuestions()"> <label> Tüm Soruları Göster</label>
         </div>
@@ -19,5 +20,15 @@
             <p class="answerBody"  *ngIf="question.answer" >{{question.answer.title}}</p>
         </div>
     </div>
-    <button class="btn" (click)="seeMore()">Daha Fazla Göster</button>
+    <!-- <button class="btn" (click)="seeMore()">Daha Fazla Göster</button> -->
+    <div class="paginationBar flex">
+        <p (click)="lessMore()" *ngIf="questionResult.pagination.previous" class="pageButton"><</p>
+        <p>{{page}}</p>
+        <p (click)="seeMore()" *ngIf="questionResult.pagination.next" class="pageButton">></p>
+        <select (change)="setLimit($event)">
+            <option value="10" selected>10 adet sonuç göster</option>
+            <option value="20">20 adet sonuç göster</option>
+            <option value="50">50 adet sonuç göster</option>
+        </select>
+    </div>
 </div>

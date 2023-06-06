@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -38,6 +38,9 @@ import { CustomerCommentComponent } from './components/user/customer-comment/cus
 import { QuestionAnswerComponent } from './components/question-answer/question-answer.component';
 import { ShowQuestionComponent } from './components/question/show-question/show-question.component';
 import { AddQuestionComponent } from './components/question/add-question/add-question.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoadingInterceptor } from "../app/interceptors/loading.interceptor";
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { AddQuestionComponent } from './components/question/add-question/add-que
     ProductStockUpdateComponent, AddProductComponent, CryptNameOrSurnamePipe,
     CustomerPageEvaluationComponent, ProductPageEvaluationComponent, AddEvaluationComponent,
     CustomerCommentComponent, QuestionAnswerComponent, ShowQuestionComponent,
-    AddQuestionComponent 
+    AddQuestionComponent,
+    SpinnerComponent,
+    PaginationComponent 
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,9 @@ import { AddQuestionComponent } from './components/question/add-question/add-que
     ReactiveFormsModule,
     HttpClientModule    
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

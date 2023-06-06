@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PaginationResponseModel } from 'src/app/models/PaginationResponseModel';
 import { Question } from 'src/app/models/Question';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { QuestionService } from 'src/app/services/question.service';
@@ -10,10 +11,12 @@ import { QuestionService } from 'src/app/services/question.service';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
-  questions! : Array<Question>
+  questions! : PaginationResponseModel<Question>
   query:string = "";
+  limit:number = 10;
+  page:number = 1;
   constructor(private questionService:QuestionService, private alertify: AlertifyService) { 
-    this.query = `?answered=all`;
+    this.query = `?answered=all&page=${this.page}&limit=${this.limit}`;
     this.getQuestions();
   }
 
@@ -40,7 +43,7 @@ export class QuestionComponent implements OnInit {
   }
   getQuestions(){
     this.questionService.getQuestionsByCustomer(this.query).subscribe(res=> {
-      this.questions = res.data;
+      this.questions = res;
     },(error:HttpErrorResponse)=>{
       if(error.error.message == "giriş yapın"){
         window.location.replace("/login");
@@ -49,13 +52,58 @@ export class QuestionComponent implements OnInit {
       }
     })
   }
-  changeFilterItems(event:any){
-    switch(event.target.id){
+
+  // seeMoreComments(){
+  //   this.limit +=5;
+  //   this.query = `?limit=${this.limit}`;
+  //   this.getQuestions();
+
+  // }
+  seeMore() {
+    this.page += 1;
+    this.setPageInQuery();
+    this.getQuestions();
+  }
+  lessMore() {
+    this.page -= 1;
+    this.setPageInQuery();
+    this.getQuestions();
+
+  }
+  setPageInQuery() {
+    let pageIndex = this.query.indexOf("page");
+    this.query = this.query.slice(0, pageIndex);
+    this.query += `page=${this.page}&limit=${this.limit}`
+  }
+  setLimitInQuery(){
+    
+  }
+  setNewLimitOrSortBy(value: string, data: any) {
+    
+    if (this.query.includes(value)) {
+      let index = this.query.indexOf(value);
+      let afterQuery= this.query.slice(0, index);
+      let beforeQuery= this.query.slice(index+this.query.indexOf("&"), this.query.length);
+      
+      this.query = `${afterQuery}${value}=${data}&${beforeQuery}`
+      // console.log(`after: ${afterQuery} - before: ${beforeQuery}\n${this.query}`)
+    } else {
+      this.query += `&${value}=${data}`
+    }
+
+  }
+  setLimit(event: any) {
+    this.setNewLimitOrSortBy("limit", event.target.value);
+    this.getQuestions();
+  }
+
+  changeSelects(event: any) {
+    switch (event.target.id) {
       case "answered":
-        this.query = `?answered=${event.target.value}`
+        this.setNewLimitOrSortBy("answered",event.target.value)
         break;
       case "date":
-        this.query = `?answered=all&sortBy=${event.target.value}`
+        this.setNewLimitOrSortBy("sortBy", event.target.value);
         break;
       default:
         break;

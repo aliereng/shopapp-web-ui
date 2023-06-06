@@ -29,6 +29,9 @@ export class QuestionService {
   getQuestionsByMerchant(query:string):Observable<PaginationResponseModel<Question>>{
     return this.http.get<PaginationResponseModel<Question>>(this._url+`merchant${query}`,this._httpOptions)
   }
+  getNotAnsweredCount():Observable<{success:boolean, data:number}>{
+    return this.http.get<{success:boolean, data:number}>(this._url+"/notansweredcount", this._httpOptions)
+  }
   addQuestion(data:Object):Observable<{success:boolean, data:Question}>{
     return this.http.post<{success:boolean, data: Question}>(this._url+`add`,data, this._httpOptions)
   }

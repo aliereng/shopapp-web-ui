@@ -6,4 +6,12 @@
     app-customer-page-evaluation{
         width: 100%
     }
+    .paginationBar {
+
+        .pageButton {
+            &:hover{
+                cursor:pointer;
+            }
+        }
+    }
 }

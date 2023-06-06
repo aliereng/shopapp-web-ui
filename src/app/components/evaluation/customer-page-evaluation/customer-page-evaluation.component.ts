@@ -25,5 +25,5 @@ export class CustomerPageEvaluationComponent implements OnInit {
       alert("silme işlemi sırasında hata: "+ err.error.message)
     })
   }
-
+  
 }

@@ -1,22 +1,31 @@
 <div id="customerCommentsArea" class="flex flex-column">
         <h2 class="userRouterHeader">Yorumlarım</h2>
         <div id="filterSelectArea" class="flex">
-                <select class="formSelect" id="type" (change)="changeFilterItems($event)">
+                <select class="formSelect" id="type" (change)="changeSelects($event)">
                         <option value="all" selected>Hepsi</option>
                         <option value="supplier">Mağaza</option>
                         <option value="product">Ürün</option>
                 </select>
-                <select class="formSelect" id="date" (change)="changeFilterItems($event)">
+                <select class="formSelect" id="date" (change)="changeSelects($event)">
                         <option value="default" selected disabled>Tarih</option>
                         <option value="newest">En Yeni</option>
                         <option value="oldest">En Eski</option>
                 </select>
-                <select class="formSelect" id="like" (change)="changeFilterItems($event)">
+                <select class="formSelect" id="like" (change)="changeSelects($event)">
                         <option selected disabled value="default">Beğeni</option>
                         <option value="most" >En Çok</option>
                         <option value="least" >En Az</option>
                 </select>
         </div>
         <app-customer-page-evaluation [customerPagePag]="paginationResp"></app-customer-page-evaluation>
-        <button (click)="seeMoreComments()">daha fazla göster</button>
+        <div class="paginationBar flex">
+                <p (click)="lessMore()" *ngIf="paginationResp.pagination.previous" class="pageButton"><</p>
+                <p>{{page}}</p>
+                <p (click)="seeMore()" *ngIf="paginationResp.pagination.next" class="pageButton">></p>
+                <select (change)="setLimit($event)">
+                        <option value="10" selected>10 adet sonuç göster</option>
+                        <option value="20">20 adet sonuç göster</option>
+                        <option value="50">50 adet sonuç göster</option>
+                </select>
+        </div>
 </div>

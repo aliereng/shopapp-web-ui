@@ -25,8 +25,11 @@ export class CommentService {
     return this.http.post<{ success: boolean, data: Comment }>(this._url + `add/${id}?type=${type}`, data, this._httpOption)
   }
 
-  getAllCommentsByProduct(id:String,limit:String,sortBy:string):Observable<PaginationResponseModel<Comment>>{
-    return this.http.get<PaginationResponseModel<Comment>>(this._url+id+`?limit=${limit}&sortBy=${sortBy}`);
+  // getAllCommentsByProduct(id:String,limit:String,sortBy:string):Observable<PaginationResponseModel<Comment>>{
+  //   return this.http.get<PaginationResponseModel<Comment>>(this._url+id+`?limit=${limit}&sortBy=${sortBy}`);
+  // }
+  getAllCommentsByProduct(id:String,query:String):Observable<PaginationResponseModel<Comment>>{
+    return this.http.get<PaginationResponseModel<Comment>>(this._url+id+`${query}`);
   }
   likeCommet(id: string, like: number): Observable<{ success: Boolean, data: Comment }> {
     return this.http.put<{ success: Boolean, data: Comment }>(this._url + `like/${id}?like=${like}`, {}, this._httpOption)
