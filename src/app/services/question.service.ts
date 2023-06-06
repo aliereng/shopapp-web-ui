@@ -24,10 +24,10 @@ export class QuestionService {
     return this.http.get<PaginationResponseModel<Question>>(this._url+`${query}`,this._httpOptions)
   }
   getQuestionsByCustomer(query:string):Observable<PaginationResponseModel<Question>>{
-    return this.http.get<PaginationResponseModel<Question>>(this._url+`customer${query}`,this._httpOptions)
+    return this.http.get<PaginationResponseModel<Question>>(this._url+`customer?${query}`,this._httpOptions)
   }
   getQuestionsByMerchant(query:string):Observable<PaginationResponseModel<Question>>{
-    return this.http.get<PaginationResponseModel<Question>>(this._url+`merchant${query}`,this._httpOptions)
+    return this.http.get<PaginationResponseModel<Question>>(this._url+`merchant?${query}`,this._httpOptions)
   }
   getNotAnsweredCount():Observable<{success:boolean, data:number}>{
     return this.http.get<{success:boolean, data:number}>(this._url+"/notansweredcount", this._httpOptions)

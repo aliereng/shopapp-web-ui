@@ -16,7 +16,7 @@ export class QuestionComponent implements OnInit {
   limit:number = 10;
   page:number = 1;
   constructor(private questionService:QuestionService, private alertify: AlertifyService) { 
-    this.query = `?answered=all&page=${this.page}&limit=${this.limit}`;
+    this.query = `answered=all&page=${this.page}&limit=${this.limit}`;
     this.getQuestions();
   }
 
@@ -53,20 +53,14 @@ export class QuestionComponent implements OnInit {
     })
   }
 
-  // seeMoreComments(){
-  //   this.limit +=5;
-  //   this.query = `?limit=${this.limit}`;
-  //   this.getQuestions();
-
-  // }
   seeMore() {
     this.page += 1;
-    this.setPageInQuery();
+    this.setQueryItems("page", this.page);
     this.getQuestions();
   }
   lessMore() {
     this.page -= 1;
-    this.setPageInQuery();
+    this.setQueryItems("page", this.page);
     this.getQuestions();
 
   }
@@ -75,35 +69,34 @@ export class QuestionComponent implements OnInit {
     this.query = this.query.slice(0, pageIndex);
     this.query += `page=${this.page}&limit=${this.limit}`
   }
-  setLimitInQuery(){
-    
-  }
-  setNewLimitOrSortBy(value: string, data: any) {
+  setQueryItems(value: string, data: any) {
     
     if (this.query.includes(value)) {
-      let index = this.query.indexOf(value);
-      let afterQuery= this.query.slice(0, index);
-      let beforeQuery= this.query.slice(index+this.query.indexOf("&"), this.query.length);
+      let queryParams = this.query.split("&");
+      queryParams.map((param, index)=> {
+        if(param.includes(value)){
+          queryParams[index] = `${value}=${data}`;
+        }
+      })
+      this.query = queryParams.join("&")
       
-      this.query = `${afterQuery}${value}=${data}&${beforeQuery}`
-      // console.log(`after: ${afterQuery} - before: ${beforeQuery}\n${this.query}`)
     } else {
       this.query += `&${value}=${data}`
     }
 
   }
   setLimit(event: any) {
-    this.setNewLimitOrSortBy("limit", event.target.value);
+    this.setQueryItems("limit", event.target.value);
     this.getQuestions();
   }
 
   changeSelects(event: any) {
     switch (event.target.id) {
       case "answered":
-        this.setNewLimitOrSortBy("answered",event.target.value)
+        this.setQueryItems("answered",event.target.value)
         break;
       case "date":
-        this.setNewLimitOrSortBy("sortBy", event.target.value);
+        this.setQueryItems("sortBy", event.target.value);
         break;
       default:
         break;

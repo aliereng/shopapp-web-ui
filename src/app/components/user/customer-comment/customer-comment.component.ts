@@ -20,7 +20,7 @@ export class CustomerCommentComponent implements OnInit {
     }
   }
   constructor(private commentService:CommentService) {
-    this.query = `?type=all&page=${this.page}&limit=${this.limit}`
+    this.query = `type=all&page=${this.page}&limit=${this.limit}`
     this.getComments()
     
   }
@@ -34,24 +34,24 @@ export class CustomerCommentComponent implements OnInit {
       alert("yorumlar getirilirken hatalarla karşılaşıldı. " + err.error.message)
     })
   }
-  // changeFilterItems(event:any){
+  changeFilterItems(event:any){
    
-  //   switch (event.target.id) {
-  //     case "type":
-  //       this.query += `&type=${event.target.value}`
-  //       break;
-  //     case "date":
-  //       this.query += `&sortBy=${event.target.value}`
-  //       break;
-  //     case "like":
-  //       this.query += `&sortBy=${event.target.value}`
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   this.getComments();
-  //   this.query = "?limit=10";
-  // }
+    switch (event.target.id) {
+      case "type":
+        this.query += `&type=${event.target.value}`
+        break;
+      case "date":
+        this.query += `&sortBy=${event.target.value}`
+        break;
+      case "like":
+        this.query += `&sortBy=${event.target.value}`
+        break;
+      default:
+        break;
+    }
+    this.getComments();
+    this.query = "?limit=10";
+  }
   seeMoreComments(){
     this.limit +=5;
     this.query = `?limit=${this.limit}`;
@@ -76,16 +76,17 @@ export class CustomerCommentComponent implements OnInit {
   }
   setNewLimitOrSortBy(value: string, data: any) {
     if (this.query.includes(value)) {
-      let index = this.query.indexOf(value);
-      let afterQuery= this.query.slice(0, index);
-      let beforeQuery= this.query.slice(index+this.query.indexOf("&"), this.query.length);
+      let queryParams = this.query.split("&");
+      queryParams.map((param, index)=> {
+        if(param.includes(value)){
+          queryParams[index] = `${value}=${data}`;
+        }
+      })
+      this.query = queryParams.join("&")
       
-      this.query = `${afterQuery}${value}=${data}&${beforeQuery}`
-      console.log(`after: ${afterQuery} - before: ${beforeQuery}\n${this.query}`)
     } else {
       this.query += `&${value}=${data}`
     }
-
   }
   setLimit(event: any) {
     this.setNewLimitOrSortBy("limit", event.target.value);

@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PaginationResponseModel } from 'src/app/models/PaginationResponseModel';
 import { Question } from 'src/app/models/Question';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AnswerService } from 'src/app/services/answer.service';
@@ -11,14 +12,14 @@ import { QuestionService } from 'src/app/services/question.service';
   styleUrls: ['./answer.component.scss']
 })
 export class AnswerComponent implements OnInit {
-  questions!: Array<Question>
+  questions!: PaginationResponseModel<Question>
   query: string = "";
   answerText!:string;
-  limit!:number
+  limit:number = 10
+  page:number=1
   updateAnswerText!:string;
   constructor(private questionService: QuestionService, private answerService: AnswerService, private alertyifyService: AlertifyService) {
-    this.limit = 5
-    this.query = `?answered=all&limit=${this.limit}`;
+    this.query = `answered=all&page=${this.page}&limit=${this.limit}`;
     this.getQuestions();
   }
 
@@ -54,11 +55,7 @@ export class AnswerComponent implements OnInit {
     })
   }
  
-  seeMore(){
-    this.limit += 5;
-    this.query = `?answered=all&limit=${this.limit}`;
-    this.getQuestions();
-  }
+  
   showAnswerArea(index: number, event: any) {
     if (event.target.innerText == "Cevabı Göster" || event.target.innerText == "Cevapla") {
       document.getElementsByClassName("addAnswer")[index].setAttribute("style", "display:block")
@@ -71,9 +68,10 @@ export class AnswerComponent implements OnInit {
 
     }
   }
+  
   getQuestions() {
     this.questionService.getQuestionsByMerchant(this.query).subscribe(res => {
-      this.questions = res.data;
+      this.questions = res;
     }, (error: HttpErrorResponse) => {
       if (error.error.message == "giriş yapın") {
         window.location.replace("/login");
@@ -85,14 +83,46 @@ export class AnswerComponent implements OnInit {
   changeFilterItems(event:any){
     switch(event.target.id){
       case "answered":
-        this.query = `?answered=${event.target.value}&limit=${this.limit}`
+        this.setQueryItems("answered", event.target.value)
         break;
       case "date":
-        this.query = `?answered=all&sortBy=${event.target.value}&limit=${this.limit}`
+        this.setQueryItems("sortBy", event.target.value)
         break;
       default:
         break;
     }
+    this.getQuestions();
+  }
+  seeMore() {
+    this.page += 1;
+    this.setQueryItems("page", this.page);
+    this.getQuestions();
+  }
+  lessMore() {
+    this.page -= 1;
+    this.setQueryItems("page", this.page);
+    this.getQuestions();
+
+  }
+
+  setQueryItems(value: string, data: any) {
+    
+    if (this.query.includes(value)) {
+      let queryParams = this.query.split("&");
+      queryParams.map((param, index)=> {
+        if(param.includes(value)){
+          queryParams[index] = `${value}=${data}`;
+        }
+      })
+      this.query = queryParams.join("&")
+      
+    } else {
+      this.query += `&${value}=${data}`
+    }
+
+  }
+  setLimit(event: any) {
+    this.setQueryItems("limit", event.target.value);
     this.getQuestions();
   }
 

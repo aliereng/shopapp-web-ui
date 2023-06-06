@@ -29,13 +29,13 @@ export class CommentService {
   //   return this.http.get<PaginationResponseModel<Comment>>(this._url+id+`?limit=${limit}&sortBy=${sortBy}`);
   // }
   getAllCommentsByProduct(id:String,query:String):Observable<PaginationResponseModel<Comment>>{
-    return this.http.get<PaginationResponseModel<Comment>>(this._url+id+`${query}`);
+    return this.http.get<PaginationResponseModel<Comment>>(this._url+id+`?${query}`);
   }
   likeCommet(id: string, like: number): Observable<{ success: Boolean, data: Comment }> {
     return this.http.put<{ success: Boolean, data: Comment }>(this._url + `like/${id}?like=${like}`, {}, this._httpOption)
   }
   getAllCommentsByCustomer(query:string):Observable<PaginationResponseModel<Comment>>{
-    return this.http.get<PaginationResponseModel<Comment>>(this._url + `customer${query}`,this._httpOption)
+    return this.http.get<PaginationResponseModel<Comment>>(this._url + `customer?${query}`,this._httpOption)
   }
   updateComment(id:string, data:Object):Observable<{success:boolean, data:Comment}>{
     return this.http.put<{success:boolean, data:Comment}>(this._url+`update/${id}`,data,this._httpOption)

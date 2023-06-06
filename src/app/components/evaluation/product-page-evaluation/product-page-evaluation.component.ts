@@ -11,9 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductPageEvaluationComponent implements OnInit {
 
-  // @Input() comments!:Array<Comment>
   paginationComments!: PaginationResponseModel<Comment>
-  // comments!:Array<Comment>
   id!: String;
   limit: number = 10;
   page: number = 1;
@@ -23,7 +21,7 @@ export class ProductPageEvaluationComponent implements OnInit {
   query: string = "";
   constructor(private commentService: CommentService, private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.snapshot!.paramMap!.get("id")!;
-    this.query = `?page=${this.page}&limit=${this.limit}`
+    this.query = `page=${this.page}&limit=${this.limit}`
     this.getComments();
   }
 
@@ -39,37 +37,39 @@ export class ProductPageEvaluationComponent implements OnInit {
   }
   seeMore() {
     this.page += 1;
-    this.setPageInQuery();
+    this.setQueryParams("page", this.page);
     this.getComments();
   }
   lessMore() {
     this.page -= 1;
-    this.setPageInQuery();
+    this.setQueryParams("page", this.page);
     this.getComments();
 
   }
-  setPageInQuery() {
-    let pageIndex = this.query.indexOf("page");
-    this.query = this.query.slice(0, pageIndex);
-    this.query += `page=${this.page}&limit=${this.limit}`
-  }
-  setNewLimitOrSortBy(value: string, data: any) {
+  
+  setQueryParams(value: string, data: any) {
+    
     if (this.query.includes(value)) {
-      let index = this.query.indexOf(value);
-      this.query = this.query.slice(0, index);
-      this.query += `&${value}=${data}`
+      let queryParams = this.query.split("&");
+      queryParams.map((param, index)=> {
+        if(param.includes(value)){
+          queryParams[index] = `${value}=${data}`;
+        }
+      })
+      this.query = queryParams.join("&")
+      
     } else {
       this.query += `&${value}=${data}`
     }
 
   }
   setLimit(event: any) {
-    this.setNewLimitOrSortBy("limit", event.target.value);
+    this.setQueryParams("limit", event.target.value);
     this.getComments();
   }
 
   changeSelects(event: any) {
-    this.setNewLimitOrSortBy("sortBy", event.target.value);
+    this.setQueryParams("sortBy", event.target.value);
     this.getComments()
   }
 

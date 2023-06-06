@@ -27,12 +27,10 @@ export class ShowQuestionComponent implements OnInit {
     if (this.merchant_id) {
       this.questionPage = true;
 
-      // this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false&limit=${this.limit}`
-      this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false&page=${this.page}&limit=10`
+      this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false&page=${this.page}&limit=${this.limit}`
     } else {
       this.questionPage = false;
-      // this.query = `product/${this.product_id}?limit=${this.limit}`
-      this.query = `product/${this.product_id}?page=${this.page}&limit=10`
+      this.query = `product/${this.product_id}?page=${this.page}&limit=${this.limit}`
 
     }
     this.getQuestions();
@@ -52,49 +50,27 @@ export class ShowQuestionComponent implements OnInit {
   selectAllQuestions() {
     this.allQuestionShow = !this.allQuestionShow
     if (this.allQuestionShow) {
-      // this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=true&limit=${this.limit}`
       this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=true&page=${this.page}&limit=${this.limit}`
     } else {
-      // this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false&limit=${this.limit}`
       this.query = `product/${this.product_id}/merchant/${this.merchant_id}?all=false&page=${this.page}`
     }
     this.getQuestions();
   }
-  // seeMore(){
-  //   this.limit += 5;
-  //   let limitIndex = this.query.indexOf("limit");
-  //   this.query = this.query.slice(0, limitIndex);
-  //   this.query += `limit=${this.limit}`
-  //   this.getQuestions();
-  // }
+ 
   seeMore() {
     this.page += 1;
-    let pageIndex = this.query.indexOf("page");
-    this.query = this.query.slice(0, pageIndex);
-    this.query += `page=${this.page}&limit=${this.limit}`
-    console.log(this.query)
+    this.setQueryItems("page", this.page)
+    this.getQuestions();
+  }
+  
+  lessMore(){
+    this.page -= 1;
+    this.setQueryItems("page", this.page)
     this.getQuestions();
   }
   setLimit(event:any){
     
-    this.limit = event.target.value;
-    if(this.query.includes("limit")){
-      let limitIndex = this.query.indexOf("limit");
-      this.query = this.query.slice(0, limitIndex);
-      this.query += `&limit=${this.limit}`
-    }else{
-      this.query += `&limit=${this.limit}`
-    }
-    
-    console.log(this.query)
-    this.getQuestions();
-  }
-  lessMore(){
-    this.page -= 1;
-    let pageIndex = this.query.indexOf("page");
-    this.query = this.query.slice(0, pageIndex);
-    this.query += `page=${this.page}&limit=${this.limit}`
-    console.log(this.query)
+    this.setQueryItems("limit", event.target.value)
     this.getQuestions();
   }
   likeQuestion(id: string, likeCount: number, index: number) {
@@ -105,6 +81,22 @@ export class ShowQuestionComponent implements OnInit {
 
     )
     this.questionResult.data[index].likeCount = newLikeCount;
+  }
+  setQueryItems(value: string, data: any) {
+    
+    if (this.query.includes(value)) {
+      let queryParams = this.query.split("&");
+      queryParams.map((param, index)=> {
+        if(param.includes(value)){
+          queryParams[index] = `${value}=${data}`;
+        }
+      })
+      this.query = queryParams.join("&")
+      
+    } else {
+      this.query += `&${value}=${data}`
+    }
+
   }
 
 }
