@@ -49,7 +49,9 @@
             <h3>Renk</h3>
             <select name="color" id="color" [(ngModel)]="color" (change)="selectColor()">
                 <option value="hepsi" selected>Hepsi</option>
-                <option value="{{clr}}" *ngFor="let clr of colors">{{clr}}</option>
+                <option value="kırmızı">kırmızı</option>
+                <option value="gri">gri</option>
+                <option value="mavi">mavi</option>
             </select>
         </div>
     </div>

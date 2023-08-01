@@ -41,7 +41,7 @@ export class ApiService {
     return this.http.get<{success:Boolean, data:[Category]}>(this.url+"categories");
   }
   getAllProductsByCategory(slug:String, query:String= ""):Observable<HomepageModel>{
-    return this.http.get<HomepageModel>(this.url+ `products/${slug}${query}`)
+    return this.http.get<HomepageModel>(this.url+ `products/${slug}?${query}`)
   }
   
   getAllProducts():Observable<HomepageModel>{

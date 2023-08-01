@@ -2,7 +2,7 @@ export interface Stock{
     _id: String;
     product:String;
     size: String;
-    color: String;
+    color: string;
     piece: number;
     price: number;
     base: Boolean;

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
@@ -11,7 +12,7 @@ import { HomepageModel } from 'src/app/models/HomepageModel';
 })
 export class ProductsComponent implements OnInit {
   slug: String = "";
-  query: String = "?";
+  query: String = "";
   max: String = "";
   min: String = "";
   homepageModel: HomepageModel | undefined;
@@ -24,9 +25,12 @@ export class ProductsComponent implements OnInit {
     this.service.getAllProductsByCategory(this.slug, this.query).subscribe(res => {
       this.homepageModel = res
       res.data.map(product => {
-        if (!this.colors.includes(product.color)) {
-          this.colors.push(product.color)
-        }
+        product.stocks.map(stock => {
+          if (!this.colors.includes(stock.color)) {
+            this.colors.push(stock.color)
+          }
+        })
+        
       })
       this.categories.push(res.data[0]?.categories)
 
@@ -95,7 +99,9 @@ export class ProductsComponent implements OnInit {
       this.query += `color=${this.color}`;
       this.service.getAllProductsByCategory(this.slug, this.query).subscribe(res => {
         this.homepageModel = res
-      })
+      },((err:HttpErrorResponse)=> {
+        alert(err.message)
+      }))
     }
 
     this.query = currentQuery

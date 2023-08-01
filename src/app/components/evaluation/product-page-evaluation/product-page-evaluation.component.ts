@@ -4,6 +4,7 @@ import { Comment } from '../../../models/Comment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PaginationResponseModel } from 'src/app/models/PaginationResponseModel';
 import { ActivatedRoute } from '@angular/router';
+import QueryHelper from 'src/app/helpers/queryHelper';
 @Component({
   selector: 'app-product-page-evaluation',
   templateUrl: './product-page-evaluation.component.html',
@@ -37,39 +38,25 @@ export class ProductPageEvaluationComponent implements OnInit {
   }
   seeMore() {
     this.page += 1;
-    this.setQueryParams("page", this.page);
+    this.query = QueryHelper.setQueryParams(this.query, "page",this.page)
     this.getComments();
   }
   lessMore() {
     this.page -= 1;
-    this.setQueryParams("page", this.page);
+    this.query = QueryHelper.setQueryParams(this.query, "page",this.page)
     this.getComments();
 
   }
   
-  setQueryParams(value: string, data: any) {
-    
-    if (this.query.includes(value)) {
-      let queryParams = this.query.split("&");
-      queryParams.map((param, index)=> {
-        if(param.includes(value)){
-          queryParams[index] = `${value}=${data}`;
-        }
-      })
-      this.query = queryParams.join("&")
-      
-    } else {
-      this.query += `&${value}=${data}`
-    }
-
-  }
   setLimit(event: any) {
-    this.setQueryParams("limit", event.target.value);
+    this.query = QueryHelper.setQueryParams(this.query, "limit", event.target.value)
+
     this.getComments();
   }
 
   changeSelects(event: any) {
-    this.setQueryParams("sortBy", event.target.value);
+    this.query = QueryHelper.setQueryParams(this.query, "sortBy", event.target.value)
+
     this.getComments()
   }
 
