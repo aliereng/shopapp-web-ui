@@ -42,6 +42,7 @@ export class CartComponent implements OnInit {
     this.applyCart();
    }
    applyCart(){
+    localStorage.setItem("cartId",this.cart._id.toString())
     this.service.applyCart(this.cart._id, this.cart).subscribe(res=> {
     },(error:HttpErrorResponse) =>{
       alert(error.error.message)

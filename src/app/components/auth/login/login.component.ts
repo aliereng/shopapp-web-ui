@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
       if(result.body.data.modelType=="customer"){
         window.location.replace("/");
         // this.router.navigate(["/"])
+        localStorage.setItem("userId", result.body.data.id)
 
       }else if(result.body.data.modelType=="supplier"){
         window.location.replace("/merchant/transaction");

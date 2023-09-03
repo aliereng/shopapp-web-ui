@@ -1,7 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Customer } from 'src/app/models/Customer';
 import { Order } from 'src/app/models/Order';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import { CustomerService } from 'src/app/services/customer.service';
 import { OrderService } from 'src/app/services/order.service';
+import { PaymentService } from 'src/app/services/payment.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-order',
@@ -14,15 +19,19 @@ export class OrderComponent implements OnInit {
   }
   orders!: Array<Order>
   productId!:String;
+  customer!: Customer;
   stockId!:String;
   supplierId!:String;
   seeMoreStatus:Boolean = false;
   addEvaluationComponentStatus:Boolean= false;
-  constructor(private service:OrderService) {
+  constructor(private service:OrderService, private customerService: CustomerService, private paymentService: PaymentService, private alertifyjs: AlertifyService) {
     this.service.getOrderByCustomer().subscribe(res=>{
       this.orders = res.data
     },(error:HttpErrorResponse)=>  {
       alert(error.error.message)
+    })
+    this.customerService.getCustomer().subscribe(response => {
+      this.customer = response.data
     })
   }
   showOrderDownArea(i:number){
@@ -36,6 +45,22 @@ export class OrderComponent implements OnInit {
       document.getElementsByClassName("seeMore")[i].innerHTML = "daha fazla +";
       this.seeMoreStatus = true
     }
+
+  }
+  refundOrder(i: number){
+    const data = {
+      locale: navigator.language.toLowerCase(),
+      conversationId: uuidv4(),
+      paymentTransactionId: this.orders[i].paymentTransactionId,
+      price: this.orders[i].amount.toString(),
+      currency: navigator.language.toLowerCase(),
+      ip: this.customer?.ip
+    }
+    this.paymentService.refund(data).subscribe(respose=> {
+      this.alertifyjs.success("iade işlemleri başlatıldı.")
+    },(err:HttpErrorResponse)=> {
+      this.alertifyjs.error(err.message)
+    })
 
   }
   ngOnInit(): void {

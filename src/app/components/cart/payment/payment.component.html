@@ -67,28 +67,28 @@
                     <h4>Kart Seçenekleri</h4>
                     <div id="cardForm">
                         <div class="cardFormItem">
-                            <label for="cardNameSurname" class="formLabel">Kart Üzerindeki İsim</label>
-                            <input type="text" class="formInput" name="cardNameSurname" id="cardNameSurname" #cardNameSurnameInput>
+                            <label for="cardHolderName" class="formLabel">Kart Üzerindeki İsim</label>
+                            <input type="text" class="formInput" name="cardHolderName" id="cardHolderName" #cardHolderName>
                         </div>
                         <div class="cardFormItem">
                             <label for="cardNumber" class="formLabel">Kart Numarası</label>
-                            <input type="text" class="formInput" name="cardNumber" id="cardNumber" #cardNumberInput>
+                            <input type="text" class="formInput" name="cardNumber" id="cardNumber" #cardNumber (keyup)="creditCardControl(cardNumber)">
                         </div>
                         <div id="cardDateAndCode">
                             <div id="cardDate">
                                 <div class="cardFormItem">
                                     <label for="cardMounth" class="formLabel">Ay</label>
-                                    <input type="text" class="formInput" name="cardMounth" id="cardMounth" #cardMounthInput>
+                                    <input type="text" class="formInput" name="cardMounth" id="cardMounth" #cardMounth>
                                 </div>
                                 <div class="cardFormItem">
                                     <label for="cardYear" class="formLabel">Yıl</label>
-                                    <input type="text" class="formInput" name="cardYear" id="cardYear" #cardYearInput>
+                                    <input type="text" class="formInput" name="cardYear" id="cardYear" #cardYear>
                                 </div>
                             </div>
                             <div id="cardCode">
                                 <div class="cardFormItem">
                                     <label for="cardSecurityCode" class="formLabel">Güvenlik Kodu</label>
-                                    <input type="text" class="formInput" name="cardSecurityCode" id="cardSecurityCode" #cardSecurityCodeInput>
+                                    <input type="text" class="formInput" name="cardSecurityCode" id="cardSecurityCode" #cardSecurityCode>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,21 @@
                 <div id="paymentInstalmentOptions" class="paymentBodySubArea">
                     <h4>Taksit Seçenekleri</h4>
 
-                    <p>banka opsiyonu eklendiğinde bankanın sunduğu taksit seçenekleri gelecek</p>
+                    <p id="bank-name"></p>
+                    <p id="card-association"></p>
+                    <p id="card-type"></p>
+                    <ul id="installmentPrices">
+                        <li class="installmentPrice" *ngFor="let installmentPrice of installmentPrices">
+                            <!-- "installmentPrice": 100,
+                        "totalPrice": 100,
+                        "installmentNumber": 1 -->
+                            <div>
+                                <p class="installmentPrice">{{installmentPrice.installmentPrice}}</p>
+                                <p class="totalPrice">{{installmentPrice.totalPrice}}</p>
+                                <p class="installmentNumber">{{installmentPrice.installmentNumber}}</p>
+                            </div>
+                        </li>
+                    </ul>
 
                 </div>
             </div>

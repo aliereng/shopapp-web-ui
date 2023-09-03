@@ -55,5 +55,7 @@ export interface Order{
     };
     createdAt: Date;
     amount: number;
-    complete:Boolean
+    complete:Boolean,
+    paymentId: String,
+    paymentTransactionId: String
 }

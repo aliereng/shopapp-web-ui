@@ -17,7 +17,7 @@
             </div>
             <div class="orderButtons flex flex-column">
                 <button>Onayla</button>
-                <button>İptal Et</button>
+                <button (click)="refundOrder(i)">İptal Et</button>
                 <button (click)="changeAddEvaAppStatusAndIds(order.product._id, order.stock._id, order.supplier._id)">Yorum Yap</button>
                 <p *ngIf="order.orderStatus">Hazırlandı</p>
                 <p *ngIf="!order.orderStatus">Hazırlanıyor</p>
