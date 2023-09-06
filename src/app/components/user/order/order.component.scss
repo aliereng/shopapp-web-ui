@@ -64,5 +64,35 @@
             gap: 2rem;
             margin-top: 2rem;
         }
+        .otherOrders{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 75%;
+            height: 75%;
+            display: flex;
+            
+            justify-content: center;
+            align-items: center;
+
+            .orderImage {
+                width: 20%;
+
+                img {
+                    object-fit: contain;
+                    object-position: center;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .orderInfo {
+                width: 60%;
+                p{
+                    margin-bottom:.5rem
+                }
+               
+            }
+        }
     }
 }

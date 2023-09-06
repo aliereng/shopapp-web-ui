@@ -12,22 +12,26 @@
                 <p>{{order.stock.color}}/{{order.stock.size}}</p>
                 
                 <p>{{order.amount}}₺</p>
-                <p>{{order.createdAt | date: 'dd/MM/yyyy'}}</p>
+                <p>{{order.createdAt | date: "dd.MM.yyyy"}}</p>
                 <a routerLink="supplier/{{order.supplier.slug}}">{{order.supplier.shopName}}</a>
             </div>
             <div class="orderButtons flex flex-column">
-                <button>Onayla</button>
-                <button (click)="refundOrder(i)">İptal Et</button>
+                <button *ngIf="!order.cancel" (click)= "apply(order._id)">Onayla</button>
+                <button *ngIf="order.cancel" disabled>Onayla</button>
+                <button *ngIf="!order.cancel && (currentDate.getTime() - order.createdAt.getTime())< 86400000" (click)="cancelOrder(i)">İptal Et</button>
+                <button *ngIf="!order.cancel && (currentDate.getTime() - order.createdAt.getTime())> 86400000" (click)="cancelOrder(i)">İade Talep Et</button>
+                <a *ngIf="order.cancel" routerLink="/product/{{order.product.slug}}/{{order.product._id}}">Ürüne Git</a>
                 <button (click)="changeAddEvaAppStatusAndIds(order.product._id, order.stock._id, order.supplier._id)">Yorum Yap</button>
-                <p *ngIf="order.orderStatus">Hazırlandı</p>
-                <p *ngIf="!order.orderStatus">Hazırlanıyor</p>
+                <p *ngIf="order.orderStatus && !order.cancel">Hazırlandı</p>
+                <p *ngIf="!order.orderStatus && !order.cancel">Hazırlanıyor</p>
+                <p *ngIf="order.cancel">İade Edildi</p>
                 <p *ngIf="order.orderStatus && order.shippedStatus">Kargolandı</p>
                 <p *ngIf="order.orderStatus && !order.shippedStatus">Kargo Bekliyor</p>
-                <a class="seeMore" (click)="showOrderDownArea(i)">daha fazla +</a>
+                <a class="seeMore" (click)="showOrderDownArea(i)" *ngIf="!order.cancel">daha fazla +</a>
             </div>
             
         </div>
-        <div class="orderDownArea">
+        <div class="orderDownArea" *ngIf="!order.cancel">
             <div class="deliveredAddress">
                 <p><span>Teslimat Adresi: </span></p>
                 <p>{{order.deliveredAddress.title}}</p>
@@ -51,5 +55,20 @@
 
             </div>
         </div>
+        
+    </div>
+    <div class="otherOrders">
+        <!-- <div class="order">
+            <div class="orderImage"><img src="http://localhost:3000/api/public/image/{{order.stock.image}}" alt="">
+            </div>
+            <div class="orderInfo">
+                <p><a routerLink="/product/{{order.product.slug}}/{{order.product._id}}">{{order.product.name}}</a></p>
+                <p>{{order.stock.color}}/{{order.stock.size}}</p>
+                
+                <p>{{order.amount}}₺</p>
+                <p>{{order.createdAt | date: 'dd/MM/yyyy'}}</p>
+                <a routerLink="supplier/{{order.supplier.slug}}">{{order.supplier.shopName}}</a>
+            </div>
+        </div> -->
     </div>
 </div>

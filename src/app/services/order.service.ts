@@ -22,4 +22,7 @@ export class OrderService {
   getOrderByCustomer():Observable<{success:Boolean, data:[Order]}>{
     return this.http.get<{success:Boolean, data:[Order]}>(this.url+"user",this.httpOptions)
   }
+  cancelOrder(data: {ids: Array<String>, info: Object}):Observable<{success: Boolean}>{
+    return this.http.post<{success: Boolean}>(`${this.url}/cancel`, data ,this.httpOptions)
+  }
 }

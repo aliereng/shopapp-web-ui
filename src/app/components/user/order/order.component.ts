@@ -20,16 +20,24 @@ export class OrderComponent implements OnInit {
   orders!: Array<Order>
   productId!:String;
   customer!: Customer;
+  currentDate!: Date;
   stockId!:String;
   supplierId!:String;
   seeMoreStatus:Boolean = false;
   addEvaluationComponentStatus:Boolean= false;
   constructor(private service:OrderService, private customerService: CustomerService, private paymentService: PaymentService, private alertifyjs: AlertifyService) {
+    this.currentDate = new Date();
     this.service.getOrderByCustomer().subscribe(res=>{
       this.orders = res.data
+      setTimeout(() => {
+        this.orders.map(order=> {
+          order.createdAt = new Date(order.createdAt)
+        })
+      }, 20);
     },(error:HttpErrorResponse)=>  {
       alert(error.error.message)
     })
+   
     this.customerService.getCustomer().subscribe(response => {
       this.customer = response.data
     })
@@ -47,21 +55,43 @@ export class OrderComponent implements OnInit {
     }
 
   }
-  refundOrder(i: number){
-    const data = {
-      locale: navigator.language.toLowerCase(),
-      conversationId: uuidv4(),
-      paymentTransactionId: this.orders[i].paymentTransactionId,
-      price: this.orders[i].amount.toString(),
-      currency: navigator.language.toLowerCase(),
-      ip: this.customer?.ip
-    }
-    this.paymentService.refund(data).subscribe(respose=> {
-      this.alertifyjs.success("iade işlemleri başlatıldı.")
-    },(err:HttpErrorResponse)=> {
-      this.alertifyjs.error(err.message)
+  cancelOrder(i: number){
+    const ids: Array<String> = [];
+    const indexes: Array<number> = [];
+    const paymentId = this.orders[i].paymentId;
+    this.orders.map((order, index)=> {
+      if(order.paymentId == paymentId){
+        document.getElementsByClassName("order")[index].setAttribute("style", "background-color:red");
+        ids.push(order._id);
+        indexes.push(index);
+      }
     })
-
+    
+    setTimeout(() => {
+      const result = confirm("Aynı ödeme grubunda oldukları için rengi değişen ürünler iptal eilecektir. Devam etmek istiyor musunuz?")
+      if(result){
+        const data = {
+          ids,
+          info: {
+            locale: navigator.language.toLowerCase(),
+            conversationId: uuidv4(),
+            paymentId: this.orders[i].paymentId,
+            ip: this.customer.ip
+          }
+        }
+        this.service.cancelOrder(data).subscribe(resp=> {
+          this.alertifyjs.success("seçili ürünler iptal edildi.")
+          location.reload();
+        })
+        // alert("çalıştı")
+      }else{
+        indexes.map(index => {
+          document.getElementsByClassName("order")[index].setAttribute("style", "background-color:none");
+        })
+      }
+    }, 10);
+    
+  
   }
   ngOnInit(): void {
   }
@@ -79,5 +109,25 @@ export class OrderComponent implements OnInit {
       this.supplierId = supplier_id;
     }
   }
+  apply(orderId: String){
+    this.alertifyjs.warning(orderId);
+  }
+  // iade(i:number){
+  //   const data = {
+  //     locale: navigator.language.toLowerCase(),
+  //     conversationId: uuidv4(),
+  //     paymentTransactionId: this.orders[i].paymentTransactionId,
+  //     price: this.orders[i].amount.toString(),
+  //     currency: navigator.language.toLowerCase(),
+  //     ip: this.customer?.ip
+  //   }
+  //   this.paymentService.refund(data).subscribe(respose=> {
+  //     this.service.cancelOrder(this.orders[i]._id).subscribe(resp=> {
+  //       this.alertifyjs.success("iade işlemleri başlatıldı.")
+  //     })
+  //   },(err:HttpErrorResponse)=> {
+  //     this.alertifyjs.error(err.message)
+  //   })
+  // }
 
 }

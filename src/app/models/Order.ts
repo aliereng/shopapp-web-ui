@@ -57,5 +57,6 @@ export interface Order{
     amount: number;
     complete:Boolean,
     paymentId: String,
-    paymentTransactionId: String
+    paymentTransactionId: String,
+    cancel: Boolean
 }
