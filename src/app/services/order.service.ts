@@ -25,4 +25,7 @@ export class OrderService {
   cancelOrder(data: {ids: Array<String>, info: Object}):Observable<{success: Boolean}>{
     return this.http.post<{success: Boolean}>(`${this.url}/cancel`, data ,this.httpOptions)
   }
+  refundRequest(data: Object):Observable<{success: Boolean}>{
+    return this.http.post<{success: Boolean}>(`${this.url}/refund-request`, data ,this.httpOptions)
+  }
 }

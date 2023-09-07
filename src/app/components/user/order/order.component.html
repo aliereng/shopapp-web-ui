@@ -18,13 +18,15 @@
             <div class="orderButtons flex flex-column">
                 <button *ngIf="!order.cancel" (click)= "apply(order._id)">Onayla</button>
                 <button *ngIf="order.cancel" disabled>Onayla</button>
-                <button *ngIf="!order.cancel && (currentDate.getTime() - order.createdAt.getTime())< 86400000" (click)="cancelOrder(i)">İptal Et</button>
-                <button *ngIf="!order.cancel && (currentDate.getTime() - order.createdAt.getTime())> 86400000" (click)="cancelOrder(i)">İade Talep Et</button>
+                <!-- <button *ngIf="!order.cancel && (currentDate.getTime() - order.createdAt.getTime())< 8640000" (click)="cancelOrder(i)">İptal Et</button> -->
+                <button *ngIf="!order.cancel && (currentDate.getTime() - order.createdAt.getTime())> 1" (click)="openRefundOptions(i)">İade Talep Et</button>
                 <a *ngIf="order.cancel" routerLink="/product/{{order.product.slug}}/{{order.product._id}}">Ürüne Git</a>
                 <button (click)="changeAddEvaAppStatusAndIds(order.product._id, order.stock._id, order.supplier._id)">Yorum Yap</button>
                 <p *ngIf="order.orderStatus && !order.cancel">Hazırlandı</p>
                 <p *ngIf="!order.orderStatus && !order.cancel">Hazırlanıyor</p>
                 <p *ngIf="order.cancel">İade Edildi</p>
+                <p *ngIf="order.refundStatus">{{order.shipper.name}}</p>
+                <p *ngIf="order.refundStatus">{{order.followCode}}</p>
                 <p *ngIf="order.orderStatus && order.shippedStatus">Kargolandı</p>
                 <p *ngIf="order.orderStatus && !order.shippedStatus">Kargo Bekliyor</p>
                 <a class="seeMore" (click)="showOrderDownArea(i)" *ngIf="!order.cancel">daha fazla +</a>
@@ -55,20 +57,17 @@
 
             </div>
         </div>
-        
+        <div id="refundOptions">
+            <h3>iade sebebinizi seçiniz</h3>
+            <select [(ngModel)]="refundChoice">
+             <option value="0" selected disabled>İade Sebebiniz</option>
+             <option value="optionOne">Seçnek 1</option>
+             <option value="optionTwo">Seçnek 2</option>
+             <option value="optionThree">Seçnek 3</option>
+             <option value="optionFour">Seçnek 4</option>
+            </select>
+            <button (click)="refundPay(i)">Kaydet</button>
+         </div>
     </div>
-    <div class="otherOrders">
-        <!-- <div class="order">
-            <div class="orderImage"><img src="http://localhost:3000/api/public/image/{{order.stock.image}}" alt="">
-            </div>
-            <div class="orderInfo">
-                <p><a routerLink="/product/{{order.product.slug}}/{{order.product._id}}">{{order.product.name}}</a></p>
-                <p>{{order.stock.color}}/{{order.stock.size}}</p>
-                
-                <p>{{order.amount}}₺</p>
-                <p>{{order.createdAt | date: 'dd/MM/yyyy'}}</p>
-                <a routerLink="supplier/{{order.supplier.slug}}">{{order.supplier.shopName}}</a>
-            </div>
-        </div> -->
-    </div>
+    
 </div>

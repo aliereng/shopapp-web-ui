@@ -24,4 +24,8 @@ export class MerchantService {
   updateTransaction(data:Object):Observable<{success:Boolean}>{
     return this.http.put<{success:Boolean}>(this.url+"transaction/update",data,this.httpOptions);
   }
+  sendRefundInfo(data:Object):Observable<{success:Boolean}>{
+    return this.http.put<{success:Boolean}>(this.url+"transaction/send-refund-info",data,this.httpOptions);
+
+  }
 }

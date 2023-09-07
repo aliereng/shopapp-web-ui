@@ -2,6 +2,7 @@
 
 #ordersArea {
     width: 100%;
+    position: relative;
     h2 {
         width: 100%;
         border: 1px solid $colorLightGray;
@@ -11,7 +12,7 @@
         border: 1px solid $colorLightGray;
         padding: 1rem;
         margin: 1rem auto;
-        position: relative;
+        // position: relative;
         .orderUpArea {
             width: 100%;
             display: flex;
@@ -94,5 +95,21 @@
                
             }
         }
+        #refundOptions{
+            background-color: rgba($color: gray, $alpha: .5);
+            z-index: 1000;
+            display: none;
+            position: absolute;
+            top:0;
+            left: 0;
+            height: 50%;
+            width: 50%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:1rem;
+            margin: 2rem 4rem;
+        }
     }
+    
 }

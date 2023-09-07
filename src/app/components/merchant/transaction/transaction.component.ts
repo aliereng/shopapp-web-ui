@@ -68,6 +68,17 @@ export class TransactionComponent implements OnInit {
     this.query = currentQuery
 
   }
+  sendRefundInfo(orderId: String, selectShipper: HTMLSelectElement, followCode: HTMLInputElement){
+    console.log(selectShipper.value)
+    const data =  {
+      orderId,
+      selectShipper: selectShipper.value,
+      followCode: followCode.value
+    }
+    this.service.sendRefundInfo(data).subscribe(result=> {
+      console.log(result);
+    })
+  }
   ngOnInit(): void {
   }
 

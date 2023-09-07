@@ -17,7 +17,8 @@ export class OrderComponent implements OnInit {
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
    this.addEvaluationComponentStatus = this.addEvaluationComponentStatus? false:true
   }
-  orders!: Array<Order>
+  // order!: Order;
+  orders!: Array<Order>;
   productId!:String;
   customer!: Customer;
   currentDate!: Date;
@@ -25,10 +26,12 @@ export class OrderComponent implements OnInit {
   supplierId!:String;
   seeMoreStatus:Boolean = false;
   addEvaluationComponentStatus:Boolean= false;
+  refundChoice!: String;
   constructor(private service:OrderService, private customerService: CustomerService, private paymentService: PaymentService, private alertifyjs: AlertifyService) {
     this.currentDate = new Date();
     this.service.getOrderByCustomer().subscribe(res=>{
       this.orders = res.data
+      console.log(this.orders)
       setTimeout(() => {
         this.orders.map(order=> {
           order.createdAt = new Date(order.createdAt)
@@ -112,22 +115,32 @@ export class OrderComponent implements OnInit {
   apply(orderId: String){
     this.alertifyjs.warning(orderId);
   }
-  // iade(i:number){
-  //   const data = {
-  //     locale: navigator.language.toLowerCase(),
-  //     conversationId: uuidv4(),
-  //     paymentTransactionId: this.orders[i].paymentTransactionId,
-  //     price: this.orders[i].amount.toString(),
-  //     currency: navigator.language.toLowerCase(),
-  //     ip: this.customer?.ip
-  //   }
-  //   this.paymentService.refund(data).subscribe(respose=> {
-  //     this.service.cancelOrder(this.orders[i]._id).subscribe(resp=> {
-  //       this.alertifyjs.success("iade işlemleri başlatıldı.")
-  //     })
-  //   },(err:HttpErrorResponse)=> {
-  //     this.alertifyjs.error(err.message)
-  //   })
-  // }
+  refundPay(i: number){
+    document.getElementById("refundOptions")?.setAttribute("style", "display:none");
+    // const data = {
+    //   orderId: this.orders[i]._id,
+    //   refundChoice: this.refundChoice
+    //   // info: {
+    //   //   locale: navigator.language.toLowerCase(),
+    //   //   conversationId: uuidv4(),
+    //   //   paymentTransactionId: this.orders[i].paymentTransactionId,
+    //   //   price: this.orders[i].amount.toString(),
+    //   //   currency: navigator.language.toLowerCase(),
+    //   //   ip: this.customer?.ip
+    //   // }
+    // }
+    // this.service.refundRequest(data).subscribe(result => {
+    //   if(result.success){
+    //     this.alertifyjs.success("iade talebiniz oluşturuldu")
+    //   }
+    // },((err:HttpErrorResponse)=> {
+    //   this.alertifyjs.error("iade işlemi başarısız.")
+    // }))
+  }
+
+  openRefundOptions(i: number){
+    document.getElementById("refundOptions")?.setAttribute("style", "display:flex");
+    // this.order = this.orders[i];
+  }
 
 }

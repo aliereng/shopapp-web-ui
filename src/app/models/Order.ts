@@ -58,5 +58,8 @@ export interface Order{
     complete:Boolean,
     paymentId: String,
     paymentTransactionId: String,
-    cancel: Boolean
+    cancel: Boolean,
+    refundRequest:Boolean,
+    refundChoice:String,
+    refundStatus: Boolean
 }
