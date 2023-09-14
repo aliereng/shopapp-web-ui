@@ -2,8 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Shipper } from 'src/app/models/Shipper';
 import { Transaction } from 'src/app/models/Transaction';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { MerchantService } from 'src/app/services/merchant.service';
+import { OrderService } from 'src/app/services/order.service';
 import { ShipperService } from 'src/app/services/shipper.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-transaction',
@@ -16,7 +19,7 @@ export class TransactionComponent implements OnInit {
   sortByDate = "default";
   completeStatus = "all";
   query = "?";
-  constructor(private service: MerchantService, private shipperService: ShipperService) { 
+  constructor(private service: MerchantService, private shipperService: ShipperService, private orderService: OrderService, private alertifyService: AlertifyService) { 
     this.service.getAllTransactions(this.query).subscribe(res=> {
       this.transactions = res.data
     },(error:HttpErrorResponse)=> {
@@ -68,16 +71,29 @@ export class TransactionComponent implements OnInit {
     this.query = currentQuery
 
   }
-  sendRefundInfo(orderId: String, selectShipper: HTMLSelectElement, followCode: HTMLInputElement){
-    console.log(selectShipper.value)
-    const data =  {
-      orderId,
-      selectShipper: selectShipper.value,
-      followCode: followCode.value
+  completeReturnOrder(i: number, returnSelect: HTMLSelectElement){
+    if(returnSelect.value != "none"){
+      const data = {
+        orderId: this.transactions[i].order._id,
+        returnStatus: returnSelect.value,
+        info: {
+          locale: navigator.language.toLowerCase(),
+          conversationId: uuidv4(),
+          paymentTransactionId: this.transactions[i].order.paymentTransactionId,
+          price: this.transactions[i].order.amount.toString(),
+          currency: navigator.language.toLowerCase(),
+          ip: this.transactions[i].order.customer.ip
+        }
     }
-    this.service.sendRefundInfo(data).subscribe(result=> {
-      console.log(result);
-    })
+
+      this.orderService.completeReturn(data).subscribe(result=> {
+        console.log(result);
+      })
+    
+    }else{
+      this.alertifyService.warning("lütfen geri ödeme onayı seçiniz.")
+    }
+   
   }
   ngOnInit(): void {
   }

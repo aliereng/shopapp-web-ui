@@ -2,8 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Customer } from 'src/app/models/Customer';
 import { Order } from 'src/app/models/Order';
+import { Shipper } from 'src/app/models/Shipper';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { MerchantService } from 'src/app/services/merchant.service';
 import { OrderService } from 'src/app/services/order.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { v4 as uuidv4 } from 'uuid';
@@ -26,8 +28,11 @@ export class OrderComponent implements OnInit {
   supplierId!:String;
   seeMoreStatus:Boolean = false;
   addEvaluationComponentStatus:Boolean= false;
-  refundChoice!: String;
-  constructor(private service:OrderService, private customerService: CustomerService, private paymentService: PaymentService, private alertifyjs: AlertifyService) {
+  returnReason!: String;
+  shippers!: Array<Shipper>
+  shipperChoice!: String;
+  boxCount: String = "1";
+  constructor(private service:OrderService, private customerService: CustomerService, private paymentService: PaymentService, private alertifyjs: AlertifyService, private merchantService: MerchantService) {
     this.currentDate = new Date();
     this.service.getOrderByCustomer().subscribe(res=>{
       this.orders = res.data
@@ -117,30 +122,36 @@ export class OrderComponent implements OnInit {
   }
   refundPay(i: number){
     document.getElementById("refundOptions")?.setAttribute("style", "display:none");
-    // const data = {
-    //   orderId: this.orders[i]._id,
-    //   refundChoice: this.refundChoice
-    //   // info: {
-    //   //   locale: navigator.language.toLowerCase(),
-    //   //   conversationId: uuidv4(),
-    //   //   paymentTransactionId: this.orders[i].paymentTransactionId,
-    //   //   price: this.orders[i].amount.toString(),
-    //   //   currency: navigator.language.toLowerCase(),
-    //   //   ip: this.customer?.ip
-    //   // }
-    // }
-    // this.service.refundRequest(data).subscribe(result => {
-    //   if(result.success){
-    //     this.alertifyjs.success("iade talebiniz oluşturuldu")
-    //   }
-    // },((err:HttpErrorResponse)=> {
-    //   this.alertifyjs.error("iade işlemi başarısız.")
-    // }))
+    const data = {
+      orderId: this.orders[i]._id,
+      returnReason: this.returnReason,
+      shipper: this.shipperChoice,
+      boxCount: this.boxCount,
+      ip: this.customer.ip,
+      info: {
+        locale: navigator.language.toLowerCase(),
+        conversationId: uuidv4(),
+        paymentTransactionId: this.orders[i].paymentTransactionId,
+        price: this.orders[i].amount.toString(),
+        currency: navigator.language.toLowerCase(),
+        ip: this.customer?.ip
+      }
+    }
+    // console.log(data)
+    this.service.createReturn(data).subscribe(result => {
+      if(result.success){
+        this.alertifyjs.success("iade talebiniz oluşturuldu")
+      }
+    },((err:HttpErrorResponse)=> {
+      this.alertifyjs.error("iade işlemi başarısız.")
+    }))
   }
 
   openRefundOptions(i: number){
     document.getElementById("refundOptions")?.setAttribute("style", "display:flex");
-    // this.order = this.orders[i];
+    this.merchantService.getMerchantShippers(this.orders[i].supplier._id).subscribe(resp =>{
+      this.shippers = resp.data;
+    })
   }
 
 }

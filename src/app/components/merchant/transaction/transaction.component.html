@@ -28,7 +28,7 @@
                     <p>{{transaction.order.product.name}}</p>
                     <p>{{transaction.order.stock.color}} / {{transaction.order.stock.size}} / {{transaction.order.count}} adet</p>
                 </div>
-                <div class="transactionAddresses flex flex-column" *ngIf="!transaction.order.cancel && !transaction.order.refundRequest">
+                <div class="transactionAddresses flex flex-column" *ngIf="!transaction.order.cancel && transaction.order.returnStatus == 'noRequest'">
                     <div class="delivederAddress">
                         <p><span>Gönderim Adresi</span></p>
                         <p>{{transaction.order.deliveredAddress.info.name}} {{transaction.order.deliveredAddress.info.surname}}</p>
@@ -44,36 +44,33 @@
                         <p>{{transaction.order.invoiceAddress.info.city}} / {{transaction.order.invoiceAddress.info.district}} / {{transaction.order.invoiceAddress.info.neighbourhood}} / {{transaction.order.invoiceAddress.info.street}}</p>
                     </div>
                 </div>
-                <div class="cancelledOrder flex flex-column" *ngIf="transaction.order.cancel && !transaction.order.refundRequest">
+                <div class="cancelledOrder flex flex-column" *ngIf="transaction.order.cancel && transaction.order.returnStatus == 'noRequest'">
                     ürün iptal edildi.
                 </div>
-                <div class="cancelledOrder flex flex-column" *ngIf="transaction.order.cancel && transaction.order.refundRequest">
-                    <p>ürün iade bekliyor.</p>
-                    <p>iade sebebi: {{transaction.order.refundChoice}}</p>
+                <div class="cancelledOrder flex flex-column" *ngIf="!transaction.order.cancel && transaction.order.returnStatus != 'noRequest'">
+                    <p *ngIf="transaction.order.returnStatus == 'request'">ürünün tarafınıza ulaşması bekleniyor.</p>
+                    <p *ngIf="transaction.order.returnStatus == 'apply'">iade süreci tamamlandı.</p>
+                    <p>iade sebebi: {{transaction.order.returnReason}}</p>
                     <div class="item">
-                        <label for="selectShipper" class="formLabel">Kargo Durumu</label>
-                        <select name="selectShipper" id="selectShipper" class="formSelect" #selectShipper>
-                            <option selected diabled *ngIf="transaction.order.shipper">{{transaction.order.shipper.name}}</option>
-                            <option selected diabled *ngIf="!transaction.order.shipper">Gönderim Firması</option>
-                            <option  value="{{shipper._id}}" *ngFor="let shipper of shippers">{{shipper.name}}</option>
-                        </select>
+                        <p>Gönderim Firması: {{transaction.order.shipper.name}}</p>
+                        <p>Takip Kodu: {{transaction.order.followCode}}</p>
                     </div>
-                    <div class="item">
-                        <label for="followCode" class="formLabel">Takip Kodu</label>
-                        <input type="text" class="formInput" id="followCode" name="followCode" #followCode placeholder="{{transaction.order.followCode}}">
-                    </div>
-                    <button (click)="sendRefundInfo(transaction.order._id, selectShipper, followCode)">Bilgileri Gönder</button>
-
+                    <select name="returnSelect" id="returnSelect" #returnSelect>
+                        <option value="none" selected disabled>Ödeme Onayı Seçin</option>
+                        <option value="apply">Ödemeye Onay Ver.</option>
+                        <option value="cancel">Ödemeyi İptal Et.</option>
+                    </select>
+                    <button (click)="completeReturnOrder(i, returnSelect)">Geri Ödeme Onay</button>
                 </div>
             </div>
-            <div class="transactionDown flex "  *ngIf="!transaction.order.refundRequest && !transaction.order.cancel">
+            <div class="transactionDown flex "  *ngIf="transaction.order.returnStatus == 'noRequest' && !transaction.order.cancel">
                 <div class="transactionDownLeft">
                     <div class="item">
                         <label for="orderStatus" class="formLabel">Sipariş Durumu</label>
                         <select name="orderStatus" id="orderStatus" class="formSelect" #orderStatus>
                             <option *ngIf="!transaction.order.orderStatus" value="false" selected >Hazırlanıyor</option>
                             <option *ngIf="transaction.order.orderStatus" value="true" selected >Hazırlandı</option>                            
-                            <option value="true" *ngIf="!transaction.order.refundRequest">Hazırlandı</option>
+                            <option value="true" *ngIf="transaction.order.returnStatus == 'noRequest'">Hazırlandı</option>
                         </select>
                     </div>
                     <div class="item">

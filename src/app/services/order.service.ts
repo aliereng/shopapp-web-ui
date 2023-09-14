@@ -23,9 +23,12 @@ export class OrderService {
     return this.http.get<{success:Boolean, data:[Order]}>(this.url+"user",this.httpOptions)
   }
   cancelOrder(data: {ids: Array<String>, info: Object}):Observable<{success: Boolean}>{
-    return this.http.post<{success: Boolean}>(`${this.url}/cancel`, data ,this.httpOptions)
+    return this.http.post<{success: Boolean}>(`${this.url}cancel`, data ,this.httpOptions)
   }
-  refundRequest(data: Object):Observable<{success: Boolean}>{
-    return this.http.post<{success: Boolean}>(`${this.url}/refund-request`, data ,this.httpOptions)
+  createReturn(data: Object):Observable<{success: Boolean}>{
+    return this.http.post<{success: Boolean}>(`${this.url}create-return`, data ,this.httpOptions)
+  }
+  completeReturn(data:Object):Observable<{success: Boolean, data: Object}>{
+    return this.http.post<{success: Boolean, data: Object}>(`${this.url}complete-return`, data ,this.httpOptions)
   }
 }

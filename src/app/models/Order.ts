@@ -1,6 +1,8 @@
+import { Customer } from "./Customer";
+
 export interface Order{
     _id: String;
-    customer:String;
+    customer:Customer;
     product:{
         _id:String,
         name:String,
@@ -53,13 +55,12 @@ export interface Order{
             addressDesc: String
         }
     };
-    createdAt: Date;
-    amount: number;
-    complete:Boolean,
+    createdAt: Date,
+    amount: number,
     paymentId: String,
     paymentTransactionId: String,
     cancel: Boolean,
-    refundRequest:Boolean,
-    refundChoice:String,
-    refundStatus: Boolean
+    returnReason:String,
+    returnStatus: String,
+    boxCount:String
 }
